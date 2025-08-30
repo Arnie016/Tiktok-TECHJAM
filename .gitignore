@@ -80,6 +80,7 @@ temp/
 .env.production.local
 
 # SageMaker
+sagemaker-finetune/
 *.tar.gz
 
 # Data files (uncomment if you don't want to track data)
@@ -87,3 +88,4 @@ temp/
 # *.jsonl
 # *.csv
 # *.tsv
+.vercel

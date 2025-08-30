@@ -1,213 +1,190 @@
 #!/usr/bin/env python3
 """
-Geo-Compliance Analyzer - Function URL Tester
-==============================================
-
-Test script for the Phi-2 v5 geo-compliance analysis API deployed via AWS Lambda Function URL.
-This demonstrates the structured JSON output for hackathon submission.
-
-Function URL: https://bvemy4jegpeyk3tf2asnihjn3a0kvwyq.lambda-url.us-west-2.on.aws/
-Model: Phi-2 v5 (fine-tuned on 1441 legal compliance examples)
+Simple test script for the Lambda Function URL
+Run this to validate your Function URL is working properly
 """
 
 import json
 import requests
 import time
-from typing import Dict, Any, List
+from typing import Dict, Any
 
-# Your Lambda Function URL
-FUNCTION_URL = "https://bvemy4jegpeyk3tf2asnihjn3a0kvwyq.lambda-url.us-west-2.on.aws/"
+# ⚠️ REPLACE WITH YOUR ACTUAL LAMBDA FUNCTION URL
+LAMBDA_FUNCTION_URL = "https://bvemy4jegpeyk3tf2asnihjn3a0kvwyq.lambda-url.us-west-2.on.aws/"
 
-def test_geo_compliance(feature_name: str, feature_description: str, law_context: List[Dict]) -> Dict[str, Any]:
-    """
-    Test the geo-compliance analyzer with a feature description.
-    
-    Returns structured JSON with:
-    - need_geo_logic: bool
-    - jurisdictions: List[str] 
-    - legal_citations: List[Dict]
-    - data_categories: List[str]
-    - lawful_basis: List[str]
-    - consent_required: bool
-    - risks: List[Dict]
-    - implementation: List[Dict]
-    - confidence: float
-    """
-    
-    instruction = "Analyse the feature artifact and decide if geo-specific compliance logic is needed. Explain why and cite the relevant regulation if any."
-    
-    input_text = f"""Feature Name: {feature_name}
-Feature Description: {feature_description}
+def test_gdpr_scenario():
+    """Test GDPR cookie compliance scenario"""
+    payload = {
+        "instruction": "Analyse the feature artifact and decide if geo-specific compliance logic is needed. Explain why and cite the relevant regulation if any.",
+        "input": """Feature Name: EU Cookie Consent Banner
+Feature Description: Display cookie consent banner for EU users accessing the website with options to accept or reject non-essential cookies for analytics and marketing purposes.
 
 Law Context (structured JSON):
-{json.dumps(law_context)}"""
-
-    payload = {
-        "instruction": instruction,
-        "input": input_text
+[{"law": "GDPR Article 7", "jurisdiction": "EU", "requirement": "Valid consent for data processing"}, {"law": "GDPR Article 6", "jurisdiction": "EU", "requirement": "Lawful basis for processing personal data"}]"""
     }
     
-    print(f"🧪 Testing: {feature_name}")
-    print(f"📊 Laws: {len(law_context)} regulations")
+    return test_lambda_function("GDPR Cookie Compliance", payload)
+
+def test_ccpa_scenario():
+    """Test CCPA compliance scenario"""
+    payload = {
+        "instruction": "Analyse the feature artifact and decide if geo-specific compliance logic is needed. Explain why and cite the relevant regulation if any.",
+        "input": """Feature Name: California Do Not Sell Button
+Feature Description: Provides California residents with a prominent button to opt-out of the sale of their personal information as required by state privacy law.
+
+Law Context (structured JSON):
+[{"law": "CCPA Section 1798.135", "jurisdiction": "US-CA", "requirement": "Right to opt-out of sale of personal information"}]"""
+    }
     
-    start_time = time.time()
+    return test_lambda_function("CCPA Compliance", payload)
+
+def test_no_compliance_scenario():
+    """Test scenario that shouldn't need compliance"""
+    payload = {
+        "instruction": "Analyse the feature artifact and decide if geo-specific compliance logic is needed. Explain why and cite the relevant regulation if any.",
+        "input": """Feature Name: Dark Mode Theme Toggle
+Feature Description: Simple UI toggle button that allows users to switch between light and dark color themes for better visual comfort.
+
+Law Context (structured JSON):
+[]"""
+    }
+    
+    return test_lambda_function("No Compliance Needed", payload)
+
+def test_lambda_function(test_name: str, payload: Dict[str, Any]) -> bool:
+    """Test the Lambda function with given payload"""
+    print(f"\n🧪 Testing: {test_name}")
+    print("=" * 50)
+    
+    if not LAMBDA_FUNCTION_URL or LAMBDA_FUNCTION_URL == "YOUR_FUNCTION_URL_HERE":
+        print("❌ Error: Please update LAMBDA_FUNCTION_URL with your actual Function URL")
+        return False
     
     try:
+        start_time = time.time()
+        
         response = requests.post(
-            FUNCTION_URL,
-            headers={"Content-Type": "application/json"},
+            LAMBDA_FUNCTION_URL,
+            headers={
+                'Content-Type': 'application/json'
+            },
             json=payload,
             timeout=30
         )
         
-        response_time = time.time() - start_time
+        response_time = round((time.time() - start_time) * 1000, 2)
+        
+        print(f"⚡ Response Time: {response_time}ms")
+        print(f"📊 Status Code: {response.status_code}")
         
         if response.status_code == 200:
             result = response.json()
-            print(f"✅ Success in {response_time:.2f}s")
-            return result
+            
+            if result.get('success'):
+                compliance = result.get('compliance', {})
+                
+                print(f"✅ Success: {result.get('success')}")
+                print(f"🌍 Geo-Logic Needed: {compliance.get('need_geo_logic')}")
+                print(f"🏛️ Jurisdictions: {compliance.get('jurisdictions', [])}")
+                print(f"📚 Legal Citations: {len(compliance.get('legal_citations', []))} found")
+                print(f"📊 Data Categories: {compliance.get('data_categories', [])}")
+                print(f"🎯 Confidence: {compliance.get('confidence', 0):.2f}")
+                print(f"⚠️ Risks: {len(compliance.get('risks', []))} identified")
+                print(f"🛠️ Implementation Steps: {len(compliance.get('implementation', []))} provided")
+                
+                if compliance.get('notes'):
+                    print(f"📝 Notes: {compliance.get('notes')[:100]}...")
+                
+                print(f"🤖 Model: {result.get('metadata', {}).get('model_version', 'unknown')}")
+                print(f"🔗 Endpoint: {result.get('endpoint', 'unknown')}")
+                
+                return True
+            else:
+                print(f"❌ Lambda Error: {result.get('error', 'Unknown error')}")
+                return False
         else:
-            print(f"❌ Error {response.status_code}: {response.text}")
-            return {"error": f"HTTP {response.status_code}", "details": response.text}
+            print(f"❌ HTTP Error: {response.status_code}")
+            print(f"Response: {response.text[:200]}...")
+            return False
+            
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Network Error: {str(e)}")
+        return False
+    except json.JSONDecodeError as e:
+        print(f"❌ JSON Error: {str(e)}")
+        return False
+    except Exception as e:
+        print(f"❌ Unexpected Error: {str(e)}")
+        return False
+
+def test_cors():
+    """Test CORS preflight request"""
+    print(f"\n🧪 Testing: CORS Preflight")
+    print("=" * 50)
+    
+    try:
+        response = requests.options(
+            LAMBDA_FUNCTION_URL,
+            headers={
+                'Origin': 'https://example.com',
+                'Access-Control-Request-Method': 'POST',
+                'Access-Control-Request-Headers': 'Content-Type'
+            },
+            timeout=10
+        )
+        
+        print(f"📊 Status Code: {response.status_code}")
+        print(f"🔗 CORS Headers: {dict(response.headers)}")
+        
+        if response.status_code == 200:
+            print("✅ CORS working correctly")
+            return True
+        else:
+            print("❌ CORS failed")
+            return False
             
     except Exception as e:
-        print(f"❌ Exception: {str(e)}")
-        return {"error": "Exception", "details": str(e)}
-
-def print_compliance_analysis(result: Dict[str, Any]) -> None:
-    """Pretty print the compliance analysis results."""
-    
-    if "error" in result:
-        print(f"❌ Error: {result['error']}")
-        return
-    
-    compliance = result.get("compliance", {})
-    metadata = result.get("metadata", {})
-    
-    print("\n" + "="*60)
-    print("🛡️  GEO-COMPLIANCE ANALYSIS RESULTS")
-    print("="*60)
-    
-    # Core Decision
-    need_geo = compliance.get("need_geo_logic", False)
-    print(f"🎯 Geo-Logic Required: {'✅ YES' if need_geo else '❌ NO'}")
-    print(f"🔒 Consent Required: {'✅ YES' if compliance.get('consent_required') else '❌ NO'}")
-    print(f"📊 Confidence: {compliance.get('confidence', 0)*100:.0f}%")
-    
-    # Jurisdictions
-    jurisdictions = compliance.get("jurisdictions", [])
-    if jurisdictions:
-        print(f"\n🌍 Jurisdictions: {', '.join(jurisdictions)}")
-    
-    # Legal Citations
-    citations = compliance.get("legal_citations", [])
-    if citations:
-        print(f"\n📋 Legal Citations:")
-        for citation in citations:
-            law = citation.get("law", "Unknown")
-            article = citation.get("article", "")
-            jurisdiction = citation.get("jurisdiction", "")
-            print(f"   • {law} {article} ({jurisdiction})")
-    
-    # Data Categories
-    categories = compliance.get("data_categories", [])
-    if categories:
-        print(f"\n🗂️  Data Categories: {', '.join(categories)}")
-    
-    # Lawful Basis
-    basis = compliance.get("lawful_basis", [])
-    if basis:
-        print(f"\n⚖️  Lawful Basis: {', '.join(basis)}")
-    
-    # Risks
-    risks = compliance.get("risks", [])
-    if risks:
-        print(f"\n⚠️  Compliance Risks:")
-        for risk in risks:
-            severity = risk.get("severity", "unknown").upper()
-            print(f"   • [{severity}] {risk.get('risk', 'Unknown risk')}")
-            if risk.get("mitigation"):
-                print(f"     Mitigation: {risk['mitigation']}")
-    
-    # Implementation Steps
-    impl = compliance.get("implementation", [])
-    if impl:
-        print(f"\n🔧 Implementation Steps:")
-        for i, step in enumerate(sorted(impl, key=lambda x: x.get("priority", 1)), 1):
-            priority = step.get("priority", 1)
-            print(f"   {i}. [P{priority}] {step.get('step', 'Unknown step')}")
-    
-    # Notes
-    notes = compliance.get("notes", "")
-    if notes:
-        print(f"\n📝 Notes: {notes}")
-    
-    # Performance
-    latency = metadata.get("latency_ms", 0)
-    model = metadata.get("model_version", "unknown")
-    print(f"\n⚡ Performance: {latency:.0f}ms | Model: {model}")
-    print("="*60 + "\n")
+        print(f"❌ CORS Error: {str(e)}")
+        return False
 
 def main():
-    """Run comprehensive test scenarios for hackathon demonstration."""
+    """Run all tests"""
+    print("🚀 Lambda Function URL Test Suite")
+    print(f"🔗 Testing URL: {LAMBDA_FUNCTION_URL}")
     
-    print("🚀 GEO-COMPLIANCE ANALYZER - HACKATHON DEMO")
-    print("=" * 50)
-    print("Model: Phi-2 v5 (fine-tuned on 1441 legal examples)")
-    print("Deployment: AWS Lambda + SageMaker")
-    print("Function URL: " + FUNCTION_URL)
-    print("=" * 50 + "\n")
+    if not LAMBDA_FUNCTION_URL or LAMBDA_FUNCTION_URL == "YOUR_FUNCTION_URL_HERE":
+        print("\n❌ Configuration Error:")
+        print("Please update the LAMBDA_FUNCTION_URL variable with your actual Function URL")
+        print("You can find it in the AWS Lambda console under your function's Configuration > Function URL")
+        return
     
-    # Test Scenario 1: GDPR Cookie Compliance (High Complexity)
-    print("🧪 TEST 1: GDPR COOKIE COMPLIANCE")
-    result1 = test_geo_compliance(
-        feature_name="EU Cookie Consent Banner",
-        feature_description="Display cookie consent banner for EU users accessing the website with options to accept or reject non-essential cookies for analytics and marketing purposes. Implements granular consent controls.",
-        law_context=[
-            {"law": "GDPR Article 7", "jurisdiction": "EU", "requirement": "Valid consent for data processing"},
-            {"law": "GDPR Article 6", "jurisdiction": "EU", "requirement": "Lawful basis for processing personal data"},
-            {"law": "ePrivacy Directive 5(3)", "jurisdiction": "EU", "requirement": "Prior consent for non-essential cookies"}
-        ]
-    )
-    print_compliance_analysis(result1)
+    tests = [
+        test_cors,
+        test_gdpr_scenario,
+        test_ccpa_scenario,
+        test_no_compliance_scenario
+    ]
     
-    # Test Scenario 2: CCPA California (Different Jurisdiction)
-    print("🧪 TEST 2: CCPA CALIFORNIA COMPLIANCE")
-    result2 = test_geo_compliance(
-        feature_name="California Do Not Sell Button",
-        feature_description="Provides California residents with a prominent button to opt-out of the sale of their personal information as required by state privacy law.",
-        law_context=[
-            {"law": "CCPA Section 1798.135", "jurisdiction": "US-CA", "requirement": "Right to opt-out of sale of personal information"}
-        ]
-    )
-    print_compliance_analysis(result2)
+    passed = 0
+    total = len(tests)
     
-    # Test Scenario 3: No Compliance Needed (Negative Case)
-    print("🧪 TEST 3: NO COMPLIANCE NEEDED")
-    result3 = test_geo_compliance(
-        feature_name="Dark Mode Theme Toggle",
-        feature_description="Simple UI toggle button that allows users to switch between light and dark color themes for better visual comfort.",
-        law_context=[]
-    )
-    print_compliance_analysis(result3)
+    for test_func in tests:
+        try:
+            if test_func():
+                passed += 1
+        except Exception as e:
+            print(f"❌ Test failed with exception: {str(e)}")
     
-    # Test Scenario 4: California Minor Protection (From Training Data)
-    print("🧪 TEST 4: CALIFORNIA MINOR PROTECTION")
-    result4 = test_geo_compliance(
-        feature_name="California Minor Video Reply Limiter",
-        feature_description="Feature: limit video replies for users under 18 located in California, USA. Uses ASL to identify minors; GH to scope enforcement. CDS+EchoTrace keep audit logs.",
-        law_context=[
-            {"law": "California SB-976", "jurisdiction": "US-CA", "requirement": "Kids Social Media protection"}
-        ]
-    )
-    print_compliance_analysis(result4)
+    print(f"\n📊 Test Results: {passed}/{total} passed")
     
-    # Summary
-    print("🏆 HACKATHON DEMO COMPLETE")
-    print("✅ All test scenarios executed successfully")
-    print("📊 Structured JSON output demonstrated")
-    print("⚡ Sub-2 second response times achieved")
-    print("🎯 High accuracy legal compliance analysis")
+    if passed == total:
+        print("🎉 All tests passed! Your Lambda Function URL is working perfectly!")
+        print("\n🎯 Next Steps:")
+        print("1. Update the HTML file with your Function URL")
+        print("2. Open geo_compliance_ui.html in your browser")
+        print("3. Test the interactive UI")
+    else:
+        print("⚠️ Some tests failed. Check the errors above.")
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,8 @@
+{
+  "httpMethod": "POST",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"instruction\": \"Analyse the feature artifact and decide if geo-specific compliance logic is needed. Explain why and cite the relevant regulation if any.\", \"input\": \"Feature Name: California Do Not Sell My Personal Information Button\\nFeature Description: Provides California residents with a prominent button to opt-out of the sale of their personal information as required by state privacy law.\\n\\nLaw Context (structured JSON):\\n[{\\\"law\\\": \\\"CCPA Section 1798.135\\\", \\\"jurisdiction\\\": \\\"US-CA\\\", \\\"requirement\\\": \\\"Right to opt-out of sale of personal information\\\"}, {\\\"law\\\": \\\"CCPA Section 1798.100\\\", \\\"jurisdiction\\\": \\\"US-CA\\\", \\\"requirement\\\": \\\"Right to know about personal information collected\\\"}]\"}"
+}
+

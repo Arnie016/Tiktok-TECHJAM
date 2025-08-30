@@ -1,0 +1,323 @@
+.geo-compliance-analyzer * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.geo-compliance-analyzer {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.geo-compliance-analyzer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.geo-compliance-analyzer .header {
+  background: linear-gradient(135deg, #2196F3, #21CBF3);
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.geo-compliance-analyzer .header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+
+.geo-compliance-analyzer .header p {
+  font-size: 1.1em;
+  opacity: 0.9;
+}
+
+.geo-compliance-analyzer .main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 600px;
+}
+
+.geo-compliance-analyzer .input-section {
+  padding: 40px;
+  background: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+}
+
+.geo-compliance-analyzer .output-section {
+  padding: 40px;
+  background: white;
+}
+
+.geo-compliance-analyzer .input-section h2,
+.geo-compliance-analyzer .output-section h2 {
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.geo-compliance-analyzer .form-group {
+  margin-bottom: 25px;
+}
+
+.geo-compliance-analyzer .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95em;
+}
+
+.geo-compliance-analyzer .form-group input,
+.geo-compliance-analyzer .form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.geo-compliance-analyzer .form-group input:focus,
+.geo-compliance-analyzer .form-group textarea:focus {
+  outline: none;
+  border-color: #2196F3;
+}
+
+.geo-compliance-analyzer .form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.geo-compliance-analyzer .analyze-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #2196F3, #21CBF3);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.geo-compliance-analyzer .analyze-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.geo-compliance-analyzer .analyze-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.geo-compliance-analyzer .loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+.geo-compliance-analyzer .spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #2196F3;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.geo-compliance-analyzer .compliance-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9em;
+  margin-bottom: 20px;
+}
+
+.geo-compliance-analyzer .compliance-yes {
+  background: #ff5722;
+  color: white;
+}
+
+.geo-compliance-analyzer .compliance-no {
+  background: #4caf50;
+  color: white;
+}
+
+.geo-compliance-analyzer .section {
+  margin-bottom: 25px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border-left: 4px solid #2196F3;
+}
+
+.geo-compliance-analyzer .section h3 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.1em;
+}
+
+.geo-compliance-analyzer .jurisdiction-tag {
+  display: inline-block;
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.85em;
+  margin: 2px;
+  font-weight: 500;
+}
+
+.geo-compliance-analyzer .risk-item {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border-left: 4px solid #ff5722;
+}
+
+.geo-compliance-analyzer .risk-high {
+  border-left-color: #f44336;
+}
+
+.geo-compliance-analyzer .risk-medium {
+  border-left-color: #ff9800;
+}
+
+.geo-compliance-analyzer .risk-low {
+  border-left-color: #4caf50;
+}
+
+.geo-compliance-analyzer .impl-step {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border-left: 4px solid #4caf50;
+  display: flex;
+  align-items: center;
+}
+
+.geo-compliance-analyzer .priority-badge {
+  background: #2196F3;
+  color: white;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+
+.geo-compliance-analyzer .citation {
+  background: white;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  font-size: 0.9em;
+}
+
+.geo-compliance-analyzer .confidence-bar {
+  width: 100%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.geo-compliance-analyzer .confidence-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff5722, #ff9800, #4caf50);
+  transition: width 0.5s ease;
+}
+
+.geo-compliance-analyzer .metadata {
+  font-size: 0.85em;
+  color: #666;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.geo-compliance-analyzer .preset-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.geo-compliance-analyzer .preset-btn {
+  padding: 8px 16px;
+  background: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #2196F3;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85em;
+  transition: all 0.3s ease;
+}
+
+.geo-compliance-analyzer .preset-btn:hover {
+  background: #2196F3;
+  color: white;
+}
+
+.geo-compliance-analyzer .error {
+  background: #ffebee;
+  color: #c62828;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #f44336;
+  margin-bottom: 20px;
+}
+
+.geo-compliance-analyzer .placeholder {
+  text-align: center;
+  color: #999;
+  padding: 50px;
+}
+
+@media (max-width: 768px) {
+  .geo-compliance-analyzer .main-content {
+    grid-template-columns: 1fr;
+  }
+
+  .geo-compliance-analyzer .input-section {
+    border-right: none;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .geo-compliance-analyzer .header h1 {
+    font-size: 1.8em;
+  }
+
+  .geo-compliance-analyzer .preset-buttons {
+    flex-direction: column;
+  }
+}
+

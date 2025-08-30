@@ -28,32 +28,39 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     Returns structured response with compliance analysis
     """
     
-    # Set basic headers - CORS is handled by Function URL configuration
+    # Set CORS headers for web access
     headers = {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+        'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS'
     }
     
     try:
-        # Parse input - Function URL events can have body directly or in event structure
-        if 'body' in event:
-            body = event.get('body', '{}')
-            if isinstance(body, str):
-                try:
-                    request_data = json.loads(body)
-                except json.JSONDecodeError:
-                    return {
-                        'statusCode': 400,
-                        'headers': headers,
-                        'body': json.dumps({
-                            'error': 'Invalid JSON in request body',
-                            'message': 'Please provide valid JSON input'
-                        })
-                    }
-            else:
-                request_data = body
+        # Handle preflight CORS requests
+        if event.get('httpMethod') == 'OPTIONS':
+            return {
+                'statusCode': 200,
+                'headers': headers,
+                'body': json.dumps({'message': 'CORS preflight successful'})
+            }
+        
+        # Parse input
+        body = event.get('body', '{}')
+        if isinstance(body, str):
+            try:
+                request_data = json.loads(body)
+            except json.JSONDecodeError:
+                return {
+                    'statusCode': 400,
+                    'headers': headers,
+                    'body': json.dumps({
+                        'error': 'Invalid JSON in request body',
+                        'message': 'Please provide valid JSON input'
+                    })
+                }
         else:
-            # Direct invocation - event is the request data
-            request_data = event
+            request_data = body
         
         # Extract parameters
         instruction = request_data.get('instruction', '')

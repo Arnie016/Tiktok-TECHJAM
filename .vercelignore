@@ -1,0 +1,69 @@
+# Data files
+data/
+*.jsonl
+*.json
+train_refined_v5.jsonl
+
+# Python files and models
+*.py
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Model files
+*.bin
+*.safetensors
+*.pkl
+*.pt
+*.pth
+models/
+
+# Lambda packages
+*.zip
+lambda_function_fixed.zip
+
+# Logs
+*.log
+logs/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+
+# Documentation (keep only README.md)
+*.md
+!README.md
+
+# Configuration files (except vercel.json and package.json)
+*.cfg
+*.ini
+*.toml
+requirements.txt
+
+# AWS credentials
+.aws/
+aws-credentials.txt
