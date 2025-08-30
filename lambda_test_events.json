@@ -1,0 +1,47 @@
+{
+  "test_events": {
+    "gdpr_compliance_test": {
+      "httpMethod": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\"instruction\": \"Analyse the feature artifact and decide if geo-specific compliance logic is needed. Explain why and cite the relevant regulation if any.\", \"input\": \"Feature Name: EU Cookie Consent Banner\\nFeature Description: Display cookie consent banner for EU users accessing the website with options to accept or reject non-essential cookies for analytics and marketing purposes.\\n\\nLaw Context (structured JSON):\\n[{\\\"law\\\": \\\"GDPR Article 7\\\", \\\"jurisdiction\\\": \\\"EU\\\", \\\"requirement\\\": \\\"Valid consent for data processing\\\"}, {\\\"law\\\": \\\"GDPR Article 6\\\", \\\"jurisdiction\\\": \\\"EU\\\", \\\"requirement\\\": \\\"Lawful basis for processing personal data\\\"}]\"}"
+    },
+    "ccpa_compliance_test": {
+      "httpMethod": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\"instruction\": \"Analyse the feature artifact and decide if geo-specific compliance logic is needed. Explain why and cite the relevant regulation if any.\", \"input\": \"Feature Name: California Do Not Sell My Personal Information Button\\nFeature Description: Provides California residents with a prominent button to opt-out of the sale of their personal information as required by state privacy law.\\n\\nLaw Context (structured JSON):\\n[{\\\"law\\\": \\\"CCPA Section 1798.135\\\", \\\"jurisdiction\\\": \\\"US-CA\\\", \\\"requirement\\\": \\\"Right to opt-out of sale of personal information\\\"}, {\\\"law\\\": \\\"CCPA Section 1798.100\\\", \\\"jurisdiction\\\": \\\"US-CA\\\", \\\"requirement\\\": \\\"Right to know about personal information collected\\\"}]\"}"
+    },
+    "no_compliance_test": {
+      "httpMethod": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\"instruction\": \"Analyse the feature artifact and decide if geo-specific compliance logic is needed. Explain why and cite the relevant regulation if any.\", \"input\": \"Feature Name: Dark Mode Theme Toggle\\nFeature Description: Simple UI toggle button that allows users to switch between light and dark color themes for better visual comfort and battery saving on mobile devices.\\n\\nLaw Context (structured JSON):\\n[]\"}"
+    },
+    "sox_financial_test": {
+      "httpMethod": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\"instruction\": \"Analyse the feature artifact and decide if geo-specific compliance logic is needed. Explain why and cite the relevant regulation if any.\", \"input\": \"Feature Name: Financial Transaction Audit Logger\\nFeature Description: Comprehensive logging system that tracks all financial transactions, database changes, and user access for compliance auditing in US public companies.\\n\\nLaw Context (structured JSON):\\n[{\\\"law\\\": \\\"SOX Section 404\\\", \\\"jurisdiction\\\": \\\"US\\\", \\\"requirement\\\": \\\"Internal controls over financial reporting\\\"}, {\\\"law\\\": \\\"SOX Section 302\\\", \\\"jurisdiction\\\": \\\"US\\\", \\\"requirement\\\": \\\"Corporate responsibility for financial reports\\\"}]\"}"
+    },
+    "mixed_jurisdiction_test": {
+      "httpMethod": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\"instruction\": \"Analyse the feature artifact and decide if geo-specific compliance logic is needed. Explain why and cite the relevant regulation if any.\", \"input\": \"Feature Name: Global User Data Processing Platform\\nFeature Description: Centralized platform for processing user data with automatic geo-location detection and region-specific privacy controls for users in EU, California, and other jurisdictions.\\n\\nLaw Context (structured JSON):\\n[{\\\"law\\\": \\\"GDPR Article 6\\\", \\\"jurisdiction\\\": \\\"EU\\\", \\\"requirement\\\": \\\"Lawful basis for processing personal data\\\"}, {\\\"law\\\": \\\"CCPA Section 1798.100\\\", \\\"jurisdiction\\\": \\\"US-CA\\\", \\\"requirement\\\": \\\"Right to know about personal information\\\"}, {\\\"law\\\": \\\"Privacy Act Section 8\\\", \\\"jurisdiction\\\": \\\"CA\\\", \\\"requirement\\\": \\\"Protection of personal information\\\"}]\"}"
+    },
+    "edge_case_minimal": {
+      "httpMethod": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": "{\"instruction\": \"Does this need compliance?\", \"input\": \"Feature: Test\\nDescription: Test feature\\nLaws: []\"}"
+    }
+  }
+}
+

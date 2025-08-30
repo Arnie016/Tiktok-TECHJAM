@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phi-2 v5 Geo-Compliance Analyzer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(30, 30, 50, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1565c0, #1e88e5, #42a5f5);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 500px;
+        }
+
+        .input-section {
+            padding: 40px;
+            background: rgba(20, 20, 35, 0.8);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .output-section {
+            padding: 40px;
+            background: rgba(25, 25, 40, 0.8);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #e0e0e0;
+            font-size: 0.95em;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+            background: rgba(40, 40, 60, 0.8);
+            color: #e0e0e0;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #42a5f5;
+            background: rgba(50, 50, 70, 0.9);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #a0a0a0;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .analyze-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #1565c0, #42a5f5);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(66, 165, 245, 0.3);
+        }
+
+        .analyze-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(66, 165, 245, 0.4);
+        }
+
+        .analyze-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #a0a0a0;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top: 3px solid #42a5f5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .result {
+            display: none;
+        }
+
+        .compliance-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+        .compliance-yes {
+            background: #ff5722;
+            color: white;
+        }
+
+        .compliance-no {
+            background: #4caf50;
+            color: white;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(40, 40, 60, 0.6);
+            border-radius: 10px;
+            border-left: 4px solid #42a5f5;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section h3 {
+            margin-bottom: 15px;
+            color: #e0e0e0;
+            font-size: 1.1em;
+        }
+
+        .jurisdiction-tag {
+            display: inline-block;
+            background: rgba(66, 165, 245, 0.2);
+            color: #42a5f5;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin: 2px;
+            font-weight: 500;
+            border: 1px solid rgba(66, 165, 245, 0.3);
+        }
+
+        .risk-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #ff5722;
+        }
+
+        .risk-high {
+            border-left-color: #f44336;
+        }
+
+        .risk-medium {
+            border-left-color: #ff9800;
+        }
+
+        .risk-low {
+            border-left-color: #4caf50;
+        }
+
+        .impl-step {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #4caf50;
+            display: flex;
+            align-items: center;
+        }
+
+        .priority-badge {
+            background: #2196F3;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .citation {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        .confidence-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff5722, #ff9800, #4caf50);
+            transition: width 0.5s ease;
+        }
+
+        .metadata {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .preset-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .preset-btn {
+            padding: 8px 16px;
+            background: rgba(40, 40, 60, 0.8);
+            color: #42a5f5;
+            border: 1px solid #42a5f5;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.3s ease;
+        }
+
+        .preset-btn:hover {
+            background: #42a5f5;
+            color: #1a1a2e;
+            box-shadow: 0 3px 10px rgba(66, 165, 245, 0.3);
+        }
+
+        .error {
+            background: rgba(60, 20, 20, 0.8);
+            color: #ff8a80;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #f44336;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .input-section {
+                border-right: none;
+                border-bottom: 1px solid #dee2e6;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .preset-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                    <h1>⚖️ TikTok Geo-Regulation Governance</h1>
+                    <p>From Guesswork to Governance: Automated Compliance Analysis</p>
+                </div>
+                <div style="text-align: right; opacity: 0.9;">
+                    <div style="font-size: 0.9em; font-weight: 600;">🧠 Microsoft Phi-2 v5</div>
+                    <div style="font-size: 0.8em;">Fine-tuned on 1,442 compliance pairs</div>
+                    <div style="font-size: 0.75em; margin-top: 4px; color: #42a5f5;">Enterprise LLM Platform</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="input-section">
+                <h2 style="margin-bottom: 25px; color: #e0e0e0;">🚀 Feature Compliance Screening</h2>
+                
+                <div style="background: rgba(66, 165, 245, 0.15); padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #42a5f5; border: 1px solid rgba(66, 165, 245, 0.3);">
+                    <div style="font-size: 0.9em; color: #42a5f5; font-weight: 600; margin-bottom: 5px;">📋 Enterprise Use Cases</div>
+                    <div style="font-size: 0.85em; color: #e0e0e0; line-height: 1.4;">
+                        Screen features for geo-specific compliance requirements across global markets including GDPR (EU), CCPA (California), LGPD (Brazil), and more.
+                    </div>
+                </div>
+                
+                <div class="preset-buttons">
+                    <button class="preset-btn" onclick="loadPreset('gdpr')">🇪🇺 GDPR Cookies</button>
+                    <button class="preset-btn" onclick="loadPreset('ccpa')">🇺🇸 CCPA Rights</button>
+                    <button class="preset-btn" onclick="loadPreset('kids')">👶 Age Verification</button>
+                    <button class="preset-btn" onclick="loadPreset('targeting')">🎯 Ad Targeting</button>
+                    <button class="preset-btn" onclick="loadPreset('transparency')">📊 Transparency</button>
+                    <button class="preset-btn" onclick="loadPreset('breach')">🚨 Data Breach</button>
+                    <button class="preset-btn" onclick="loadPreset('audit')">📋 Audit Trails</button>
+                    <button class="preset-btn" onclick="loadPreset('rights')">⚖️ User Rights</button>
+                    <button class="preset-btn" onclick="loadPreset('sharing')">🤝 Data Sharing</button>
+                    <button class="preset-btn" onclick="loadPreset('simple')">⚡ Simple Feature</button>
+                </div>
+
+                <form id="complianceForm">
+                    <div class="form-group">
+                        <label for="featureName">🏷️ Feature Name / Internal Codename</label>
+                        <input type="text" id="featureName" placeholder="e.g., EU Cookie Consent Banner, LiveStreamGeoGate, UserDataExportTool" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="featureDescription">📝 Feature Description & Data Processing</label>
+                        <textarea id="featureDescription" placeholder="Describe the feature functionality, what personal data is processed, user interactions, and geographic scope. Include any data collection, sharing, or storage aspects." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lawContext">⚖️ Known Legal Context (Optional)</label>
+                        <textarea id="lawContext" placeholder='[{"law": "GDPR Article 7", "jurisdiction": "EU", "requirement": "Valid consent for data processing"}]'></textarea>
+                        <div style="font-size: 0.8em; color: #666; margin-top: 5px;">
+                            💡 Leave empty for automatic regulation detection, or provide known requirements in JSON format
+                        </div>
+                    </div>
+
+                    <button type="submit" class="analyze-btn" id="analyzeBtn">
+                        🔍 Screen for Geo-Compliance Requirements
+                    </button>
+                </form>
+
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    Analyzing with Phi-2 v5...
+                </div>
+            </div>
+
+            <div class="output-section">
+                <h2 style="margin-bottom: 25px; color: #e0e0e0;">📊 Compliance Analysis Report</h2>
+                
+                <div id="results" class="result">
+                    <!-- Results will be populated here -->
+                </div>
+
+                <div id="placeholder" style="text-align: center; color: #a0a0a0; padding: 50px;">
+                    <div style="font-size: 3em; margin-bottom: 20px;">⚖️</div>
+                    <div style="font-size: 1.1em; font-weight: 600; margin-bottom: 10px; color: #e0e0e0;">TikTok Global Compliance Screening</div>
+                    <p style="line-height: 1.6; color: #c0c0c0;">Enter feature details to automatically detect geo-specific legal requirements across global markets.</p>
+                    <div style="margin-top: 20px; font-size: 0.9em; color: #a0a0a0;">
+                        <strong style="color: #42a5f5;">Key Benefits:</strong><br>
+                        🛡️ Proactive legal guardrails before feature launch<br>
+                        📋 Auditable compliance evidence<br>
+                        🌍 Automated regulatory traceability
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ✅ Updated with your working Lambda Function URL
+        const LAMBDA_FUNCTION_URL = 'https://vcf7glhsl7w4yccfzny6tigqmm0znsxx.lambda-url.us-west-2.on.aws/';
+
+        const presets = {
+            gdpr: {
+                name: "TikTok EU Cookie Consent System",
+                description: "Cookie consent management system for EU users accessing TikTok web platform. Displays consent banner with granular options for analytics, advertising, and personalization cookies. Processes user consent choices and stores preferences.",
+                context: '[{"law": "GDPR Article 7", "jurisdiction": "EU", "requirement": "Valid consent for data processing"}, {"law": "GDPR Article 6", "jurisdiction": "EU", "requirement": "Lawful basis for processing personal data"}]'
+            },
+            ccpa: {
+                name: "TikTok California Privacy Rights Portal",
+                description: "Privacy dashboard for California users providing options to opt-out of personal data sale, delete account data, and access personal information. Integrates with TikTok's data infrastructure to process user privacy requests.",
+                context: '[{"law": "CCPA Section 1798.135", "jurisdiction": "US-CA", "requirement": "Right to opt-out of sale of personal information"}, {"law": "CCPA Section 1798.105", "jurisdiction": "US-CA", "requirement": "Right to delete personal information"}]'
+            },
+            kids: {
+                name: "TikTok Global Age Verification & Parental Controls",
+                description: "Multi-jurisdictional age verification system that detects user age through behavioral analysis and account signals. Implements different consent flows for users under 13 (US), under 16 (EU), and under 18 (some jurisdictions).",
+                context: '[{"law": "COPPA", "jurisdiction": "US", "requirement": "Parental consent for children under 13"}, {"law": "GDPR Article 8", "jurisdiction": "EU", "requirement": "Parental consent for children under 16"}, {"law": "UK ICO Age Appropriate Design Code", "jurisdiction": "UK", "requirement": "Privacy by design for children"}]'
+            },
+            targeting: {
+                name: "Targeted Advertising Consent Manager",
+                description: "Consent management for targeted advertising with granular options for analytics and marketing purposes. Includes targeting criteria disclosure and delivery controls, particularly for vulnerable users like minors.",
+                context: '[{"law": "CELEX 32022R2065", "jurisdiction": "EU", "requirement": "Targeting criteria disclosure for advertisements"}]'
+            },
+            transparency: {
+                name: "Transparency Reporting Dashboard",
+                description: "Dashboard for transparency reporting with automated content moderation statistics, user request handling metrics, and regulatory compliance reporting for multiple jurisdictions.",
+                context: '[{"law": "Utah Social Media Regulation", "jurisdiction": "US-UT", "requirement": "Social media transparency reporting"}]'
+            },
+            breach: {
+                name: "Data Breach Notification System",
+                description: "Automated system for data breach detection, assessment, and notification to relevant authorities and affected users across different jurisdictions with varying notification timelines.",
+                context: '[{"law": "GDPR Article 33", "jurisdiction": "EU", "requirement": "72-hour breach notification"}, {"law": "CCPA Section 1798.82", "jurisdiction": "US-CA", "requirement": "California breach notification law"}]'
+            },
+            audit: {
+                name: "Audit Trail & Logging System",
+                description: "Comprehensive audit logging system that tracks user actions, data access, and system changes with configurable retention periods and access controls for regulatory compliance.",
+                context: '[{"law": "GDPR Article 30", "jurisdiction": "EU", "requirement": "Records of processing activities"}, {"law": "SOX Section 404", "jurisdiction": "US", "requirement": "Internal controls documentation"}]'
+            },
+            rights: {
+                name: "User Rights Management Portal",
+                description: "Centralized portal for users to exercise their data protection rights including access, rectification, erasure, and portability with automated request processing and verification.",
+                context: '[{"law": "GDPR Chapter 3", "jurisdiction": "EU", "requirement": "Data subject rights"}, {"law": "CCPA Section 1798.100", "jurisdiction": "US-CA", "requirement": "Consumer rights"}]'
+            },
+            sharing: {
+                name: "Third-Party Data Sharing Controls",
+                description: "Controls for third-party data sharing with consent management, partner verification, and data processing agreement enforcement across different jurisdictions.",
+                context: '[{"law": "GDPR Article 28", "jurisdiction": "EU", "requirement": "Data processing agreements"}, {"law": "PIPEDA", "jurisdiction": "CA", "requirement": "Third-party disclosure requirements"}]'
+            },
+            simple: {
+                name: "TikTok Dark Mode Theme Toggle",
+                description: "Simple UI preference toggle that allows users to switch between light and dark visual themes. Stores preference locally in browser settings without server-side data processing.",
+                context: '[]'
+            }
+        };
+
+        function loadPreset(type) {
+            const preset = presets[type];
+            document.getElementById('featureName').value = preset.name;
+            document.getElementById('featureDescription').value = preset.description;
+            document.getElementById('lawContext').value = preset.context;
+        }
+
+        document.getElementById('complianceForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const featureName = document.getElementById('featureName').value;
+            const featureDescription = document.getElementById('featureDescription').value;
+            const lawContext = document.getElementById('lawContext').value;
+
+            if (!LAMBDA_FUNCTION_URL || LAMBDA_FUNCTION_URL === 'YOUR_LAMBDA_FUNCTION_URL_HERE') {
+                showError('Please update the LAMBDA_FUNCTION_URL in the JavaScript code with your actual Lambda Function URL.');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('analyzeBtn').disabled = true;
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('placeholder').style.display = 'none';
+
+            try {
+                const payload = {
+                    instruction: "Analyse the feature artifact and decide if geo-specific compliance logic is needed. Explain why and cite the relevant regulation if any.",
+                    input: `Feature Name: ${featureName}\nFeature Description: ${featureDescription}\n\nLaw Context (structured JSON):\n${lawContext}`
+                };
+
+                const response = await fetch(LAMBDA_FUNCTION_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                displayResults(result);
+
+            } catch (error) {
+                console.error('Error:', error);
+                showError(`Analysis failed: ${error.message}`);
+            } finally {
+                document.getElementById('analyzeBtn').disabled = false;
+                document.getElementById('loading').style.display = 'none';
+            }
+        });
+
+        function displayResults(result) {
+            const resultsDiv = document.getElementById('results');
+            
+            if (!result.success) {
+                showError('Analysis failed: ' + (result.error?.message || 'Unknown error'));
+                return;
+            }
+
+            // Extract the generated text from Phi-2 response
+            const generatedText = result.analysis?.generated_text || '';
+            const metadata = result.metadata || {};
+            
+            // Enhanced parsing to extract structured information
+            const analysis = parseAnalysis(generatedText);
+            
+            resultsDiv.innerHTML = `
+                <!-- Header with Compliance Status and Metrics -->
+                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; margin-bottom: 30px; align-items: start;">
+                    <div>
+                        <div class="compliance-badge ${analysis.hasGeoCompliance ? 'compliance-yes' : 'compliance-no'}" style="font-size: 1.1em; padding: 15px 25px; margin-bottom: 15px;">
+                            ${analysis.hasGeoCompliance ? '🚨 Geo-Specific Compliance Required' : '✅ Standard Implementation Sufficient'}
+                        </div>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <div class="metric-badge" style="background: rgba(66, 165, 245, 0.2); color: #42a5f5; padding: 8px 16px; border-radius: 20px; font-size: 0.85em; border: 1px solid rgba(66, 165, 245, 0.3);">
+                                📊 Compliance Score: ${analysis.complianceScore}%
+                            </div>
+                            <div class="metric-badge" style="background: rgba(${analysis.riskLevel === 'high' ? '244, 67, 54' : analysis.riskLevel === 'medium' ? '255, 193, 7' : '76, 175, 80'}, 0.2); color: ${analysis.riskLevel === 'high' ? '#f44336' : analysis.riskLevel === 'medium' ? '#ffc107' : '#4caf50'}; padding: 8px 16px; border-radius: 20px; font-size: 0.85em; border: 1px solid rgba(${analysis.riskLevel === 'high' ? '244, 67, 54' : analysis.riskLevel === 'medium' ? '255, 193, 7' : '76, 175, 80'}, 0.3);">
+                                ⚠️ Risk Level: ${analysis.riskLevel.toUpperCase()}
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: right; font-size: 0.8em; color: #a0a0a0;">
+                        <div style="font-weight: 600; margin-bottom: 5px;">Report ID</div>
+                        <div>RPT-${Date.now().toString().slice(-6)}</div>
+                        <div style="margin-top: 8px;">${new Date().toLocaleString()}</div>
+                    </div>
+                </div>
+
+                <!-- Compact Executive Summary -->
+                <div class="section" style="border-left: 4px solid ${analysis.hasGeoCompliance ? '#f44336' : '#4caf50'}; margin-bottom: 20px;">
+                    <details open>
+                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #e0e0e0;">
+                            <span style="font-size: 1.1em;">📋</span>
+                            <span>Executive Summary</span>
+                        </summary>
+                        <div style="background: linear-gradient(135deg, rgba(50, 50, 70, 0.9), rgba(60, 60, 80, 0.8)); padding: 20px; border-radius: 10px; font-size: 0.9em; line-height: 1.6; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div style="font-weight: 600; color: #42a5f5; margin-bottom: 12px;">
+                                🎯 ${analysis.hasGeoCompliance ? 'Geo-Specific Requirements Detected' : 'Standard Implementation Sufficient'}
+                            </div>
+                            <div style="color: #e8e8e8; background: rgba(30, 30, 45, 0.6); padding: 12px; border-radius: 6px; border-left: 3px solid #42a5f5; max-height: 120px; overflow-y: auto;">
+                                ${analysis.summary.replace(/\n/g, '<br>').slice(0, 300)}${analysis.summary.length > 300 ? '...' : ''}
+                            </div>
+                        </div>
+                    </details>
+                </div>
+
+                ${analysis.jurisdictions.length > 0 ? `
+                <div class="section" style="margin-bottom: 20px;">
+                    <details open>
+                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #e0e0e0;">
+                            <span style="font-size: 1.1em;">🌍</span>
+                            <span>Affected Jurisdictions</span>
+                            <span style="background: rgba(66, 165, 245, 0.2); color: #42a5f5; padding: 3px 10px; border-radius: 10px; font-size: 0.75em; font-weight: normal;">${analysis.jurisdictions.length}</span>
+                        </summary>
+                        <div style="background: rgba(40, 40, 60, 0.8); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                ${analysis.jurisdictions.map(j => `
+                                    <div style="background: linear-gradient(135deg, rgba(${j.color.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.15), rgba(${j.color.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.05)); border: 1px solid rgba(${j.color.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.3); padding: 10px 15px; border-radius: 8px; text-align: center; min-width: 120px;">
+                                        <div style="font-size: 1.5em; margin-bottom: 5px;">${j.flag}</div>
+                                        <div style="font-weight: 600; color: ${j.color}; font-size: 0.9em;">${j.code}</div>
+                                        <div style="font-size: 0.8em; color: #e0e0e0;">${j.name}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </details>
+                </div>
+                ` : ''}
+
+                ${analysis.laws.length > 0 ? `
+                <div class="section" style="margin-bottom: 20px;">
+                    <details>
+                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #e0e0e0;">
+                            <span style="font-size: 1.1em;">⚖️</span>
+                            <span>Legal Requirements</span>
+                            <span style="background: rgba(244, 67, 54, 0.2); color: #f44336; padding: 3px 10px; border-radius: 10px; font-size: 0.75em; font-weight: normal;">${analysis.laws.length}</span>
+                        </summary>
+                        <div style="background: rgba(40, 40, 60, 0.8); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div style="display: grid; gap: 12px;">
+                                ${analysis.laws.map(law => `
+                                    <div style="background: linear-gradient(135deg, rgba(${law.color.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.15), rgba(${law.color.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.05)); border: 1px solid rgba(${law.color.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.3); padding: 12px; border-radius: 8px;">
+                                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                            <span style="font-size: 1.3em;">${law.icon}</span>
+                                            <div>
+                                                <div style="font-weight: bold; color: ${law.color}; font-size: 1em;">${law.name}${law.article ? ` Article ${law.article}` : ''}</div>
+                                                <div style="font-size: 0.8em; color: #a0a0a0;">${law.fullName}</div>
+                                            </div>
+                                        </div>
+                                        <div style="color: #e0e0e0; font-size: 0.85em; line-height: 1.4;">${law.description}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </details>
+                </div>
+                ` : ''}
+
+                ${analysis.requirements.length > 0 ? `
+                <div class="section" style="margin-bottom: 20px;">
+                    <details>
+                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #e0e0e0;">
+                            <span style="font-size: 1.1em;">⚡</span>
+                            <span>Implementation Action Items</span>
+                            <span style="background: rgba(255, 193, 7, 0.2); color: #ffc107; padding: 3px 10px; border-radius: 10px; font-size: 0.75em; font-weight: normal;">${analysis.requirements.length}</span>
+                        </summary>
+                        <div style="background: rgba(40, 40, 60, 0.8); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div style="font-size: 0.85em; color: #a0a0a0; margin-bottom: 15px; padding: 10px; background: rgba(66, 165, 245, 0.1); border-radius: 6px; border-left: 3px solid #42a5f5;">
+                                💡 <strong>Engineering Guidance:</strong> Prioritized implementation tasks
+                            </div>
+                            <div style="display: grid; gap: 12px; max-height: 300px; overflow-y: auto;">
+                                ${analysis.requirements.map((req, index) => {
+                                    const priority = index === 0 ? 'Critical' : index === 1 ? 'High' : 'Medium';
+                                    const effort = index === 0 ? '2-3 sprints' : index === 1 ? '1-2 sprints' : '1 sprint';
+                                    const priorityColor = index === 0 ? '#f44336' : index === 1 ? '#ff9800' : '#4caf50';
+                                    return `
+                                    <div style="background: linear-gradient(135deg, rgba(60, 60, 80, 0.8), rgba(50, 50, 70, 0.8)); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; border-left: 4px solid ${priorityColor};">
+                                        <div style="display: flex; align-items: start; gap: 12px;">
+                                            <div style="background: ${priorityColor}; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8em; flex-shrink: 0; margin-top: 1px;">${index + 1}</div>
+                                            <div style="flex: 1;">
+                                                <div style="color: #e8e8e8; font-size: 0.9em; line-height: 1.5; margin-bottom: 8px;">
+                                                    <strong>Task ${index + 1}:</strong> ${req.charAt(0).toUpperCase() + req.slice(1).slice(0, 100)}${req.length > 100 ? '...' : ''}
+                                                </div>
+                                                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                                    <div style="background: rgba(${priorityColor.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.2); color: ${priorityColor}; padding: 4px 8px; border-radius: 12px; font-size: 0.75em; font-weight: 600;">
+                                                        ${priority}
+                                                    </div>
+                                                    <div style="background: rgba(66, 165, 245, 0.2); color: #42a5f5; padding: 4px 8px; border-radius: 12px; font-size: 0.75em;">
+                                                        ${effort}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `}).join('')}
+                            </div>
+                        </div>
+                    </details>
+                </div>
+                ` : ''}
+
+                <div class="section" style="margin-bottom: 15px;">
+                    <details>
+                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #e0e0e0;">
+                            <span style="font-size: 1.1em;">🧠</span>
+                            <span>Microsoft Phi-2 Model Details</span>
+                        </summary>
+                        <div style="background: rgba(40, 40, 60, 0.8); padding: 15px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+                                <div>
+                                    <div style="font-size: 0.75em; color: #a0a0a0; margin-bottom: 4px;">AI Model</div>
+                                    <div style="font-size: 1em; font-weight: bold; color: #42a5f5;">Microsoft Phi-2 v5</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.75em; color: #a0a0a0; margin-bottom: 4px;">Training Dataset</div>
+                                    <div style="font-size: 1em; font-weight: bold; color: #42a5f5;">1,442 compliance pairs</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.75em; color: #a0a0a0; margin-bottom: 4px;">Specialization</div>
+                                    <div style="font-size: 1em; font-weight: bold; color: #42a5f5;">Geo-Compliance Analysis</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.75em; color: #a0a0a0; margin-bottom: 4px;">Processing</div>
+                                    <div style="font-size: 1em; font-weight: bold; color: #42a5f5;">${metadata.response_length || 0} chars</div>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+
+                ${result.analysis?.raw_response ? `
+                <div class="section">
+                    <h3>🔍 Technical Details</h3>
+                    <details style="background: rgba(40, 40, 60, 0.8); padding: 15px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <summary style="cursor: pointer; font-weight: bold; margin-bottom: 10px; color: #e0e0e0;">View Raw Model Response</summary>
+                        <pre style="background: rgba(20, 20, 30, 0.8); color: #e0e0e0; padding: 10px; border-radius: 4px; font-size: 0.85em; overflow-x: auto; white-space: pre-wrap; border: 1px solid rgba(255, 255, 255, 0.1);">${JSON.stringify(result.analysis.raw_response, null, 2)}</pre>
+                    </details>
+                </div>
+                ` : ''}
+
+                <div style="background: rgba(30, 30, 45, 0.9); padding: 20px; border-radius: 8px; margin-top: 25px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <div style="font-weight: 600; color: #e0e0e0;">📊 Audit Trail & Technical Metadata</div>
+                        <div style="font-size: 0.8em; color: #a0a0a0;">For Compliance Documentation</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; font-size: 0.85em; color: #e0e0e0;">
+                        <div>
+                            <strong style="color: #42a5f5;">Model Version:</strong> ${result.model_version || 'Phi-2 v5'}<br>
+                            <strong style="color: #42a5f5;">Endpoint:</strong> ${result.endpoint || 'phi2-v5-inference'}<br>
+                            <strong style="color: #42a5f5;">Training Dataset:</strong> ${metadata.model_info?.training_examples || '1,441'} compliance examples
+                        </div>
+                        <div>
+                            <strong style="color: #42a5f5;">Analysis Timestamp:</strong> ${new Date().toISOString()}<br>
+                            <strong style="color: #42a5f5;">Processing Time:</strong> ${metadata.response_length || 0} chars processed<br>
+                            <strong style="color: #42a5f5;">Compliance Framework:</strong> Multi-jurisdictional privacy law analysis
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 15px; font-size: 0.8em; color: #a0a0a0; border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 10px;">
+                        🏢 TikTok Enterprise Compliance Platform • Powered by AWS SageMaker • Report generated for audit purposes
+                    </div>
+                </div>
+            `;
+
+            resultsDiv.style.display = 'block';
+        }
+
+        function parseAnalysis(text) {
+            const analysis = {
+                hasGeoCompliance: false,
+                summary: '',
+                jurisdictions: [],
+                laws: [],
+                requirements: [],
+                riskLevel: 'low',
+                complianceScore: 85
+            };
+
+            // Enhanced geo-compliance detection
+            const geoKeywords = ['geo', 'jurisdiction', 'eu', 'gdpr', 'ccpa', 'california', 'us-ca', 'privacy', 'consent', 'data protection'];
+            analysis.hasGeoCompliance = geoKeywords.some(keyword => text.toLowerCase().includes(keyword));
+
+            // Clean and format the summary
+            analysis.summary = text.replace(/\n{2,}/g, '\n').trim();
+            
+            // Enhanced jurisdiction extraction with better patterns
+            const jurisdictionMap = {
+                'eu': { code: 'EU', name: 'European Union', flag: '🇪🇺', color: '#1976d2' },
+                'california': { code: 'US-CA', name: 'California', flag: '🇺🇸', color: '#d32f2f' },
+                'us-ca': { code: 'US-CA', name: 'California', flag: '🇺🇸', color: '#d32f2f' },
+                'canada': { code: 'CA', name: 'Canada', flag: '🇨🇦', color: '#388e3c' },
+                'brazil': { code: 'BR', name: 'Brazil', flag: '🇧🇷', color: '#388e3c' },
+                'uk': { code: 'UK', name: 'United Kingdom', flag: '🇬🇧', color: '#1976d2' }
+            };
+
+            Object.keys(jurisdictionMap).forEach(key => {
+                if (text.toLowerCase().includes(key)) {
+                    const jurisdiction = jurisdictionMap[key];
+                    if (!analysis.jurisdictions.some(j => j.code === jurisdiction.code)) {
+                        analysis.jurisdictions.push(jurisdiction);
+                    }
+                }
+            });
+
+            // Enhanced law extraction with better formatting
+            const lawRegex = /(GDPR|CCPA|COPPA|LGPD|PIPEDA)(\s+(?:Article|Section)\s*(\d+(?:\.\d+)?|\w+))?/gi;
+            const lawMatches = text.matchAll(lawRegex);
+            
+            for (const match of lawMatches) {
+                const lawName = match[1].toUpperCase();
+                const article = match[3] || '';
+                const fullName = getLawFullName(lawName);
+                
+                if (!analysis.laws.some(law => law.name === lawName && law.article === article)) {
+                    analysis.laws.push({
+                        name: lawName,
+                        fullName: fullName,
+                        article: article,
+                        description: generateLawDescription(lawName, article),
+                        color: getLawColor(lawName),
+                        icon: getLawIcon(lawName)
+                    });
+                }
+            }
+
+            // Enhanced requirement extraction
+            const reqPatterns = [
+                /(?:must|need to|should|require[sd]?)\s+([^.!?]+)/gi,
+                /(?:provide|implement|enable|ensure)\s+([^.!?]+)/gi
+            ];
+
+            reqPatterns.forEach(pattern => {
+                const matches = text.matchAll(pattern);
+                for (const match of matches) {
+                    let requirement = match[1].trim();
+                    requirement = requirement.charAt(0).toLowerCase() + requirement.slice(1);
+                    if (requirement.length > 15 && requirement.length < 150 && 
+                        !analysis.requirements.includes(requirement)) {
+                        analysis.requirements.push(requirement);
+                    }
+                }
+            });
+
+            // Calculate risk level and compliance score
+            analysis.riskLevel = calculateRiskLevel(analysis);
+            analysis.complianceScore = calculateComplianceScore(analysis);
+
+            return analysis;
+        }
+
+        function getLawFullName(lawCode) {
+            const lawNames = {
+                'GDPR': 'General Data Protection Regulation',
+                'CCPA': 'California Consumer Privacy Act',
+                'COPPA': 'Children\'s Online Privacy Protection Act',
+                'LGPD': 'Lei Geral de Proteção de Dados',
+                'PIPEDA': 'Personal Information Protection and Electronic Documents Act'
+            };
+            return lawNames[lawCode] || lawCode;
+        }
+
+        function getLawColor(lawCode) {
+            const colors = {
+                'GDPR': '#1976d2',
+                'CCPA': '#d32f2f',
+                'COPPA': '#388e3c',
+                'LGPD': '#f57c00',
+                'PIPEDA': '#7b1fa2'
+            };
+            return colors[lawCode] || '#42a5f5';
+        }
+
+        function getLawIcon(lawCode) {
+            const icons = {
+                'GDPR': '🇪🇺',
+                'CCPA': '🇺🇸',
+                'COPPA': '👶',
+                'LGPD': '🇧🇷',
+                'PIPEDA': '🇨🇦'
+            };
+            return icons[lawCode] || '⚖️';
+        }
+
+        function generateLawDescription(lawCode, article) {
+            const descriptions = {
+                'GDPR': article ? `GDPR Article ${article} compliance requirement` : 'General EU data protection requirement',
+                'CCPA': article ? `CCPA Section ${article} compliance requirement` : 'California privacy rights requirement',
+                'COPPA': 'Children\'s privacy protection requirement',
+                'LGPD': 'Brazilian data protection requirement',
+                'PIPEDA': 'Canadian privacy law requirement'
+            };
+            return descriptions[lawCode] || `${lawCode} compliance requirement`;
+        }
+
+        function calculateRiskLevel(analysis) {
+            if (analysis.laws.length >= 3) return 'high';
+            if (analysis.laws.length >= 2 || analysis.jurisdictions.length >= 2) return 'medium';
+            if (analysis.hasGeoCompliance) return 'medium';
+            return 'low';
+        }
+
+        function calculateComplianceScore(analysis) {
+            let score = 100;
+            score -= analysis.laws.length * 10;
+            score -= analysis.jurisdictions.length * 5;
+            score -= analysis.requirements.length * 3;
+            return Math.max(score, 20);
+        }
+
+        function showError(message) {
+            document.getElementById('results').innerHTML = `
+                <div class="error">
+                    <strong>Error:</strong> ${message}
+                </div>
+            `;
+            document.getElementById('results').style.display = 'block';
+        }
+
+        // Load GDPR preset by default
+        loadPreset('gdpr');
+    </script>
+</body>
+</html>

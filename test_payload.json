@@ -1,0 +1,8 @@
+{
+  "httpMethod": "POST",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"instruction\": \"Analyse the feature artifact and decide if geo-specific compliance logic is needed.\", \"input\": \"Feature Name: Simple Test\\nFeature Description: Testing the function\\n\\nLaw Context: []\"}"
+}
+

@@ -1,0 +1,29 @@
+{
+  "name": "tiktok-geo-compliance-ui",
+  "version": "1.0.0",
+  "description": "TikTok Geo-Regulation Governance - From Guesswork to Governance: Automated Compliance Analysis",
+  "main": "geo_compliance_ui.html",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "build": "echo 'Static site - no build required'",
+    "start": "echo 'Static site deployed'"
+  },
+  "keywords": [
+    "compliance",
+    "geo-regulation",
+    "privacy",
+    "gdpr",
+    "ccpa",
+    "tiktok",
+    "legal-tech",
+    "llm",
+    "phi-2"
+  ],
+  "author": "TikTok Enterprise Compliance Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tiktok/geo-compliance-analyzer"
+  },
+  "homepage": "https://geo-compliance.vercel.app"
+}

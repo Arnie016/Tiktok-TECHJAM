@@ -1,0 +1,8 @@
+{
+  "httpMethod": "POST",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"instruction\": \"Analyse the feature artifact and decide if geo-specific compliance logic is needed. Explain why and cite the relevant regulation if any.\", \"input\": \"Feature Name: Dark Mode Theme Toggle\\nFeature Description: Simple UI toggle button that allows users to switch between light and dark color themes for better visual comfort.\\n\\nLaw Context (structured JSON):\\n[]\"}"
+}
+

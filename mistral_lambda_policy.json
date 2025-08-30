@@ -1,0 +1,22 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:*:*:*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:InvokeEndpoint"
+      ],
+      "Resource": "arn:aws:sagemaker:us-west-2:561947681110:endpoint/mistral-7b-geo-compliance"
+    }
+  ]
+}
+
