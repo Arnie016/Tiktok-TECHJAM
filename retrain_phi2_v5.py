@@ -42,9 +42,9 @@ class Phi2Retrainer:
         try:
             # Upload the v4 data to the same working bucket
             s3.upload_file(
-                '/Users/hema/Desktop/bedrock/sagemaker-finetune/data/train_refined_v4.jsonl',
+                '/Users/hema/Desktop/bedrock/sagemaker-finetune/data/train_refined_v5.jsonl',
                 self.config['bucket'],
-                'phi2-training-data/train_refined_v4.jsonl'
+                'phi2-training-data/train_refined_v5.jsonl'
             )
             # Create and upload source directory with the simple training script
             import tarfile
@@ -53,7 +53,7 @@ class Phi2Retrainer:
             tarball_path = f'./{job_name}_source.tar.gz'
             
             with tarfile.open(tarball_path, 'w:gz') as tar:
-                tar.add('/Users/hema/Desktop/bedrock/simple_training_script.py', arcname='train.py')
+                tar.add('/Users/hema/Desktop/bedrock/train_qwen.py', arcname='train.py')
             
             s3.upload_file(
                 tarball_path,
@@ -85,17 +85,22 @@ class Phi2Retrainer:
                 'TrainingInputMode': 'File',
                 'EnableSageMakerMetricsTimeSeries': True
             },
-                         'HyperParameters': {
-                 'model_id': f'"{self.config["base_model"]}"',
-                 'epochs': '3',
-                 'learning_rate': '5e-5',
-                 'max_seq_length': '512',
-                 'sagemaker_container_log_level': '20',
-                 'sagemaker_job_name': f'"{job_name}"',
-                 'sagemaker_program': '"train.py"',
-                 'sagemaker_region': '"us-west-2"',
-                 'sagemaker_submit_directory': f'"s3://{self.config["bucket"]}/{job_name}/source/sourcedir.tar.gz"'
-             },
+                                     'HyperParameters': {
+                'model_id': f'"{self.config["base_model"]}"',
+                'num_train_epochs': '3',
+                'learning_rate': '1e-4',
+                'max_seq_length': '512',
+                'per_device_train_batch_size': '2',
+                'gradient_accumulation_steps': '4',
+                'lora_r': '16',
+                'lora_alpha': '32',
+                'lora_dropout': '0.05',
+                'sagemaker_container_log_level': '20',
+                'sagemaker_job_name': f'"{job_name}"',
+                'sagemaker_program': '"train.py"',
+                'sagemaker_region': '"us-west-2"',
+                'sagemaker_submit_directory': f'"s3://{self.config["bucket"]}/{job_name}/source/sourcedir.tar.gz"'
+            },
             'InputDataConfig': [
                 {
                     'ChannelName': 'train',
