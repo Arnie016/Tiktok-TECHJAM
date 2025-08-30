@@ -118,3 +118,4 @@ This document describes the new legal documents added to the `pdfs/law/` directo
 2. **Short-term**: Process into training data format
 3. **Medium-term**: Retrain model with expanded corpus
 4. **Long-term**: Enhanced multi-jurisdiction compliance analysis
+

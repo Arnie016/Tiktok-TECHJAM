@@ -207,3 +207,4 @@ For questions about legal sources or data processing:
 ---
 
 **Disclaimer**: This documentation is for educational and research purposes only. It does not constitute legal advice. Always consult official sources and qualified legal professionals for legal matters.
+

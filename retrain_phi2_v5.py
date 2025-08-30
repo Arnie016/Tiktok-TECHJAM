@@ -46,26 +46,25 @@ class Phi2Retrainer:
                 self.config['bucket'],
                 'phi2-training-data/train_refined_v4.jsonl'
             )
-            # Also upload the training script
-            s3.upload_file(
-                '/Users/hema/Desktop/bedrock/improved_training_script.py',
-                self.config['bucket'],
-                'phi2-training-data/train.py'
-            )
-            
-            # Create and upload source directory
-            import tempfile
+            # Create and upload source directory with the simple training script
             import tarfile
             
-            with tempfile.NamedTemporaryFile(suffix='.tar.gz', delete=False) as tmp_file:
-                with tarfile.open(tmp_file.name, 'w:gz') as tar:
-                    tar.add('/Users/hema/Desktop/bedrock/improved_training_script.py', arcname='train.py')
-                
-                s3.upload_file(
-                    tmp_file.name,
-                    self.config['bucket'],
-                    f'{job_name}/source/sourcedir.tar.gz'
-                )
+            # Create tarball in current directory
+            tarball_path = f'./{job_name}_source.tar.gz'
+            
+            with tarfile.open(tarball_path, 'w:gz') as tar:
+                tar.add('/Users/hema/Desktop/bedrock/simple_training_script.py', arcname='train.py')
+            
+            s3.upload_file(
+                tarball_path,
+                self.config['bucket'],
+                f'{job_name}/source/sourcedir.tar.gz'
+            )
+            
+            # Clean up
+            import os
+            if os.path.exists(tarball_path):
+                os.remove(tarball_path)
             logger.info("✅ Training data uploaded successfully")
             return True
             
@@ -86,17 +85,17 @@ class Phi2Retrainer:
                 'TrainingInputMode': 'File',
                 'EnableSageMakerMetricsTimeSeries': True
             },
-            'HyperParameters': {
-                'model_id': f'"{self.config["base_model"]}"',
-                'num_train_epochs': '3',
-                'learning_rate': '5e-5',
-                'max_seq_length': '512',
-                'sagemaker_container_log_level': '20',
-                'sagemaker_job_name': f'"{job_name}"',
-                'sagemaker_program': '"train.py"',
-                'sagemaker_region': '"us-west-2"',
-                'sagemaker_submit_directory': f'"s3://{self.config["bucket"]}/{job_name}/source/sourcedir.tar.gz"'
-            },
+                         'HyperParameters': {
+                 'model_id': f'"{self.config["base_model"]}"',
+                 'epochs': '3',
+                 'learning_rate': '5e-5',
+                 'max_seq_length': '512',
+                 'sagemaker_container_log_level': '20',
+                 'sagemaker_job_name': f'"{job_name}"',
+                 'sagemaker_program': '"train.py"',
+                 'sagemaker_region': '"us-west-2"',
+                 'sagemaker_submit_directory': f'"s3://{self.config["bucket"]}/{job_name}/source/sourcedir.tar.gz"'
+             },
             'InputDataConfig': [
                 {
                     'ChannelName': 'train',
