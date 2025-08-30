@@ -88,10 +88,9 @@ class Phi2Retrainer:
             },
             'HyperParameters': {
                 'model_id': f'"{self.config["base_model"]}"',
-                'epochs': '3',
+                'num_train_epochs': '3',
                 'learning_rate': '5e-5',
                 'max_seq_length': '512',
-                'hf_hub_enable_hf_transfer': 'false',
                 'sagemaker_container_log_level': '20',
                 'sagemaker_job_name': f'"{job_name}"',
                 'sagemaker_program': '"train.py"',
