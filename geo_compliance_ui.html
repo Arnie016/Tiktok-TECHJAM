@@ -31,26 +31,46 @@
             border: none;
         }
 
-        .header {
+        .navbar {
             background: linear-gradient(135deg, #d2691e 0%, #cd853f 50%, #daa520 100%);
             color: #fff;
-            padding: 30px;
-            text-align: center;
+            padding: 15px 40px;
             border-bottom: 3px solid #8b4513;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .header h1 {
-            font-size: 2.2em;
-            margin-bottom: 10px;
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .navbar-brand h1 {
+            font-size: 1.8em;
             font-weight: 600;
             font-family: 'Georgia', serif;
+            margin: 0;
         }
 
-        .header p {
-            font-size: 1.1em;
+        .navbar-brand p {
+            font-size: 0.9em;
             opacity: 0.95;
             font-style: italic;
+            margin: 0;
+        }
+
+        .navbar-ai {
+            text-align: right;
+            opacity: 0.9;
+        }
+
+        .navbar-ai div {
+            font-size: 0.8em;
+            font-family: 'Georgia', serif;
+            margin: 2px 0;
         }
 
         .main-content {
@@ -64,6 +84,8 @@
             padding: 40px;
             background: rgba(255, 255, 255, 0.95);
             border-right: 2px solid #e8d5c4;
+            max-height: 80vh;
+            overflow-y: auto;
         }
 
         .output-section {
@@ -384,129 +406,224 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div class="navbar">
+            <div class="navbar-brand">
+                <div style="font-size: 1.5em;">⚖️</div>
                 <div>
-                    <h1 style="font-family: 'Times New Roman', serif; font-weight: 400; letter-spacing: 1px;">COMPLIANCE ANALYSIS REPORT</h1>
-                    <p style="font-family: 'Times New Roman', serif; font-style: italic; opacity: 0.8;">Geo-Regulatory Assessment & Legal Compliance Framework</p>
+                    <h1>TikTok Geo-Regulation Governance</h1>
+                    <p>From Guesswork to Governance: Automated Compliance Analysis</p>
+                    <a href="https://github.com/Arnie016/Tiktok-TECHJAM" target="_blank" style="color: white; text-decoration: none; font-size: 0.8em; opacity: 0.9; transition: opacity 0.3s ease; margin-top: 5px; display: inline-block;">
+                        📚 GitHub Repository
+                    </a>
                 </div>
-                <div style="text-align: right; opacity: 0.9;">
-                    <div style="font-size: 0.9em; font-weight: 600; font-family: 'Times New Roman', serif;">Microsoft Phi-2 v5</div>
-                    <div style="font-size: 0.8em; font-family: 'Times New Roman', serif;">Fine-tuned on 1,442 compliance pairs</div>
-                    <div style="font-size: 0.75em; margin-top: 4px; color: #bdc3c7;">Enterprise Legal AI Platform</div>
+            </div>
+            <div class="navbar-controls">
+                <button onclick="toggleChat()" style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); color: white; padding: 8px 16px; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; font-size: 0.9em;">
+                    💬 AI Chat
+                </button>
+            </div>
+            <div class="navbar-ai">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="text-align: right;">
+                        <div style="font-size: 0.9em; font-weight: 600; margin-bottom: 2px;">🧠 Microsoft Phi-2 v5</div>
+                        <div style="font-size: 0.75em; opacity: 0.9;">Fine-tuned on 1,442 compliance pairs</div>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="openDatasetExplorer()" style="background: rgba(255, 255, 255, 0.2); color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 0.8em; cursor: pointer; font-family: 'Georgia', serif; transition: all 0.3s ease;">
+                            📚 Dataset
+                        </button>
+                        <button onclick="exportComplianceReport()" style="background: rgba(255, 255, 255, 0.2); color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 0.8em; cursor: pointer; font-family: 'Georgia', serif; transition: all 0.3s ease;">
+                            📊 Export
+                        </button>
+                        <button onclick="exportAuditTrail()" style="background: rgba(255, 255, 255, 0.2); color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 0.8em; cursor: pointer; font-family: 'Georgia', serif; transition: all 0.3s ease;">
+                            📋 Audit
+                        </button>
+        </div>
+
                 </div>
             </div>
         </div>
 
-        <div class="main-content">
-            <div class="input-section">
-                <!-- Export Controls at Top -->
-                <div class="export-controls">
-                    <h3 style="color: #2c3e50; margin-bottom: 15px; font-family: 'Georgia', serif; border-bottom: 2px solid #d2691e; padding-bottom: 8px;">
-                        📋 Export & Documentation Tools
-                    </h3>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
-                        <button onclick="openDatasetExplorer()" class="export-btn">
-                            📚 Training Dataset Explorer
-                        </button>
-                        <button onclick="exportComplianceReport()" class="export-btn secondary">
-                            📊 Export Compliance Report (CSV)
-                        </button>
-                        <button onclick="exportAuditTrail()" class="export-btn tertiary">
-                            📋 Export Audit Trail (CSV)
-                        </button>
-                    </div>
+        <!-- Analysis Tool Section (Visible by default) -->
+        <div id="analysisTool" style="display: block;">
+            <div class="main-content">
+                <!-- Left Panel: Input Section -->
+                <div class="input-section" style="padding: 30px; background: rgba(255, 255, 255, 0.95); border-right: 2px solid #e8d5c4;">
+
+                    <!-- Feature Analysis Section -->
+                    <div style="background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 10px; margin-bottom: 30px; border: 1px solid #e8d5c4; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
+                        <h2 style="margin-bottom: 25px; color: #2c3e50; font-family: 'Georgia', serif; display: flex; align-items: center; gap: 10px;">
+                            ⚖️ Feature Compliance Analysis
+                        </h2>
+                        
+                        <div style="background: rgba(210, 105, 30, 0.1); padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #d2691e; border: 1px solid rgba(210, 105, 30, 0.2);">
+                            <div style="font-size: 1em; color: #d2691e; font-weight: 600; margin-bottom: 8px; font-family: 'Georgia', serif;">🏛️ Professional Compliance Assessment</div>
+                            <div style="font-size: 0.9em; color: #2c3e50; line-height: 1.5; font-family: 'Georgia', serif;">
+                                Analyze software features for geo-specific compliance requirements across global markets including GDPR (EU), CCPA (California), LGPD (Brazil), and 20+ other jurisdictions. Powered by Microsoft Phi-2 AI fine-tuned on 1,442 compliance examples.
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 25px;">
+                            <h3 style="color: #2c3e50; margin-bottom: 15px; font-family: 'Georgia', serif; display: flex; align-items: center; gap: 8px;">
+                                🎯 Quick Analysis Templates
+                            </h3>
+                                                    <div class="preset-buttons" style="max-height: 100px; overflow-x: auto; overflow-y: hidden; padding: 8px; border: 1px solid #e8d5c4; border-radius: 8px; background: rgba(255, 255, 255, 0.8);">
+                            <div style="display: flex; gap: 8px; min-width: max-content;">
+                    <button class="preset-btn" onclick="loadPreset('gdpr')">🇪🇺 GDPR Cookies</button>
+                                <button class="preset-btn" onclick="loadPreset('ccpa')">🇺🇸 CCPA Rights</button>
+                                <button class="preset-btn" onclick="loadPreset('kids')">👶 Age Verification</button>
+                                <button class="preset-btn" onclick="loadPreset('targeting')">🎯 Ad Targeting</button>
+                                <button class="preset-btn" onclick="loadPreset('transparency')">📊 Transparency</button>
+                                <button class="preset-btn" onclick="loadPreset('breach')">🚨 Data Breach</button>
+                                <button class="preset-btn" onclick="loadPreset('audit')">📋 Audit Trails</button>
+                                <button class="preset-btn" onclick="loadPreset('rights')">⚖️ User Rights</button>
+                                <button class="preset-btn" onclick="loadPreset('sharing')">🤝 Data Sharing</button>
+                                <button class="preset-btn" onclick="loadPreset('moderation')">🛡️ Content Moderation</button>
+                                <button class="preset-btn" onclick="loadPreset('notice')">📢 Notice & Action</button>
+                                <button class="preset-btn" onclick="loadPreset('supervisory')">🏛️ Supervisory Authority</button>
+                                <button class="preset-btn" onclick="loadPreset('simple')">⚡ Simple Feature</button>
+                                <button class="preset-btn" onclick="loadPreset('biometric')">👁️ Biometric Data</button>
+                                <button class="preset-btn" onclick="loadPreset('location')">📍 Location Services</button>
+                                <button class="preset-btn" onclick="loadPreset('profiling')">🧠 Automated Profiling</button>
+                                <button class="preset-btn" onclick="loadPreset('crossborder')">🌐 Cross-Border Transfer</button>
+                                <button class="preset-btn" onclick="loadPreset('retention')">⏰ Data Retention</button>
+                                <button class="preset-btn" onclick="loadPreset('consent')">✅ Consent Management</button>
+                                <button class="preset-btn" onclick="loadPreset('portability')">📤 Data Portability</button>
+                                <button class="preset-btn" onclick="loadPreset('deletion')">🗑️ Right to Deletion</button>
+                                <button class="preset-btn" onclick="loadPreset('anonymization')">🕵️ Data Anonymization</button>
+                                <button class="preset-btn" onclick="loadPreset('encryption')">🔐 Data Encryption</button>
+                                <button class="preset-btn" onclick="loadPreset('monitoring')">📡 User Monitoring</button>
+                            </div>
+                        </div>
                 </div>
 
-                <!-- Feature Analysis Section -->
-                <div style="background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 10px; margin-bottom: 30px; border: 1px solid #e8d5c4; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
-                    <h2 style="margin-bottom: 25px; color: #2c3e50; font-family: 'Georgia', serif; display: flex; align-items: center; gap: 10px;">
-                        ⚖️ Feature Compliance Analysis
-                    </h2>
-                    
-                    <div style="background: rgba(210, 105, 30, 0.1); padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #d2691e; border: 1px solid rgba(210, 105, 30, 0.2);">
-                        <div style="font-size: 1em; color: #d2691e; font-weight: 600; margin-bottom: 8px; font-family: 'Georgia', serif;">🏛️ Professional Compliance Assessment</div>
-                        <div style="font-size: 0.9em; color: #2c3e50; line-height: 1.5; font-family: 'Georgia', serif;">
-                            Analyze software features for geo-specific compliance requirements across global markets including GDPR (EU), CCPA (California), LGPD (Brazil), and 20+ other jurisdictions. Powered by Microsoft Phi-2 AI fine-tuned on 1,442 compliance examples.
-                        </div>
-                    </div>
-                    
-                    <div style="margin-bottom: 25px;">
-                        <h3 style="color: #2c3e50; margin-bottom: 15px; font-family: 'Georgia', serif; display: flex; align-items: center; gap: 8px;">
-                            🎯 Quick Analysis Templates
-                        </h3>
-                        <div class="preset-buttons">
-                            <button class="preset-btn" onclick="loadPreset('gdpr')">🇪🇺 GDPR Cookies</button>
-                            <button class="preset-btn" onclick="loadPreset('ccpa')">🇺🇸 CCPA Rights</button>
-                            <button class="preset-btn" onclick="loadPreset('kids')">👶 Age Verification</button>
-                            <button class="preset-btn" onclick="loadPreset('targeting')">🎯 Ad Targeting</button>
-                            <button class="preset-btn" onclick="loadPreset('transparency')">📊 Transparency</button>
-                            <button class="preset-btn" onclick="loadPreset('breach')">🚨 Data Breach</button>
-                            <button class="preset-btn" onclick="loadPreset('audit')">📋 Audit Trails</button>
-                            <button class="preset-btn" onclick="loadPreset('rights')">⚖️ User Rights</button>
-                            <button class="preset-btn" onclick="loadPreset('sharing')">🤝 Data Sharing</button>
-                            <button class="preset-btn" onclick="loadPreset('moderation')">🛡️ Content Moderation</button>
-                            <button class="preset-btn" onclick="loadPreset('notice')">📢 Notice & Action</button>
-                            <button class="preset-btn" onclick="loadPreset('supervisory')">🏛️ Supervisory Authority</button>
-                            <button class="preset-btn" onclick="loadPreset('simple')">⚡ Simple Feature</button>
-                        </div>
-                    </div>
-
-                    <form id="complianceForm">
-                        <div class="form-group">
-                            <label for="featureName">🏷️ Feature Name / Internal Codename</label>
-                            <input type="text" id="featureName" placeholder="e.g., EU Cookie Consent Banner, LiveStreamGeoGate, UserDataExportTool" required>
-                        </div>
-
+                <form id="complianceForm">
                     <div class="form-group">
-                        <label for="featureDescription">📝 Feature Description & Data Processing</label>
-                        <textarea id="featureDescription" placeholder="Describe the feature functionality, what personal data is processed, user interactions, and geographic scope. Include any data collection, sharing, or storage aspects." required></textarea>
+                                <label for="featureName">🏷️ Feature Name / Internal Codename</label>
+                                <input type="text" id="featureName" placeholder="e.g., EU Cookie Consent Banner, LiveStreamGeoGate, UserDataExportTool" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="lawContext">⚖️ Known Legal Context (Optional)</label>
-                        <textarea id="lawContext" placeholder='[{"law": "GDPR Article 7", "jurisdiction": "EU", "requirement": "Valid consent for data processing"}]'></textarea>
-                        <div style="font-size: 0.8em; color: #666; margin-top: 5px;">
-                            💡 Leave empty for automatic regulation detection, or provide known requirements in JSON format
-                        </div>
+                                <label for="featureDescription">📝 Feature Description & Data Processing</label>
+                                <textarea id="featureDescription" placeholder="Describe the feature, its functionality, data processing activities, and user interactions..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                                <label for="legalContext">⚖️ Known Legal Context (Optional)</label>
+                                <textarea id="legalContext" placeholder='[{"law": "GDPR Article 7", "jurisdiction": "EU", "requirement": "Valid consent for data processing"}]'></textarea>
+                                <div style="font-size: 0.85em; color: #7f8c8d; margin-top: 5px;">
+                                    💡 Leave empty for automatic regulation detection, or provide known requirements in JSON format
+                                </div>
                     </div>
 
                     <button type="submit" class="analyze-btn" id="analyzeBtn">
-                        🔍 Screen for Geo-Compliance Requirements
+                                🔍 Screen for Geo-Compliance Requirements
                     </button>
                 </form>
 
                 <div class="loading" id="loading">
                     <div class="spinner"></div>
                     Analyzing with Phi-2 v5...
+                        </div>
                 </div>
             </div>
 
-            <div class="output-section">
-                <h2 style="margin-bottom: 25px; color: #2c3e50; font-family: 'Georgia', serif; font-size: 1.8em;">📊 Compliance Analysis Report</h2>
+                <!-- Right Panel: Output Section -->
+                <div class="output-section" style="padding: 40px; background: rgba(255, 255, 255, 0.95); max-height: 80vh; overflow-y: auto;">
+                    <h2 style="margin-bottom: 25px; color: #2c3e50; font-family: 'Georgia', serif; font-size: 1.8em;">📊 Compliance Analysis Report</h2>
                 
                 <div id="results" class="result">
                     <!-- Results will be populated here -->
                 </div>
 
-                <div id="placeholder" style="text-align: center; color: #7f8c8d; padding: 50px;">
-                    <div style="font-size: 4em; margin-bottom: 20px;">⚖️</div>
-                    <div style="font-size: 1.4em; font-weight: 600; margin-bottom: 15px; color: #2c3e50; font-family: 'Georgia', serif;">TikTok Global Compliance Screening</div>
-                    <p style="line-height: 1.6; color: #34495e; font-size: 1.1em; font-family: 'Georgia', serif;">Enter feature details to automatically detect geo-specific legal requirements across global markets.</p>
-                    <div style="margin-top: 25px; font-size: 1em; color: #7f8c8d; font-family: 'Georgia', serif;">
-                        <strong style="color: #d2691e;">Key Benefits:</strong><br>
-                        🛡️ Proactive legal guardrails before feature launch<br>
-                        📋 Auditable compliance evidence<br>
-                        🌍 Automated regulatory traceability
+                    <div id="placeholder" style="text-align: center; color: #7f8c8d; padding: 50px;">
+                        <div style="font-size: 4em; margin-bottom: 20px;">⚖️</div>
+                        <div style="font-size: 1.4em; font-weight: 600; margin-bottom: 15px; color: #2c3e50; font-family: 'Georgia', serif;">TikTok Global Compliance Screening</div>
+                        <p style="line-height: 1.6; color: #34495e; font-size: 1.1em; font-family: 'Georgia', serif;">Fill out the form on the left and click "🔍 Screen for Geo-Compliance Requirements" to begin your analysis.</p>
+                        <div style="margin-top: 25px; font-size: 1em; color: #7f8c8d; font-family: 'Georgia', serif;">
+                            <strong style="color: #d2691e;">Key Benefits:</strong><br>
+                            🛡️ Proactive legal guardrails before feature launch<br>
+                            📋 Auditable compliance evidence<br>
+                            🌍 Automated regulatory traceability
+                        </div>
                     </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div style="background: linear-gradient(135deg, #d2691e, #cd853f); color: white; padding: 25px; border-radius: 12px; margin: 20px; text-align: center; box-shadow: 0 6px 20px rgba(210, 105, 30, 0.25); border: 1px solid rgba(255, 255, 255, 0.1);">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; align-items: center;">
+                    <div style="text-align: left;">
+                        <div style="font-size: 1.2em; font-weight: 700; margin-bottom: 5px; font-family: 'Georgia', serif; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">🏆 TikTok TechJam 2025</div>
+                        <div style="font-size: 0.9em; opacity: 0.95; font-family: 'Georgia', serif; font-style: italic;">Enterprise Compliance Analysis Platform</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 1em; font-weight: 600; margin-bottom: 5px; font-family: 'Georgia', serif;">👨‍💻 Developer</div>
+                        <a href="https://www.linkedin.com/in/arnav-salkade-27076a201/" target="_blank" style="color: white; text-decoration: none; font-size: 0.9em; font-family: 'Georgia', serif; opacity: 0.95; transition: all 0.3s ease; padding: 5px 10px; border-radius: 6px; background: rgba(255,255,255,0.1);">
+                            🔗 Arnav Salkade - LinkedIn
+                        </a>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 1em; font-weight: 600; margin-bottom: 5px; font-family: 'Georgia', serif;">📚 GitHub</div>
+                        <a href="https://github.com/Arnie016/Tiktok-TECHJAM" target="_blank" style="color: white; text-decoration: none; font-size: 0.9em; font-family: 'Georgia', serif; opacity: 0.95; transition: all 0.3s ease; padding: 5px 10px; border-radius: 6px; background: rgba(255,255,255,0.1);">
+                            🔗 @Arnie016/Tiktok-TECHJAM
+                        </a>
+                    </div>
+                </div>
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255, 255, 255, 0.2); font-size: 0.85em; opacity: 0.9; font-family: 'Georgia', serif; font-style: italic;">
+                    🚀 From Guesswork to Governance: Automating Geo-Regulation with LLM Workshop
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chat Interface -->
+    <div id="chatInterface" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; backdrop-filter: blur(5px);">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 800px; height: 80%; background: white; border-radius: 12px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column;">
+            <!-- Chat Header -->
+            <div style="background: linear-gradient(135deg, #d2691e, #cd853f); color: white; padding: 20px; border-radius: 12px 12px 0 0; display: flex; justify-content: between; align-items: center;">
+                <div>
+                    <h3 style="margin: 0; font-size: 1.3em;">🤖 AI Compliance Assistant</h3>
+                    <p style="margin: 5px 0 0 0; opacity: 0.9; font-size: 0.9em;">Chat about your compliance analysis results</p>
+                </div>
+                <button onclick="toggleChat()" style="background: rgba(255, 255, 255, 0.2); border: none; color: white; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 1.2em;">✕</button>
+            </div>
+            
+            <!-- API Key Input -->
+            <div id="apiKeySection" style="padding: 20px; border-bottom: 1px solid #e8d5c4; background: #fafafa;">
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input type="password" id="openaiApiKey" placeholder="Enter your OpenAI API key" style="flex: 1; padding: 10px; border: 1px solid #e8d5c4; border-radius: 6px; font-size: 0.9em;">
+                    <button onclick="setApiKey()" style="background: #d2691e; color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 0.9em;">Set Key</button>
+                </div>
+                <p style="margin: 5px 0 0 0; font-size: 0.8em; color: #666;">Your API key is stored locally and never sent to our servers</p>
+            </div>
+            
+            <!-- Chat Messages -->
+            <div id="chatMessages" style="flex: 1; padding: 20px; overflow-y: auto; background: #f9f9f9;">
+                <div style="text-align: center; color: #666; font-style: italic;">
+                    💬 Start chatting about your compliance analysis results...
+                </div>
+            </div>
+            
+            <!-- Chat Input -->
+            <div style="padding: 20px; border-top: 1px solid #e8d5c4; background: white;">
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="chatInput" placeholder="Ask about compliance requirements, implementation details, or legal implications..." style="flex: 1; padding: 12px; border: 1px solid #e8d5c4; border-radius: 6px; font-size: 0.9em;">
+                    <button onclick="sendChatMessage()" style="background: #d2691e; color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-size: 0.9em;">Send</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Chat functionality - Initialize at top
+        let chatContext = '';
+        let openaiApiKey = '';
+
         // ✅ Updated with your working Lambda Function URL
         const LAMBDA_FUNCTION_URL = 'https://vcf7glhsl7w4yccfzny6tigqmm0znsxx.lambda-url.us-west-2.on.aws/';
+
+
 
         const presets = {
             gdpr: {
@@ -573,89 +690,137 @@
                 name: "TikTok Dark Mode Theme Toggle",
                 description: "Simple UI preference toggle that allows users to switch between light and dark visual themes. Stores preference locally in browser settings without server-side data processing.",
                 context: '[]'
+            },
+            biometric: {
+                name: "TikTok Biometric Authentication System",
+                description: "Biometric authentication system using facial recognition and fingerprint scanning for user login and content verification. Processes biometric data for identity verification and fraud prevention.",
+                context: '[{"law": "GDPR Article 9", "jurisdiction": "EU", "requirement": "Special category data processing"}, {"law": "BIPA", "jurisdiction": "US-IL", "requirement": "Biometric information privacy"}]'
+            },
+            location: {
+                name: "TikTok Location-Based Content Delivery",
+                description: "Location-based content recommendation system that uses GPS data to suggest local trends, nearby events, and region-specific content. Processes location data for personalized content delivery.",
+                context: '[{"law": "GDPR Article 6", "jurisdiction": "EU", "requirement": "Lawful basis for location processing"}, {"law": "CCPA Section 1798.140", "jurisdiction": "US-CA", "requirement": "Personal information definition"}]'
+            },
+            profiling: {
+                name: "TikTok Automated User Profiling System",
+                description: "Automated system that creates user profiles based on behavior analysis, content preferences, and interaction patterns. Uses AI algorithms to categorize users for content recommendations.",
+                context: '[{"law": "GDPR Article 22", "jurisdiction": "EU", "requirement": "Automated decision-making rights"}, {"law": "CCPA Section 1798.185", "jurisdiction": "US-CA", "requirement": "Profiling regulations"}]'
+            },
+            crossborder: {
+                name: "TikTok Cross-Border Data Transfer System",
+                description: "System for transferring user data across international borders for content delivery and analytics. Implements data transfer mechanisms between EU, US, and other global regions.",
+                context: '[{"law": "GDPR Chapter 5", "jurisdiction": "EU", "requirement": "Cross-border data transfers"}, {"law": "Schrems II", "jurisdiction": "EU", "requirement": "Adequacy decisions"}]'
+            },
+            retention: {
+                name: "TikTok Data Retention Management System",
+                description: "Automated data retention system that manages user data lifecycle, deletion schedules, and archival processes. Implements different retention periods based on data type and jurisdiction.",
+                context: '[{"law": "GDPR Article 5", "jurisdiction": "EU", "requirement": "Storage limitation principle"}, {"law": "CCPA Section 1798.105", "jurisdiction": "US-CA", "requirement": "Right to deletion"}]'
+            },
+            consent: {
+                name: "TikTok Granular Consent Management Platform",
+                description: "Comprehensive consent management platform that handles different types of consent for data processing, marketing, and third-party sharing. Provides granular control options for users.",
+                context: '[{"law": "GDPR Article 7", "jurisdiction": "EU", "requirement": "Conditions for consent"}, {"law": "CCPA Section 1798.120", "jurisdiction": "US-CA", "requirement": "Opt-out rights"}]'
+            },
+            portability: {
+                name: "TikTok Data Portability Export System",
+                description: "System that allows users to export their personal data in machine-readable formats. Enables data transfer to other platforms and services as required by data protection regulations.",
+                context: '[{"law": "GDPR Article 20", "jurisdiction": "EU", "requirement": "Right to data portability"}, {"law": "CCPA Section 1798.130", "jurisdiction": "US-CA", "requirement": "Data disclosure requirements"}]'
+            },
+            deletion: {
+                name: "TikTok Right to Deletion Portal",
+                description: "Portal for users to request complete deletion of their personal data from TikTok systems. Implements automated deletion workflows and verification processes.",
+                context: '[{"law": "GDPR Article 17", "jurisdiction": "EU", "requirement": "Right to erasure"}, {"law": "CCPA Section 1798.105", "jurisdiction": "US-CA", "requirement": "Right to deletion"}]'
+            },
+            anonymization: {
+                name: "TikTok Data Anonymization Engine",
+                description: "Automated system that anonymizes user data for analytics and research purposes. Implements privacy-preserving techniques while maintaining data utility for business insights.",
+                context: '[{"law": "GDPR Article 25", "jurisdiction": "EU", "requirement": "Data protection by design"}, {"law": "CCPA Section 1798.140", "jurisdiction": "US-CA", "requirement": "Deidentified information"}]'
+            },
+            encryption: {
+                name: "TikTok Data Encryption & Security System",
+                description: "End-to-end encryption system for user communications and data storage. Implements encryption standards for data at rest and in transit across all jurisdictions.",
+                context: '[{"law": "GDPR Article 32", "jurisdiction": "EU", "requirement": "Security of processing"}, {"law": "CCPA Section 1798.150", "jurisdiction": "US-CA", "requirement": "Security requirements"}]'
+            },
+            monitoring: {
+                name: "TikTok User Behavior Monitoring System",
+                description: "System that monitors user behavior for security, fraud detection, and content moderation. Tracks user interactions, patterns, and suspicious activities.",
+                context: '[{"law": "GDPR Article 6", "jurisdiction": "EU", "requirement": "Legitimate interest processing"}, {"law": "CCPA Section 1798.140", "jurisdiction": "US-CA", "requirement": "Personal information monitoring"}]'
             }
         };
 
         function loadPreset(type) {
             const preset = presets[type];
-            document.getElementById('featureName').value = preset.name;
-            document.getElementById('featureDescription').value = preset.description;
-            document.getElementById('lawContext').value = preset.context;
+            if (preset) {
+                const featureNameElement = document.getElementById('featureName');
+                const featureDescriptionElement = document.getElementById('featureDescription');
+                const lawContextElement = document.getElementById('lawContext');
+                
+                if (featureNameElement) featureNameElement.value = preset.name;
+                if (featureDescriptionElement) featureDescriptionElement.value = preset.description;
+                if (lawContextElement) lawContextElement.value = preset.context;
+            }
         }
 
         function openDatasetExplorer() {
             const datasetContent = `
-                <div style="background: rgba(248, 249, 250, 0.98); padding: 30px; border-radius: 8px; border: 2px solid #2c3e50; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); max-width: 800px; margin: 20px auto; font-family: 'Times New Roman', serif;">
-                    <div style="text-align: center; margin-bottom: 30px;">
-                        <h2 style="color: #2c3e50; font-weight: 600; letter-spacing: 1px; margin-bottom: 10px;">TRAINING DATASET EXPLORER</h2>
-                        <p style="color: #7f8c8d; font-style: italic;">Microsoft Phi-2 Fine-tuning Dataset Analysis</p>
-                    </div>
-                    
-                    <div style="margin-bottom: 25px;">
-                        <h3 style="color: #2c3e50; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 8px;">🧠 Training Process Overview</h3>
-                        <div style="background: #ecf0f1; padding: 20px; border-radius: 6px; border-left: 4px solid #3498db; color: #34495e; line-height: 1.6;">
-                            <strong>Fine-tuning Methodology:</strong> The Microsoft Phi-2 model was fine-tuned on 1,442 input-output pairs of geo-compliance analysis examples. Each training example contains a feature description, relevant law context, and the expected compliance assessment output. This enables the model to understand complex regulatory requirements across multiple jurisdictions.
+                <div style="background: rgba(255, 255, 255, 0.98); padding: 30px; border-radius: 12px; border: 2px solid #d2691e; box-shadow: 0 8px 30px rgba(210, 105, 30, 0.2); max-width: 900px; margin: 20px auto; font-family: 'Georgia', serif;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                        <div>
+                            <h2 style="color: #2c3e50; font-weight: 600; letter-spacing: 1px; margin-bottom: 5px;">🧠 Training Dataset Explorer</h2>
+                            <p style="color: #7f8c8d; font-style: italic; margin: 0;">Microsoft Phi-2 v5 Fine-tuning Analysis</p>
                         </div>
-                    </div>
-                    
-                    <div style="margin-bottom: 25px;">
-                        <h3 style="color: #2c3e50; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 8px;">📋 Sample Training Examples</h3>
-                        <div style="display: grid; gap: 15px;">
-                            <div style="background: #ecf0f1; padding: 15px; border-radius: 6px; border: 1px solid #bdc3c7;">
-                                <div style="font-weight: 600; color: #e67e22; margin-bottom: 8px; font-size: 0.9em;">Example 1: Content Moderation Engine</div>
-                                <div style="font-size: 0.85em; color: #34495e; margin-bottom: 6px;">
-                                    <strong>Input:</strong> Feature analyzes user-generated content for policy violations using AI algorithms
-                                </div>
-                                <div style="font-size: 0.85em; color: #34495e; margin-bottom: 6px;">
-                                    <strong>Law Context:</strong> EU DSA (CELEX 32022R2065) - Content moderation reporting requirements
-                                </div>
-                                <div style="font-size: 0.85em; color: #27ae60; font-weight: 600;">
-                                    <strong>Output:</strong> "Needs Geo-Compliance" - EU-specific content moderation reporting required
-                                </div>
-                            </div>
-                            
-                            <div style="background: #ecf0f1; padding: 15px; border-radius: 6px; border: 1px solid #bdc3c7;">
-                                <div style="font-weight: 600; color: #e67e22; margin-bottom: 8px; font-size: 0.9em;">Example 2: Notice-and-Action Portal</div>
-                                <div style="font-size: 0.85em; color: #34495e; margin-bottom: 6px;">
-                                    <strong>Input:</strong> Portal for users to report illegal content with transparency mechanisms
-                                </div>
-                                <div style="font-size: 0.85em; color: #34495e; margin-bottom: 6px;">
-                                    <strong>Law Context:</strong> EU DSA + Florida Online Protections Act
-                                </div>
-                                <div style="font-size: 0.85em; color: #27ae60; font-weight: 600;">
-                                    <strong>Output:</strong> "Needs Geo-Compliance" - Multi-jurisdictional notice mechanisms required
-                                </div>
-                            </div>
-                            
-                            <div style="background: #ecf0f1; padding: 15px; border-radius: 6px; border: 1px solid #bdc3c7;">
-                                <div style="font-weight: 600; color: #e67e22; margin-bottom: 8px; font-size: 0.9em;">Example 3: Supervisory Authority Communication</div>
-                                <div style="font-size: 0.85em; color: #34495e; margin-bottom: 6px;">
-                                    <strong>Input:</strong> System for regulatory communication and compliance reporting
-                                </div>
-                                <div style="font-size: 0.85em; color: #34495e; margin-bottom: 6px;">
-                                    <strong>Law Context:</strong> EU DSA + California Privacy Rights Act
-                                </div>
-                                <div style="font-size: 0.85em; color: #27ae60; font-weight: 600;">
-                                    <strong>Output:</strong> "Needs Geo-Compliance" - Authority communication protocols required
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="background: #d5f4e6; padding: 20px; border-radius: 6px; border-left: 4px solid #27ae60;">
-                        <h3 style="color: #2c3e50; margin-bottom: 15px;">🎯 Dataset Statistics</h3>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; font-size: 0.9em; color: #34495e;">
-                            <div><strong>Total Examples:</strong> 1,442</div>
-                            <div><strong>Jurisdictions Covered:</strong> 15+</div>
-                            <div><strong>Laws Analyzed:</strong> 25+</div>
-                            <div><strong>Compliance Flags:</strong> 3 types</div>
-                        </div>
-                    </div>
-                    
-                    <div style="text-align: center; margin-top: 25px;">
-                        <button onclick="closeDatasetExplorer()" style="background: #e74c3c; color: white; border: none; padding: 10px 20px; border-radius: 4px; font-family: 'Times New Roman', serif; font-weight: 600; cursor: pointer;">
-                            Close Explorer
+                        <button onclick="closeDatasetExplorer()" style="background: #d2691e; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-family: 'Georgia', serif; font-weight: 600; cursor: pointer; font-size: 0.9em;">
+                            ✕ Close
                         </button>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+                        <!-- Left Column -->
+                        <div>
+                            <div style="background: linear-gradient(135deg, #ffe8d6, #ffdab9); padding: 20px; border-radius: 8px; border-left: 4px solid #d2691e; margin-bottom: 20px;">
+                                <h3 style="color: #2c3e50; margin-bottom: 12px; font-size: 1.1em;">🎯 Training Overview</h3>
+                                <div style="font-size: 0.9em; color: #34495e; line-height: 1.5;">
+                                    <strong>Model:</strong> Microsoft Phi-2 v5<br>
+                                    <strong>Examples:</strong> 1,442 compliance pairs<br>
+                                    <strong>Jurisdictions:</strong> 15+ global regions<br>
+                                    <strong>Laws:</strong> 25+ regulations covered
+                                </div>
+                            </div>
+                            
+                            <div style="background: linear-gradient(135deg, #fff5f0, #ffe8d6); padding: 20px; border-radius: 8px; border-left: 4px solid #cd853f; margin-bottom: 20px;">
+                                <h3 style="color: #2c3e50; margin-bottom: 12px; font-size: 1.1em;">📊 Dataset Stats</h3>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.85em; color: #34495e;">
+                                    <div><strong>Total:</strong> 1,442</div>
+                                    <div><strong>EU Examples:</strong> 487</div>
+                                    <div><strong>US Examples:</strong> 356</div>
+                                    <div><strong>Global:</strong> 599</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column -->
+                        <div>
+                            <div style="background: linear-gradient(135deg, #fff8dc, #fffacd); padding: 20px; border-radius: 8px; border-left: 4px solid #daa520;">
+                                <h3 style="color: #2c3e50; margin-bottom: 12px; font-size: 1.1em;">💡 Sample Examples</h3>
+                                <div style="font-size: 0.85em; color: #34495e; line-height: 1.4;">
+                                    <div style="margin-bottom: 12px; padding: 8px; background: rgba(255,255,255,0.7); border-radius: 4px;">
+                                        <strong>GDPR Cookies:</strong> EU consent banner → "Needs Geo-Compliance"
+                                    </div>
+                                    <div style="margin-bottom: 12px; padding: 8px; background: rgba(255,255,255,0.7); border-radius: 4px;">
+                                        <strong>CCPA Rights:</strong> CA privacy portal → "Needs Geo-Compliance"
+                                    </div>
+                                    <div style="padding: 8px; background: rgba(255,255,255,0.7); border-radius: 4px;">
+                                        <strong>Age Verification:</strong> Global age check → "Multi-jurisdictional"
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid #e8d5c4;">
+                        <div style="font-size: 0.9em; color: #7f8c8d; font-style: italic;">
+                            Fine-tuned for accurate geo-compliance detection across global jurisdictions
+                        </div>
                     </div>
                 </div>
             `;
@@ -691,8 +856,12 @@
         function exportComplianceReport() {
             const reportId = `RPT-${Date.now().toString().slice(-6)}`;
             const timestamp = new Date().toISOString();
-            const featureName = document.getElementById('featureName').value;
-            const featureDescription = document.getElementById('featureDescription').value;
+            const featureNameElement = document.getElementById('featureName');
+            const featureDescriptionElement = document.getElementById('featureDescription');
+            
+            // Check if elements exist before accessing their values
+            const featureName = featureNameElement ? featureNameElement.value : 'Not available';
+            const featureDescription = featureDescriptionElement ? featureDescriptionElement.value : 'Not available';
             
             // Get current analysis data
             const resultsDiv = document.getElementById('results');
@@ -787,7 +956,14 @@
         function exportAuditTrail() {
             const reportId = `RPT-${Date.now().toString().slice(-6)}`;
             const timestamp = new Date().toISOString();
-            const featureName = document.getElementById('featureName').value;
+            const featureNameElement = document.getElementById('featureName');
+            const featureDescriptionElement = document.getElementById('featureDescription');
+            const lawContextElement = document.getElementById('legalContext');
+            
+            // Check if elements exist before accessing their values
+            const featureName = featureNameElement ? featureNameElement.value : 'Not available';
+            const featureDescription = featureDescriptionElement ? featureDescriptionElement.value : 'Not available';
+            const lawContext = lawContextElement ? lawContextElement.value : 'Not available';
             
             // Create comprehensive audit trail
             const auditTrail = [
@@ -809,8 +985,8 @@
                 // Input Data
                 ['INPUT DATA'],
                 ['Feature Name:', featureName],
-                ['Feature Description:', document.getElementById('featureDescription').value],
-                ['Law Context:', document.getElementById('lawContext').value],
+                ['Feature Description:', featureDescription],
+                ['Law Context:', lawContext],
                 [''],
                 
                 // Processing Details
@@ -918,12 +1094,25 @@
             }
         }
 
-        document.getElementById('complianceForm').addEventListener('submit', async function(e) {
+        // Add event listener only when the form exists
+        const complianceForm = document.getElementById('complianceForm');
+        if (complianceForm) {
+            complianceForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const featureName = document.getElementById('featureName').value;
-            const featureDescription = document.getElementById('featureDescription').value;
-            const lawContext = document.getElementById('lawContext').value;
+                const featureNameElement = document.getElementById('featureName');
+                const featureDescriptionElement = document.getElementById('featureDescription');
+                const lawContextElement = document.getElementById('legalContext');
+                
+                // Check if elements exist before accessing their values
+                if (!featureNameElement || !featureDescriptionElement || !lawContextElement) {
+                    showError('Form elements not found. Please ensure the analysis tool is loaded.');
+                    return;
+                }
+                
+                const featureName = featureNameElement.value;
+                const featureDescription = featureDescriptionElement.value;
+                const lawContext = lawContextElement.value;
 
             if (!LAMBDA_FUNCTION_URL || LAMBDA_FUNCTION_URL === 'YOUR_LAMBDA_FUNCTION_URL_HERE') {
                 showError('Please update the LAMBDA_FUNCTION_URL in the JavaScript code with your actual Lambda Function URL.');
@@ -965,6 +1154,7 @@
                 document.getElementById('loading').style.display = 'none';
             }
         });
+        }
 
         function displayResults(result) {
             const resultsDiv = document.getElementById('results');
@@ -985,6 +1175,11 @@
             window.currentAnalysis = analysis;
             window.currentMetadata = metadata;
             window.currentRawResponse = generatedText;
+            
+            // Update chat context with new analysis
+            if (typeof updateChatContext === 'function') {
+                updateChatContext();
+            }
             
             resultsDiv.innerHTML = `
                 <!-- Legal Document Header -->
@@ -1017,16 +1212,16 @@
                 <!-- Executive Summary -->
                 <div class="section" style="border-left: 4px solid ${analysis.hasGeoCompliance ? '#d2691e' : '#27ae60'}; margin-bottom: 25px;">
                     <details open>
-                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #2c3e50; font-family: 'Georgia', serif; font-size: 1.2em;">
-                            <span style="font-size: 1.3em;">📋</span>
+                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #2c3e50; font-family: 'Georgia', serif; font-size: 1.4em;">
+                            <span style="font-size: 1.5em;">📋</span>
                             <span>EXECUTIVE SUMMARY</span>
                         </summary>
-                        <div style="background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 8px; font-size: 1.1em; line-height: 1.6; border: 1px solid #e8d5c4; box-shadow: 0 2px 8px rgba(210, 105, 30, 0.1);">
-                            <div style="font-weight: 600; color: #2c3e50; margin-bottom: 15px; font-family: 'Georgia', serif; font-size: 1.1em;">
+                        <div style="background: linear-gradient(135deg, rgba(255, 250, 240, 0.95), rgba(255, 248, 235, 0.95)); padding: 30px; border-radius: 10px; font-size: 1.2em; line-height: 1.6; border: 2px solid #cd853f; box-shadow: 0 4px 12px rgba(205, 133, 63, 0.15);">
+                            <div style="font-weight: 600; color: #2c3e50; margin-bottom: 20px; font-family: 'Georgia', serif; font-size: 1.3em;">
                                 ${analysis.hasGeoCompliance ? 'GEO-SPECIFIC REQUIREMENTS DETECTED' : 'STANDARD IMPLEMENTATION SUFFICIENT'}
                     </div>
-                            <div style="color: #34495e; background: rgba(210, 105, 30, 0.1); padding: 20px; border-radius: 6px; border-left: 4px solid #d2691e; max-height: 150px; overflow-y: auto; font-family: 'Georgia', serif; font-size: 1em;">
-                                ${analysis.summary.replace(/\n/g, '<br>').slice(0, 400)}${analysis.summary.length > 400 ? '...' : ''}
+                            <div style="color: #34495e; background: rgba(205, 133, 63, 0.1); padding: 25px; border-radius: 8px; border-left: 4px solid #cd853f; max-height: 200px; overflow-y: auto; font-family: 'Georgia', serif; font-size: 1.1em; line-height: 1.7;">
+                                ${analysis.summary.replace(/\n/g, '<br>').replace(/https?:\/\/[^\s]+/g, '').slice(0, 400)}${analysis.summary.length > 400 ? '...' : ''}
                 </div>
                         </div>
                     </details>
@@ -1035,18 +1230,18 @@
                 ${analysis.jurisdictions.length > 0 ? `
                 <div class="section" style="margin-bottom: 20px;">
                     <details open>
-                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #e0e0e0;">
-                            <span style="font-size: 1.1em;">🌍</span>
+                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #2c3e50; font-family: 'Georgia', serif; font-size: 1.4em;">
+                            <span style="font-size: 1.5em;">🌍</span>
                             <span>Affected Jurisdictions</span>
-                            <span style="background: rgba(66, 165, 245, 0.2); color: #42a5f5; padding: 3px 10px; border-radius: 10px; font-size: 0.75em; font-weight: normal;">${analysis.jurisdictions.length}</span>
+                            <span style="background: rgba(210, 105, 30, 0.2); color: #d2691e; padding: 3px 10px; border-radius: 10px; font-size: 0.75em; font-weight: normal;">${analysis.jurisdictions.length}</span>
                         </summary>
-                        <div style="background: rgba(40, 40, 60, 0.8); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <div style="background: linear-gradient(135deg, rgba(255, 248, 240, 0.95), rgba(255, 245, 238, 0.95)); padding: 20px; border-radius: 10px; border: 2px solid #d2691e; box-shadow: 0 4px 12px rgba(210, 105, 30, 0.15);">
+                            <div style="display: flex; flex-wrap: wrap; gap: 15px;">
                                 ${analysis.jurisdictions.map(j => `
-                                    <div style="background: linear-gradient(135deg, rgba(${j.color.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.15), rgba(${j.color.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.05)); border: 1px solid rgba(${j.color.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.3); padding: 10px 15px; border-radius: 8px; text-align: center; min-width: 120px;">
-                                        <div style="font-size: 1.5em; margin-bottom: 5px;">${j.flag}</div>
-                                        <div style="font-weight: 600; color: ${j.color}; font-size: 0.9em;">${j.code}</div>
-                                        <div style="font-size: 0.8em; color: #e0e0e0;">${j.name}</div>
+                                    <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9)); border: 2px solid ${j.color}; padding: 15px; border-radius: 10px; text-align: center; min-width: 140px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                                        <div style="font-size: 2em; margin-bottom: 8px;">${j.flag}</div>
+                                        <div style="font-weight: 600; color: ${j.color}; font-size: 1.1em; font-family: 'Georgia', serif;">${j.code}</div>
+                                        <div style="font-size: 0.9em; color: #2c3e50; font-family: 'Georgia', serif;">${j.name}</div>
                         </div>
                     `).join('')}
                 </div>
@@ -1058,25 +1253,43 @@
                 ${analysis.laws.length > 0 ? `
                 <div class="section" style="margin-bottom: 20px;">
                     <details>
-                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #e0e0e0;">
-                            <span style="font-size: 1.1em;">⚖️</span>
+                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #2c3e50; font-family: 'Georgia', serif; font-size: 1.4em;">
+                            <span style="font-size: 1.5em;">⚖️</span>
                             <span>Legal Requirements</span>
-                            <span style="background: rgba(244, 67, 54, 0.2); color: #f44336; padding: 3px 10px; border-radius: 10px; font-size: 0.75em; font-weight: normal;">${analysis.laws.length}</span>
+                            <span style="background: rgba(210, 105, 30, 0.2); color: #d2691e; padding: 3px 10px; border-radius: 10px; font-size: 0.75em; font-weight: normal;">${analysis.laws.length}</span>
                         </summary>
-                        <div style="background: rgba(40, 40, 60, 0.8); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            <div style="display: grid; gap: 12px;">
-                                ${analysis.laws.map(law => `
-                                    <div style="background: linear-gradient(135deg, rgba(${law.color.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.15), rgba(${law.color.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.05)); border: 1px solid rgba(${law.color.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.3); padding: 12px; border-radius: 8px;">
-                                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
-                                            <span style="font-size: 1.3em;">${law.icon}</span>
+                        <div style="background: linear-gradient(135deg, rgba(255, 248, 240, 0.95), rgba(255, 245, 238, 0.95)); padding: 20px; border-radius: 10px; border: 2px solid #d2691e; box-shadow: 0 4px 12px rgba(210, 105, 30, 0.15);">
+                            <div style="display: grid; gap: 15px;">
+                                ${analysis.laws.map(law => {
+                                    const jurisdictionMap = {
+                                        'EU': { flag: '🇪🇺', name: 'European Union', color: '#d2691e' },
+                                        'US-CA': { flag: '🇺🇸', name: 'California', color: '#cd853f' },
+                                        'CA': { flag: '🇨🇦', name: 'Canada', color: '#daa520' },
+                                        'BR': { flag: '🇧🇷', name: 'Brazil', color: '#daa520' },
+                                        'UK': { flag: '🇬🇧', name: 'United Kingdom', color: '#d2691e' }
+                                    };
+                                    const jurisdiction = jurisdictionMap[law.jurisdiction] || { flag: '🌍', name: law.jurisdiction, color: law.color };
+                                    
+                                    return `
+                                    <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9)); border: 2px solid ${jurisdiction.color}; padding: 15px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+                                            <div style="display: flex; align-items: center; gap: 8px;">
+                                                <span style="font-size: 2em;">${jurisdiction.flag}</span>
                     <div>
-                                                <div style="font-weight: bold; color: ${law.color}; font-size: 1em;">${law.name}${law.article ? ` Article ${law.article}` : ''}</div>
-                                                <div style="font-size: 0.8em; color: #a0a0a0;">${law.fullName}</div>
+                                                    <div style="font-weight: bold; color: ${jurisdiction.color}; font-size: 1.1em; font-family: 'Georgia', serif;">${jurisdiction.name}</div>
+                                                    <div style="font-size: 0.9em; color: #7f8c8d; font-family: 'Georgia', serif;">${law.jurisdiction}</div>
                     </div>
+                                            </div>
+                                            <div style="flex: 1;">
+                                                <div style="font-weight: bold; color: ${law.color}; font-size: 1.2em; font-family: 'Georgia', serif;">${law.name}${law.article ? ` Article ${law.article}` : ''}</div>
+                                                <div style="font-size: 0.9em; color: #7f8c8d; font-family: 'Georgia', serif;">${law.fullName}</div>
+                                            </div>
                                         </div>
-                                        <div style="color: #e0e0e0; font-size: 0.85em; line-height: 1.4;">${law.description}</div>
+                                        <div style="color: #2c3e50; font-size: 1em; line-height: 1.5; font-family: 'Georgia', serif; background: rgba(210, 105, 30, 0.05); padding: 12px; border-radius: 6px; border-left: 3px solid ${jurisdiction.color};">
+                                            ${law.description}
+                                        </div>
                                     </div>
-                                `).join('')}
+                                `}).join('')}
                             </div>
                         </div>
                     </details>
@@ -1086,33 +1299,33 @@
                 ${analysis.requirements.length > 0 ? `
                 <div class="section" style="margin-bottom: 20px;">
                     <details>
-                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #e0e0e0;">
-                            <span style="font-size: 1.1em;">⚡</span>
+                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #2c3e50; font-family: 'Georgia', serif; font-size: 1.4em;">
+                            <span style="font-size: 1.5em;">⚡</span>
                             <span>Implementation Action Items</span>
-                            <span style="background: rgba(255, 193, 7, 0.2); color: #ffc107; padding: 3px 10px; border-radius: 10px; font-size: 0.75em; font-weight: normal;">${analysis.requirements.length}</span>
+                            <span style="background: rgba(210, 105, 30, 0.2); color: #d2691e; padding: 3px 10px; border-radius: 10px; font-size: 0.75em; font-weight: normal;">${analysis.requirements.length}</span>
                         </summary>
-                        <div style="background: rgba(40, 40, 60, 0.8); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            <div style="font-size: 0.85em; color: #a0a0a0; margin-bottom: 15px; padding: 10px; background: rgba(66, 165, 245, 0.1); border-radius: 6px; border-left: 3px solid #42a5f5;">
+                        <div style="background: linear-gradient(135deg, rgba(255, 248, 220, 0.95), rgba(255, 245, 210, 0.95)); padding: 20px; border-radius: 10px; border: 2px solid #daa520; box-shadow: 0 4px 12px rgba(218, 165, 32, 0.15);">
+                            <div style="font-size: 1em; color: #7f8c8d; margin-bottom: 15px; padding: 12px; background: rgba(218, 165, 32, 0.1); border-radius: 6px; border-left: 3px solid #daa520; font-family: 'Georgia', serif;">
                                 💡 <strong>Engineering Guidance:</strong> Prioritized implementation tasks
                             </div>
-                            <div style="display: grid; gap: 12px; max-height: 300px; overflow-y: auto;">
+                            <div style="display: grid; gap: 15px; max-height: 300px; overflow-y: auto;">
                                 ${analysis.requirements.map((req, index) => {
                                     const priority = index === 0 ? 'Critical' : index === 1 ? 'High' : 'Medium';
                                     const effort = index === 0 ? '2-3 sprints' : index === 1 ? '1-2 sprints' : '1 sprint';
-                                    const priorityColor = index === 0 ? '#f44336' : index === 1 ? '#ff9800' : '#4caf50';
+                                    const priorityColor = index === 0 ? '#d2691e' : index === 1 ? '#cd853f' : '#daa520';
                                     return `
-                                    <div style="background: linear-gradient(135deg, rgba(60, 60, 80, 0.8), rgba(50, 50, 70, 0.8)); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px; border-radius: 8px; border-left: 4px solid ${priorityColor};">
-                                        <div style="display: flex; align-items: start; gap: 12px;">
-                                            <div style="background: ${priorityColor}; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8em; flex-shrink: 0; margin-top: 1px;">${index + 1}</div>
+                                    <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9)); border: 2px solid #e8d5c4; padding: 15px; border-radius: 10px; border-left: 4px solid ${priorityColor}; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                                        <div style="display: flex; align-items: start; gap: 15px;">
+                                            <div style="background: ${priorityColor}; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9em; flex-shrink: 0; margin-top: 1px;">${index + 1}</div>
                                             <div style="flex: 1;">
-                                                <div style="color: #e8e8e8; font-size: 0.9em; line-height: 1.5; margin-bottom: 8px;">
-                                                    <strong>Task ${index + 1}:</strong> ${req.charAt(0).toUpperCase() + req.slice(1).slice(0, 100)}${req.length > 100 ? '...' : ''}
+                                                <div style="color: #2c3e50; font-size: 1.1em; line-height: 1.7; margin-bottom: 12px; font-family: 'Georgia', serif; font-weight: 500;">
+                                                    <strong style="color: #d2691e; font-size: 1.1em;">Task ${index + 1}:</strong> ${req.charAt(0).toUpperCase() + req.slice(1).slice(0, 150)}${req.length > 150 ? '...' : ''}
                                                 </div>
-                                                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                                                    <div style="background: rgba(${priorityColor.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.2); color: ${priorityColor}; padding: 4px 8px; border-radius: 12px; font-size: 0.75em; font-weight: 600;">
+                                                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                                    <div style="background: rgba(${priorityColor.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.2); color: ${priorityColor}; padding: 6px 10px; border-radius: 12px; font-size: 0.8em; font-weight: 600;">
                                                         ${priority}
                                                     </div>
-                                                    <div style="background: rgba(66, 165, 245, 0.2); color: #42a5f5; padding: 4px 8px; border-radius: 12px; font-size: 0.75em;">
+                                                    <div style="background: rgba(210, 105, 30, 0.2); color: #d2691e; padding: 6px 10px; border-radius: 12px; font-size: 0.8em;">
                                                         ${effort}
                                                     </div>
                                                 </div>
@@ -1128,27 +1341,27 @@
 
                 <div class="section" style="margin-bottom: 15px;">
                     <details>
-                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #e0e0e0;">
-                            <span style="font-size: 1.1em;">🧠</span>
+                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #2c3e50; font-family: 'Georgia', serif; font-size: 1.2em;">
+                            <span style="font-size: 1.3em;">🧠</span>
                             <span>Microsoft Phi-2 Model Details</span>
                         </summary>
-                        <div style="background: rgba(40, 40, 60, 0.8); padding: 15px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <div style="background: rgba(255, 255, 255, 0.95); padding: 15px; border-radius: 8px; border: 1px solid #e8d5c4; box-shadow: 0 2px 8px rgba(210, 105, 30, 0.1);">
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
                                 <div>
-                                    <div style="font-size: 0.75em; color: #a0a0a0; margin-bottom: 4px;">AI Model</div>
-                                    <div style="font-size: 1em; font-weight: bold; color: #42a5f5;">Microsoft Phi-2 v5</div>
+                                    <div style="font-size: 0.75em; color: #7f8c8d; margin-bottom: 4px; font-family: 'Georgia', serif;">AI Model</div>
+                                    <div style="font-size: 1em; font-weight: bold; color: #d2691e; font-family: 'Georgia', serif;">Microsoft Phi-2 v5</div>
                         </div>
                                 <div>
-                                    <div style="font-size: 0.75em; color: #a0a0a0; margin-bottom: 4px;">Training Dataset</div>
-                                    <div style="font-size: 1em; font-weight: bold; color: #42a5f5;">1,442 compliance pairs</div>
+                                    <div style="font-size: 0.75em; color: #7f8c8d; margin-bottom: 4px; font-family: 'Georgia', serif;">Training Dataset</div>
+                                    <div style="font-size: 1em; font-weight: bold; color: #d2691e; font-family: 'Georgia', serif;">1,442 compliance pairs</div>
                 </div>
                                 <div>
-                                    <div style="font-size: 0.75em; color: #a0a0a0; margin-bottom: 4px;">Specialization</div>
-                                    <div style="font-size: 1em; font-weight: bold; color: #42a5f5;">Geo-Compliance Analysis</div>
+                                    <div style="font-size: 0.75em; color: #7f8c8d; margin-bottom: 4px; font-family: 'Georgia', serif;">Specialization</div>
+                                    <div style="font-size: 1em; font-weight: bold; color: #d2691e; font-family: 'Georgia', serif;">Geo-Compliance Analysis</div>
                                 </div>
                                 <div>
-                                    <div style="font-size: 0.75em; color: #a0a0a0; margin-bottom: 4px;">Processing</div>
-                                    <div style="font-size: 1em; font-weight: bold; color: #42a5f5;">${metadata.response_length || 0} chars</div>
+                                    <div style="font-size: 0.75em; color: #7f8c8d; margin-bottom: 4px; font-family: 'Georgia', serif;">Processing</div>
+                                    <div style="font-size: 1em; font-weight: bold; color: #d2691e; font-family: 'Georgia', serif;">${metadata.response_length || 0} chars</div>
                                 </div>
                             </div>
                         </div>
@@ -1157,37 +1370,42 @@
 
                 ${result.analysis?.raw_response ? `
                 <div class="section">
-                    <h3>🔍 Technical Details</h3>
-                    <details style="background: rgba(40, 40, 60, 0.8); padding: 15px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
-                        <summary style="cursor: pointer; font-weight: bold; margin-bottom: 10px; color: #e0e0e0;">View Raw Model Response</summary>
-                        <pre style="background: rgba(20, 20, 30, 0.8); color: #e0e0e0; padding: 10px; border-radius: 4px; font-size: 0.85em; overflow-x: auto; white-space: pre-wrap; border: 1px solid rgba(255, 255, 255, 0.1);">${JSON.stringify(result.analysis.raw_response, null, 2)}</pre>
+                    <h3 style="color: #2c3e50; font-family: 'Georgia', serif; font-size: 1.2em;">🔍 Technical Details</h3>
+                    <details style="background: rgba(255, 255, 255, 0.95); padding: 15px; border-radius: 8px; border: 1px solid #e8d5c4; box-shadow: 0 2px 8px rgba(210, 105, 30, 0.1);">
+                        <summary style="cursor: pointer; font-weight: bold; margin-bottom: 10px; color: #2c3e50; font-family: 'Georgia', serif;">View Raw Model Response</summary>
+                        <pre style="background: rgba(248, 249, 250, 0.95); color: #2c3e50; padding: 10px; border-radius: 4px; font-size: 0.85em; overflow-x: auto; white-space: pre-wrap; border: 1px solid #e8d5c4; font-family: 'Georgia', serif;">${JSON.stringify(result.analysis.raw_response, null, 2)}</pre>
                     </details>
                 </div>
                 ` : ''}
 
-                <div style="background: rgba(30, 30, 45, 0.9); padding: 15px; border-radius: 8px; margin-top: 20px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                <div style="background: rgba(255, 255, 255, 0.95); padding: 15px; border-radius: 8px; margin-top: 20px; border: 1px solid #e8d5c4; box-shadow: 0 2px 8px rgba(210, 105, 30, 0.1);">
                     <details>
-                        <summary style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #e0e0e0;">
+                        <summary style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #2c3e50; font-family: 'Georgia', serif;">
                             <span>📊 Audit Trail & Metadata</span>
-                            <span style="font-size: 0.8em; color: #a0a0a0;">For Documentation</span>
+                            <span style="font-size: 0.8em; color: #7f8c8d;">For Documentation</span>
                         </summary>
                         <div style="margin-top: 15px;">
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; font-size: 0.8em; color: #e0e0e0;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; font-size: 0.8em; color: #2c3e50; font-family: 'Georgia', serif;">
                                 <div>
-                                    <strong style="color: #42a5f5;">Model:</strong> Microsoft Phi-2 v5<br>
-                                    <strong style="color: #42a5f5;">Dataset:</strong> 1,442 compliance examples<br>
-                                    <strong style="color: #42a5f5;">Framework:</strong> Multi-jurisdictional analysis
+                                    <strong style="color: #d2691e;">Model:</strong> Microsoft Phi-2 v5<br>
+                                    <strong style="color: #d2691e;">Dataset:</strong> 1,442 compliance examples<br>
+                                    <strong style="color: #d2691e;">Framework:</strong> Multi-jurisdictional analysis
                     </div>
                                 <div>
-                                    <strong style="color: #42a5f5;">Timestamp:</strong> ${new Date().toLocaleString()}<br>
-                                    <strong style="color: #42a5f5;">Processing:</strong> ${metadata.response_length || 0} chars<br>
-                                    <strong style="color: #42a5f5;">Endpoint:</strong> AWS SageMaker
-                                </div>
-                            </div>
-                            <div style="text-align: center; margin-top: 12px; font-size: 0.75em; color: #a0a0a0; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">
+                                    <strong style="color: #d2691e;">Timestamp:</strong> ${new Date().toLocaleString()}<br>
+                                    <strong style="color: #d2691e;">Processing:</strong> ${metadata.response_length || 0} chars<br>
+                                    <strong style="color: #d2691e;">Endpoint:</strong> AWS SageMaker
+                </div>
+                </div>
+                            <div style="text-align: center; margin-top: 12px; font-size: 0.75em; color: #7f8c8d; border-top: 1px solid #e8d5c4; padding-top: 8px; font-family: 'Georgia', serif;">
                                 🏢 TikTok Enterprise Compliance Platform • Microsoft Phi-2 LLM • Audit-ready Documentation
                             </div>
                         </div>
+                    </details>
+                </div>
+
+
+                </div>
                     </details>
                 </div>
 
@@ -1208,21 +1426,41 @@
                 complianceScore: 85
             };
 
-            // Enhanced geo-compliance detection
-            const geoKeywords = ['geo', 'jurisdiction', 'eu', 'gdpr', 'ccpa', 'california', 'us-ca', 'privacy', 'consent', 'data protection'];
-            analysis.hasGeoCompliance = geoKeywords.some(keyword => text.toLowerCase().includes(keyword));
+            // Enhanced geo-compliance detection - look for any mention of specific jurisdictions or regulations
+            const geoKeywords = ['eu', 'gdpr', 'ccpa', 'california', 'us-ca', 'privacy', 'consent', 'data protection', 'european union', 'article 7', 'article 6'];
+            const hasGeoKeywords = geoKeywords.some(keyword => text.toLowerCase().includes(keyword));
+            
+            // Check if the text mentions specific jurisdictions or regulations
+            const jurisdictionMentions = text.toLowerCase().match(/(eu|european union|california|ccpa|gdpr|uk|canada|brazil)/g) || [];
+            analysis.hasGeoCompliance = hasGeoKeywords || jurisdictionMentions.length > 0;
 
-            // Clean and format the summary
-            analysis.summary = text.replace(/\n{2,}/g, '\n').trim();
+            // Enhanced summary extraction and formatting
+            let summary = text.replace(/\n{2,}/g, '\n').trim();
+            
+            // Extract key compliance decision
+            const complianceDecision = summary.toLowerCase().includes('does not require') ? 'No Geo-Compliance Required' :
+                                     summary.toLowerCase().includes('requires') ? 'Geo-Compliance Required' :
+                                     summary.toLowerCase().includes('needs') ? 'Geo-Compliance Required' :
+                                     'Compliance Assessment Complete';
+            
+            // Extract key reasoning
+            const reasoningMatch = summary.match(/(?:However, it would be prudent to|This can be achieved by|The feature|Based on the information provided,)([^.!?]+)/i);
+            const reasoning = reasoningMatch ? reasoningMatch[1].trim() : '';
+            
+            // Format enhanced summary
+            analysis.summary = `${complianceDecision}\n\n${summary}\n\n${reasoning ? `Key Consideration: ${reasoning}` : ''}`;
             
             // Enhanced jurisdiction extraction with better patterns
             const jurisdictionMap = {
-                'eu': { code: 'EU', name: 'European Union', flag: '🇪🇺', color: '#1976d2' },
-                'california': { code: 'US-CA', name: 'California', flag: '🇺🇸', color: '#d32f2f' },
-                'us-ca': { code: 'US-CA', name: 'California', flag: '🇺🇸', color: '#d32f2f' },
-                'canada': { code: 'CA', name: 'Canada', flag: '🇨🇦', color: '#388e3c' },
-                'brazil': { code: 'BR', name: 'Brazil', flag: '🇧🇷', color: '#388e3c' },
-                'uk': { code: 'UK', name: 'United Kingdom', flag: '🇬🇧', color: '#1976d2' }
+                'eu': { code: 'EU', name: 'European Union', flag: '🇪🇺', color: '#d2691e' },
+                'european union': { code: 'EU', name: 'European Union', flag: '🇪🇺', color: '#d2691e' },
+                'gdpr': { code: 'EU', name: 'European Union', flag: '🇪🇺', color: '#d2691e' },
+                'california': { code: 'US-CA', name: 'California', flag: '🇺🇸', color: '#cd853f' },
+                'ccpa': { code: 'US-CA', name: 'California', flag: '🇺🇸', color: '#cd853f' },
+                'us-ca': { code: 'US-CA', name: 'California', flag: '🇺🇸', color: '#cd853f' },
+                'canada': { code: 'CA', name: 'Canada', flag: '🇨🇦', color: '#daa520' },
+                'brazil': { code: 'BR', name: 'Brazil', flag: '🇧🇷', color: '#daa520' },
+                'uk': { code: 'UK', name: 'United Kingdom', flag: '🇬🇧', color: '#d2691e' }
             };
 
             Object.keys(jurisdictionMap).forEach(key => {
@@ -1233,6 +1471,20 @@
                     }
                 }
             });
+            
+            // Also check for specific law mentions that indicate jurisdictions
+            if (text.toLowerCase().includes('gdpr') || text.toLowerCase().includes('article 7') || text.toLowerCase().includes('article 6')) {
+                const euJurisdiction = jurisdictionMap['eu'];
+                if (!analysis.jurisdictions.some(j => j.code === euJurisdiction.code)) {
+                    analysis.jurisdictions.push(euJurisdiction);
+                }
+            }
+            if (text.toLowerCase().includes('ccpa')) {
+                const caJurisdiction = jurisdictionMap['california'];
+                if (!analysis.jurisdictions.some(j => j.code === caJurisdiction.code)) {
+                    analysis.jurisdictions.push(caJurisdiction);
+                }
+            }
 
             // Enhanced law extraction with better formatting
             const lawRegex = /(GDPR|CCPA|COPPA|LGPD|PIPEDA)(\s+(?:Article|Section)\s*(\d+(?:\.\d+)?|\w+))?/gi;
@@ -1250,7 +1502,36 @@
                         article: article,
                         description: generateLawDescription(lawName, article),
                         color: getLawColor(lawName),
-                        icon: getLawIcon(lawName)
+                        icon: getLawIcon(lawName),
+                        jurisdiction: lawName === 'GDPR' ? 'EU' : lawName === 'CCPA' ? 'US-CA' : 'Unknown'
+                    });
+                }
+            }
+            
+            // Also extract laws mentioned in the original context if available
+            if (window.currentRawResponse && window.currentRawResponse.includes('GDPR Article 7')) {
+                if (!analysis.laws.some(law => law.name === 'GDPR' && law.article === '7')) {
+                    analysis.laws.push({
+                        name: 'GDPR',
+                        fullName: 'General Data Protection Regulation',
+                        article: '7',
+                        description: 'Valid consent for data processing',
+                        color: '#d2691e',
+                        icon: '🇪🇺',
+                        jurisdiction: 'EU'
+                    });
+                }
+            }
+            if (window.currentRawResponse && window.currentRawResponse.includes('GDPR Article 6')) {
+                if (!analysis.laws.some(law => law.name === 'GDPR' && law.article === '6')) {
+                    analysis.laws.push({
+                        name: 'GDPR',
+                        fullName: 'General Data Protection Regulation',
+                        article: '6',
+                        description: 'Lawful basis for processing personal data',
+                        color: '#d2691e',
+                        icon: '🇪🇺',
+                        jurisdiction: 'EU'
                     });
                 }
             }
@@ -1293,13 +1574,13 @@
 
         function getLawColor(lawCode) {
             const colors = {
-                'GDPR': '#1976d2',
-                'CCPA': '#d32f2f',
-                'COPPA': '#388e3c',
+                'GDPR': '#d2691e',
+                'CCPA': '#cd853f',
+                'COPPA': '#daa520',
                 'LGPD': '#f57c00',
-                'PIPEDA': '#7b1fa2'
+                'PIPEDA': '#daa520'
             };
-            return colors[lawCode] || '#42a5f5';
+            return colors[lawCode] || '#d2691e';
         }
 
         function getLawIcon(lawCode) {
@@ -1350,6 +1631,181 @@
 
         // Load GDPR preset by default
         loadPreset('gdpr');
+
+        function toggleChat() {
+            const chatInterface = document.getElementById('chatInterface');
+            if (chatInterface.style.display === 'none') {
+                chatInterface.style.display = 'block';
+                // Check if API key is already set
+                const savedKey = localStorage.getItem('openaiApiKey');
+                if (savedKey) {
+                    openaiApiKey = savedKey;
+                    document.getElementById('openaiApiKey').value = '••••••••••••••••';
+                    document.getElementById('apiKeySection').style.display = 'none';
+                }
+            } else {
+                chatInterface.style.display = 'none';
+            }
+        }
+
+        function setApiKey() {
+            const apiKeyInput = document.getElementById('openaiApiKey');
+            const key = apiKeyInput.value.trim();
+            
+            if (key && key.startsWith('sk-')) {
+                openaiApiKey = key;
+                localStorage.setItem('openaiApiKey', key);
+                apiKeyInput.value = '••••••••••••••••';
+                document.getElementById('apiKeySection').style.display = 'none';
+                addChatMessage('🤖 AI Assistant', 'API key set successfully! You can now chat about your compliance analysis.', 'assistant');
+            } else {
+                alert('Please enter a valid OpenAI API key (starts with sk-)');
+            }
+        }
+
+        function updateChatContext() {
+            if (window.currentAnalysis) {
+                chatContext = `
+Current Compliance Analysis:
+- Feature: ${window.currentAnalysis.featureName || 'Not specified'}
+- Summary: ${window.currentAnalysis.summary || 'Not available'}
+- Jurisdictions: ${window.currentAnalysis.jurisdictions?.join(', ') || 'None detected'}
+- Laws: ${window.currentAnalysis.laws?.map(law => law.name).join(', ') || 'None detected'}
+- Action Items: ${window.currentAnalysis.actionItems?.length || 0} items identified
+- Risk Level: ${window.currentAnalysis.riskLevel || 'Not assessed'}
+- Compliance Score: ${window.currentAnalysis.complianceScore || 'Not calculated'}
+                `.trim();
+            } else {
+                chatContext = 'No compliance analysis available yet. Please run an analysis first.';
+            }
+        }
+
+        function addChatMessage(sender, message, type = 'user') {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = `
+                margin-bottom: 15px;
+                padding: 12px 16px;
+                border-radius: 8px;
+                max-width: 80%;
+                word-wrap: break-word;
+                ${type === 'user' ? 
+                    'background: #d2691e; color: white; margin-left: auto;' : 
+                    'background: white; color: #333; border: 1px solid #e8d5c4;'
+                }
+            `;
+            
+            const senderDiv = document.createElement('div');
+            senderDiv.style.cssText = `
+                font-weight: bold;
+                margin-bottom: 5px;
+                font-size: 0.9em;
+                ${type === 'user' ? 'color: rgba(255, 255, 255, 0.9);' : 'color: #d2691e;'}
+            `;
+            senderDiv.textContent = sender;
+            
+            const messageDiv2 = document.createElement('div');
+            messageDiv2.textContent = message;
+            
+            messageDiv.appendChild(senderDiv);
+            messageDiv.appendChild(messageDiv2);
+            chatMessages.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        async function sendChatMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const message = chatInput.value.trim();
+            
+            if (!message) return;
+            
+            if (!openaiApiKey) {
+                alert('Please set your OpenAI API key first');
+                return;
+            }
+            
+            // Add user message
+            addChatMessage('👤 You', message, 'user');
+            chatInput.value = '';
+            
+            // Show typing indicator
+            const typingDiv = document.createElement('div');
+            typingDiv.id = 'typingIndicator';
+            typingDiv.style.cssText = `
+                margin-bottom: 15px;
+                padding: 12px 16px;
+                border-radius: 8px;
+                background: white;
+                color: #666;
+                border: 1px solid #e8d5c4;
+                font-style: italic;
+            `;
+            typingDiv.textContent = '🤖 AI is thinking...';
+            document.getElementById('chatMessages').appendChild(typingDiv);
+            
+            try {
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${openaiApiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: 'gpt-3.5-turbo',
+                        messages: [
+                            {
+                                role: 'system',
+                                content: `You are an expert compliance analyst assistant. You help users understand compliance analysis results and provide guidance on implementation. Use the following context to answer questions:
+
+${chatContext}
+
+Be professional, helpful, and provide specific, actionable advice. If the user asks about compliance requirements, implementation details, or legal implications, use the analysis data to provide informed responses.`
+                            },
+                            {
+                                role: 'user',
+                                content: message
+                            }
+                        ],
+                        max_tokens: 500,
+                        temperature: 0.7
+                    })
+                });
+                
+                const data = await response.json();
+                
+                // Remove typing indicator
+                document.getElementById('typingIndicator').remove();
+                
+                if (data.choices && data.choices[0]) {
+                    const aiResponse = data.choices[0].message.content;
+                    addChatMessage('🤖 AI Assistant', aiResponse, 'assistant');
+                } else {
+                    addChatMessage('🤖 AI Assistant', 'Sorry, I encountered an error. Please try again.', 'assistant');
+                }
+                
+            } catch (error) {
+                // Remove typing indicator
+                const typingIndicator = document.getElementById('typingIndicator');
+                if (typingIndicator) typingIndicator.remove();
+                
+                addChatMessage('🤖 AI Assistant', 'Sorry, I encountered an error. Please check your API key and try again.', 'assistant');
+                console.error('Chat error:', error);
+            }
+        }
+
+        // Allow Enter key to send messages
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatInput = document.getElementById('chatInput');
+            if (chatInput) {
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendChatMessage();
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
