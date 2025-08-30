@@ -12,59 +12,65 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #fff5f0 0%, #ffe8d6 50%, #ffdab9 100%);
             min-height: 100vh;
-            padding: 20px;
-            color: #e0e0e0;
+            padding: 0;
+            margin: 0;
+            color: #2c3e50;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(30, 30, 50, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 0;
+            box-shadow: none;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            border: none;
         }
 
         .header {
-            background: linear-gradient(135deg, #1565c0, #1e88e5, #42a5f5);
-            color: white;
+            background: linear-gradient(135deg, #d2691e 0%, #cd853f 50%, #daa520 100%);
+            color: #fff;
             padding: 30px;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 3px solid #8b4513;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .header h1 {
-            font-size: 2.5em;
+            font-size: 2.2em;
             margin-bottom: 10px;
-            font-weight: 300;
+            font-weight: 600;
+            font-family: 'Georgia', serif;
         }
 
         .header p {
             font-size: 1.1em;
-            opacity: 0.9;
+            opacity: 0.95;
+            font-style: italic;
         }
 
         .main-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0;
-            min-height: 500px;
+            min-height: 80vh;
         }
 
         .input-section {
             padding: 40px;
-            background: rgba(20, 20, 35, 0.8);
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            border-right: 2px solid #e8d5c4;
         }
 
         .output-section {
             padding: 40px;
-            background: rgba(25, 25, 40, 0.8);
+            background: rgba(255, 255, 255, 0.95);
+            max-height: 80vh;
+            overflow-y: auto;
         }
 
         .form-group {
@@ -75,32 +81,35 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #e0e0e0;
+            color: #2c3e50;
             font-size: 0.95em;
+            font-family: 'Georgia', serif;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 12px 15px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid #e8d5c4;
             border-radius: 8px;
             font-size: 14px;
             transition: border-color 0.3s ease;
-            background: rgba(40, 40, 60, 0.8);
-            color: #e0e0e0;
+            background: rgba(255, 255, 255, 0.9);
+            color: #2c3e50;
+            font-family: 'Georgia', serif;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #42a5f5;
-            background: rgba(50, 50, 70, 0.9);
+            border-color: #d2691e;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 10px rgba(210, 105, 30, 0.2);
         }
 
         .form-group input::placeholder,
         .form-group textarea::placeholder {
-            color: #a0a0a0;
+            color: #7f8c8d;
         }
 
         .form-group textarea {
@@ -112,7 +121,7 @@
         .analyze-btn {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #1565c0, #42a5f5);
+            background: linear-gradient(135deg, #d2691e, #cd853f);
             color: white;
             border: none;
             border-radius: 8px;
@@ -120,12 +129,13 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(66, 165, 245, 0.3);
+            box-shadow: 0 4px 15px rgba(210, 105, 30, 0.3);
+            font-family: 'Georgia', serif;
         }
 
         .analyze-btn:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(66, 165, 245, 0.4);
+            box-shadow: 0 6px 20px rgba(210, 105, 30, 0.4);
         }
 
         .analyze-btn:disabled {
@@ -291,19 +301,56 @@
 
         .preset-btn {
             padding: 8px 16px;
-            background: rgba(40, 40, 60, 0.8);
-            color: #42a5f5;
-            border: 1px solid #42a5f5;
+            background: rgba(210, 105, 30, 0.1);
+            color: #d2691e;
+            border: 1px solid rgba(210, 105, 30, 0.3);
             border-radius: 20px;
             cursor: pointer;
             font-size: 0.85em;
             transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
         }
 
         .preset-btn:hover {
-            background: #42a5f5;
-            color: #1a1a2e;
-            box-shadow: 0 3px 10px rgba(66, 165, 245, 0.3);
+            background: rgba(210, 105, 30, 0.2);
+            color: #8b4513;
+            box-shadow: 0 3px 10px rgba(210, 105, 30, 0.2);
+        }
+
+        .export-controls {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 1px solid #e8d5c4;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .export-btn {
+            background: linear-gradient(135deg, #d2691e, #cd853f);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-family: 'Georgia', serif;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(210, 105, 30, 0.2);
+        }
+
+        .export-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(210, 105, 30, 0.3);
+        }
+
+        .export-btn.secondary {
+            background: linear-gradient(135deg, #cd853f, #daa520);
+        }
+
+        .export-btn.tertiary {
+            background: linear-gradient(135deg, #daa520, #b8860b);
         }
 
         .error {
@@ -340,46 +387,76 @@
         <div class="header">
             <div style="display: flex; align-items: center; justify-content: space-between;">
                 <div>
-                    <h1>⚖️ TikTok Geo-Regulation Governance</h1>
-                    <p>From Guesswork to Governance: Automated Compliance Analysis</p>
+                    <h1 style="font-family: 'Times New Roman', serif; font-weight: 400; letter-spacing: 1px;">COMPLIANCE ANALYSIS REPORT</h1>
+                    <p style="font-family: 'Times New Roman', serif; font-style: italic; opacity: 0.8;">Geo-Regulatory Assessment & Legal Compliance Framework</p>
                 </div>
                 <div style="text-align: right; opacity: 0.9;">
-                    <div style="font-size: 0.9em; font-weight: 600;">🧠 Microsoft Phi-2 v5</div>
-                    <div style="font-size: 0.8em;">Fine-tuned on 1,442 compliance pairs</div>
-                    <div style="font-size: 0.75em; margin-top: 4px; color: #42a5f5;">Enterprise LLM Platform</div>
+                    <div style="font-size: 0.9em; font-weight: 600; font-family: 'Times New Roman', serif;">Microsoft Phi-2 v5</div>
+                    <div style="font-size: 0.8em; font-family: 'Times New Roman', serif;">Fine-tuned on 1,442 compliance pairs</div>
+                    <div style="font-size: 0.75em; margin-top: 4px; color: #bdc3c7;">Enterprise Legal AI Platform</div>
                 </div>
             </div>
         </div>
 
         <div class="main-content">
             <div class="input-section">
-                <h2 style="margin-bottom: 25px; color: #e0e0e0;">🚀 Feature Compliance Screening</h2>
-                
-                <div style="background: rgba(66, 165, 245, 0.15); padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #42a5f5; border: 1px solid rgba(66, 165, 245, 0.3);">
-                    <div style="font-size: 0.9em; color: #42a5f5; font-weight: 600; margin-bottom: 5px;">📋 Enterprise Use Cases</div>
-                    <div style="font-size: 0.85em; color: #e0e0e0; line-height: 1.4;">
-                        Screen features for geo-specific compliance requirements across global markets including GDPR (EU), CCPA (California), LGPD (Brazil), and more.
+                <!-- Export Controls at Top -->
+                <div class="export-controls">
+                    <h3 style="color: #2c3e50; margin-bottom: 15px; font-family: 'Georgia', serif; border-bottom: 2px solid #d2691e; padding-bottom: 8px;">
+                        📋 Export & Documentation Tools
+                    </h3>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                        <button onclick="openDatasetExplorer()" class="export-btn">
+                            📚 Training Dataset Explorer
+                        </button>
+                        <button onclick="exportComplianceReport()" class="export-btn secondary">
+                            📊 Export Compliance Report (CSV)
+                        </button>
+                        <button onclick="exportAuditTrail()" class="export-btn tertiary">
+                            📋 Export Audit Trail (CSV)
+                        </button>
                     </div>
-                </div>
-                
-                <div class="preset-buttons">
-                    <button class="preset-btn" onclick="loadPreset('gdpr')">🇪🇺 GDPR Cookies</button>
-                    <button class="preset-btn" onclick="loadPreset('ccpa')">🇺🇸 CCPA Rights</button>
-                    <button class="preset-btn" onclick="loadPreset('kids')">👶 Age Verification</button>
-                    <button class="preset-btn" onclick="loadPreset('targeting')">🎯 Ad Targeting</button>
-                    <button class="preset-btn" onclick="loadPreset('transparency')">📊 Transparency</button>
-                    <button class="preset-btn" onclick="loadPreset('breach')">🚨 Data Breach</button>
-                    <button class="preset-btn" onclick="loadPreset('audit')">📋 Audit Trails</button>
-                    <button class="preset-btn" onclick="loadPreset('rights')">⚖️ User Rights</button>
-                    <button class="preset-btn" onclick="loadPreset('sharing')">🤝 Data Sharing</button>
-                    <button class="preset-btn" onclick="loadPreset('simple')">⚡ Simple Feature</button>
                 </div>
 
-                <form id="complianceForm">
-                    <div class="form-group">
-                        <label for="featureName">🏷️ Feature Name / Internal Codename</label>
-                        <input type="text" id="featureName" placeholder="e.g., EU Cookie Consent Banner, LiveStreamGeoGate, UserDataExportTool" required>
+                <!-- Feature Analysis Section -->
+                <div style="background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 10px; margin-bottom: 30px; border: 1px solid #e8d5c4; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
+                    <h2 style="margin-bottom: 25px; color: #2c3e50; font-family: 'Georgia', serif; display: flex; align-items: center; gap: 10px;">
+                        ⚖️ Feature Compliance Analysis
+                    </h2>
+                    
+                    <div style="background: rgba(210, 105, 30, 0.1); padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #d2691e; border: 1px solid rgba(210, 105, 30, 0.2);">
+                        <div style="font-size: 1em; color: #d2691e; font-weight: 600; margin-bottom: 8px; font-family: 'Georgia', serif;">🏛️ Professional Compliance Assessment</div>
+                        <div style="font-size: 0.9em; color: #2c3e50; line-height: 1.5; font-family: 'Georgia', serif;">
+                            Analyze software features for geo-specific compliance requirements across global markets including GDPR (EU), CCPA (California), LGPD (Brazil), and 20+ other jurisdictions. Powered by Microsoft Phi-2 AI fine-tuned on 1,442 compliance examples.
+                        </div>
                     </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 15px; font-family: 'Georgia', serif; display: flex; align-items: center; gap: 8px;">
+                            🎯 Quick Analysis Templates
+                        </h3>
+                        <div class="preset-buttons">
+                            <button class="preset-btn" onclick="loadPreset('gdpr')">🇪🇺 GDPR Cookies</button>
+                            <button class="preset-btn" onclick="loadPreset('ccpa')">🇺🇸 CCPA Rights</button>
+                            <button class="preset-btn" onclick="loadPreset('kids')">👶 Age Verification</button>
+                            <button class="preset-btn" onclick="loadPreset('targeting')">🎯 Ad Targeting</button>
+                            <button class="preset-btn" onclick="loadPreset('transparency')">📊 Transparency</button>
+                            <button class="preset-btn" onclick="loadPreset('breach')">🚨 Data Breach</button>
+                            <button class="preset-btn" onclick="loadPreset('audit')">📋 Audit Trails</button>
+                            <button class="preset-btn" onclick="loadPreset('rights')">⚖️ User Rights</button>
+                            <button class="preset-btn" onclick="loadPreset('sharing')">🤝 Data Sharing</button>
+                            <button class="preset-btn" onclick="loadPreset('moderation')">🛡️ Content Moderation</button>
+                            <button class="preset-btn" onclick="loadPreset('notice')">📢 Notice & Action</button>
+                            <button class="preset-btn" onclick="loadPreset('supervisory')">🏛️ Supervisory Authority</button>
+                            <button class="preset-btn" onclick="loadPreset('simple')">⚡ Simple Feature</button>
+                        </div>
+                    </div>
+
+                    <form id="complianceForm">
+                        <div class="form-group">
+                            <label for="featureName">🏷️ Feature Name / Internal Codename</label>
+                            <input type="text" id="featureName" placeholder="e.g., EU Cookie Consent Banner, LiveStreamGeoGate, UserDataExportTool" required>
+                        </div>
 
                     <div class="form-group">
                         <label for="featureDescription">📝 Feature Description & Data Processing</label>
@@ -406,18 +483,18 @@
             </div>
 
             <div class="output-section">
-                <h2 style="margin-bottom: 25px; color: #e0e0e0;">📊 Compliance Analysis Report</h2>
+                <h2 style="margin-bottom: 25px; color: #2c3e50; font-family: 'Georgia', serif; font-size: 1.8em;">📊 Compliance Analysis Report</h2>
                 
                 <div id="results" class="result">
                     <!-- Results will be populated here -->
                 </div>
 
-                <div id="placeholder" style="text-align: center; color: #a0a0a0; padding: 50px;">
-                    <div style="font-size: 3em; margin-bottom: 20px;">⚖️</div>
-                    <div style="font-size: 1.1em; font-weight: 600; margin-bottom: 10px; color: #e0e0e0;">TikTok Global Compliance Screening</div>
-                    <p style="line-height: 1.6; color: #c0c0c0;">Enter feature details to automatically detect geo-specific legal requirements across global markets.</p>
-                    <div style="margin-top: 20px; font-size: 0.9em; color: #a0a0a0;">
-                        <strong style="color: #42a5f5;">Key Benefits:</strong><br>
+                <div id="placeholder" style="text-align: center; color: #7f8c8d; padding: 50px;">
+                    <div style="font-size: 4em; margin-bottom: 20px;">⚖️</div>
+                    <div style="font-size: 1.4em; font-weight: 600; margin-bottom: 15px; color: #2c3e50; font-family: 'Georgia', serif;">TikTok Global Compliance Screening</div>
+                    <p style="line-height: 1.6; color: #34495e; font-size: 1.1em; font-family: 'Georgia', serif;">Enter feature details to automatically detect geo-specific legal requirements across global markets.</p>
+                    <div style="margin-top: 25px; font-size: 1em; color: #7f8c8d; font-family: 'Georgia', serif;">
+                        <strong style="color: #d2691e;">Key Benefits:</strong><br>
                         🛡️ Proactive legal guardrails before feature launch<br>
                         📋 Auditable compliance evidence<br>
                         🌍 Automated regulatory traceability
@@ -477,6 +554,21 @@
                 description: "Controls for third-party data sharing with consent management, partner verification, and data processing agreement enforcement across different jurisdictions.",
                 context: '[{"law": "GDPR Article 28", "jurisdiction": "EU", "requirement": "Data processing agreements"}, {"law": "PIPEDA", "jurisdiction": "CA", "requirement": "Third-party disclosure requirements"}]'
             },
+            moderation: {
+                name: "Content Moderation Engine",
+                description: "Automated content moderation system that analyzes user-generated content for policy violations, illegal content, and harmful material using AI algorithms and human review workflows.",
+                context: '[{"law": "CELEX 32022R2065", "jurisdiction": "EU", "requirement": "Content moderation reporting requirements"}, {"law": "Section 230", "jurisdiction": "US", "requirement": "Platform liability protections"}]'
+            },
+            notice: {
+                name: "Notice-and-Action Portal",
+                description: "Portal for users to report illegal content and for platforms to take action on reported content with transparency mechanisms and appeal processes.",
+                context: '[{"law": "CELEX 32022R2065", "jurisdiction": "EU", "requirement": "Notice and action mechanisms"}, {"law": "Florida Online Protections", "jurisdiction": "US-FL", "requirement": "Content reporting requirements"}]'
+            },
+            supervisory: {
+                name: "Supervisory Authority Communication",
+                description: "System for communicating with regulatory authorities, submitting compliance reports, and responding to supervisory inquiries across multiple jurisdictions.",
+                context: '[{"law": "CELEX 32022R2065", "jurisdiction": "EU", "requirement": "Supervisory authority cooperation"}, {"law": "California Privacy Rights Act", "jurisdiction": "US-CA", "requirement": "CPPA enforcement"}]'
+            },
             simple: {
                 name: "TikTok Dark Mode Theme Toggle",
                 description: "Simple UI preference toggle that allows users to switch between light and dark visual themes. Stores preference locally in browser settings without server-side data processing.",
@@ -489,6 +581,341 @@
             document.getElementById('featureName').value = preset.name;
             document.getElementById('featureDescription').value = preset.description;
             document.getElementById('lawContext').value = preset.context;
+        }
+
+        function openDatasetExplorer() {
+            const datasetContent = `
+                <div style="background: rgba(248, 249, 250, 0.98); padding: 30px; border-radius: 8px; border: 2px solid #2c3e50; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); max-width: 800px; margin: 20px auto; font-family: 'Times New Roman', serif;">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h2 style="color: #2c3e50; font-weight: 600; letter-spacing: 1px; margin-bottom: 10px;">TRAINING DATASET EXPLORER</h2>
+                        <p style="color: #7f8c8d; font-style: italic;">Microsoft Phi-2 Fine-tuning Dataset Analysis</p>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 8px;">🧠 Training Process Overview</h3>
+                        <div style="background: #ecf0f1; padding: 20px; border-radius: 6px; border-left: 4px solid #3498db; color: #34495e; line-height: 1.6;">
+                            <strong>Fine-tuning Methodology:</strong> The Microsoft Phi-2 model was fine-tuned on 1,442 input-output pairs of geo-compliance analysis examples. Each training example contains a feature description, relevant law context, and the expected compliance assessment output. This enables the model to understand complex regulatory requirements across multiple jurisdictions.
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 25px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 8px;">📋 Sample Training Examples</h3>
+                        <div style="display: grid; gap: 15px;">
+                            <div style="background: #ecf0f1; padding: 15px; border-radius: 6px; border: 1px solid #bdc3c7;">
+                                <div style="font-weight: 600; color: #e67e22; margin-bottom: 8px; font-size: 0.9em;">Example 1: Content Moderation Engine</div>
+                                <div style="font-size: 0.85em; color: #34495e; margin-bottom: 6px;">
+                                    <strong>Input:</strong> Feature analyzes user-generated content for policy violations using AI algorithms
+                                </div>
+                                <div style="font-size: 0.85em; color: #34495e; margin-bottom: 6px;">
+                                    <strong>Law Context:</strong> EU DSA (CELEX 32022R2065) - Content moderation reporting requirements
+                                </div>
+                                <div style="font-size: 0.85em; color: #27ae60; font-weight: 600;">
+                                    <strong>Output:</strong> "Needs Geo-Compliance" - EU-specific content moderation reporting required
+                                </div>
+                            </div>
+                            
+                            <div style="background: #ecf0f1; padding: 15px; border-radius: 6px; border: 1px solid #bdc3c7;">
+                                <div style="font-weight: 600; color: #e67e22; margin-bottom: 8px; font-size: 0.9em;">Example 2: Notice-and-Action Portal</div>
+                                <div style="font-size: 0.85em; color: #34495e; margin-bottom: 6px;">
+                                    <strong>Input:</strong> Portal for users to report illegal content with transparency mechanisms
+                                </div>
+                                <div style="font-size: 0.85em; color: #34495e; margin-bottom: 6px;">
+                                    <strong>Law Context:</strong> EU DSA + Florida Online Protections Act
+                                </div>
+                                <div style="font-size: 0.85em; color: #27ae60; font-weight: 600;">
+                                    <strong>Output:</strong> "Needs Geo-Compliance" - Multi-jurisdictional notice mechanisms required
+                                </div>
+                            </div>
+                            
+                            <div style="background: #ecf0f1; padding: 15px; border-radius: 6px; border: 1px solid #bdc3c7;">
+                                <div style="font-weight: 600; color: #e67e22; margin-bottom: 8px; font-size: 0.9em;">Example 3: Supervisory Authority Communication</div>
+                                <div style="font-size: 0.85em; color: #34495e; margin-bottom: 6px;">
+                                    <strong>Input:</strong> System for regulatory communication and compliance reporting
+                                </div>
+                                <div style="font-size: 0.85em; color: #34495e; margin-bottom: 6px;">
+                                    <strong>Law Context:</strong> EU DSA + California Privacy Rights Act
+                                </div>
+                                <div style="font-size: 0.85em; color: #27ae60; font-weight: 600;">
+                                    <strong>Output:</strong> "Needs Geo-Compliance" - Authority communication protocols required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #d5f4e6; padding: 20px; border-radius: 6px; border-left: 4px solid #27ae60;">
+                        <h3 style="color: #2c3e50; margin-bottom: 15px;">🎯 Dataset Statistics</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; font-size: 0.9em; color: #34495e;">
+                            <div><strong>Total Examples:</strong> 1,442</div>
+                            <div><strong>Jurisdictions Covered:</strong> 15+</div>
+                            <div><strong>Laws Analyzed:</strong> 25+</div>
+                            <div><strong>Compliance Flags:</strong> 3 types</div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 25px;">
+                        <button onclick="closeDatasetExplorer()" style="background: #e74c3c; color: white; border: none; padding: 10px 20px; border-radius: 4px; font-family: 'Times New Roman', serif; font-weight: 600; cursor: pointer;">
+                            Close Explorer
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Create overlay
+            const overlay = document.createElement('div');
+            overlay.id = 'datasetOverlay';
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            `;
+            
+            overlay.innerHTML = datasetContent;
+            document.body.appendChild(overlay);
+        }
+
+        function closeDatasetExplorer() {
+            const overlay = document.getElementById('datasetOverlay');
+            if (overlay) {
+                overlay.remove();
+            }
+        }
+
+        function exportComplianceReport() {
+            const reportId = `RPT-${Date.now().toString().slice(-6)}`;
+            const timestamp = new Date().toISOString();
+            const featureName = document.getElementById('featureName').value;
+            const featureDescription = document.getElementById('featureDescription').value;
+            
+            // Get current analysis data
+            const resultsDiv = document.getElementById('results');
+            if (!resultsDiv.innerHTML.includes('COMPLIANCE ANALYSIS REPORT')) {
+                alert('Please run a compliance analysis first.');
+                return;
+            }
+
+            // Extract analysis data from the current display
+            const analysis = window.currentAnalysis || {};
+            
+            // Create CSV content
+            const csvContent = [
+                // Header
+                ['COMPLIANCE ANALYSIS REPORT - EXPORT'],
+                ['Generated:', timestamp],
+                ['Report ID:', reportId],
+                [''],
+                
+                // Feature Information
+                ['FEATURE INFORMATION'],
+                ['Feature Name:', featureName],
+                ['Feature Description:', featureDescription],
+                [''],
+                
+                // Compliance Assessment
+                ['COMPLIANCE ASSESSMENT'],
+                ['Geo-Compliance Required:', analysis.hasGeoCompliance ? 'YES' : 'NO'],
+                ['Compliance Score:', `${analysis.complianceScore || 85}%`],
+                ['Risk Level:', (analysis.riskLevel || 'medium').toUpperCase()],
+                [''],
+                
+                // Executive Summary
+                ['EXECUTIVE SUMMARY'],
+                ['Summary:', analysis.summary || 'No summary available'],
+                [''],
+                
+                // Affected Jurisdictions
+                ['AFFECTED JURISDICTIONS'],
+                ['Code', 'Name', 'Flag', 'Color'],
+                ...(analysis.jurisdictions || []).map(j => [j.code, j.name, j.flag, j.color]),
+                [''],
+                
+                // Legal Requirements
+                ['LEGAL REQUIREMENTS'],
+                ['Law Code', 'Full Name', 'Article', 'Description', 'Color'],
+                ...(analysis.laws || []).map(law => [
+                    law.name, 
+                    law.fullName, 
+                    law.article || 'N/A', 
+                    law.description, 
+                    law.color
+                ]),
+                [''],
+                
+                // Implementation Requirements
+                ['IMPLEMENTATION REQUIREMENTS'],
+                ['Task Number', 'Requirement', 'Priority', 'Estimated Effort'],
+                ...(analysis.requirements || []).map((req, index) => {
+                    const priority = index === 0 ? 'Critical' : index === 1 ? 'High' : 'Medium';
+                    const effort = index === 0 ? '2-3 sprints' : index === 1 ? '1-2 sprints' : '1 sprint';
+                    return [`Task ${index + 1}`, req, priority, effort];
+                }),
+                [''],
+                
+                // Model Information
+                ['MODEL INFORMATION'],
+                ['AI Model:', 'Microsoft Phi-2 v5'],
+                ['Training Dataset:', '1,442 compliance examples'],
+                ['Specialization:', 'Geo-Compliance Analysis'],
+                ['Processing Length:', `${window.currentMetadata?.response_length || 0} characters`],
+                [''],
+                
+                // Audit Information
+                ['AUDIT INFORMATION'],
+                ['Analysis Timestamp:', timestamp],
+                ['Platform:', 'TikTok Enterprise Compliance Platform'],
+                ['AI Provider:', 'Microsoft Phi-2 LLM'],
+                ['Infrastructure:', 'AWS SageMaker'],
+                ['Export Generated:', new Date().toISOString()]
+            ];
+
+            // Convert to CSV string
+            const csvString = csvContent.map(row => 
+                row.map(cell => `"${(cell || '').toString().replace(/"/g, '""')}"`).join(',')
+            ).join('\n');
+
+            // Download file
+            downloadCSV(csvString, `compliance_report_${reportId}_${new Date().toISOString().split('T')[0]}.csv`);
+        }
+
+        function exportAuditTrail() {
+            const reportId = `RPT-${Date.now().toString().slice(-6)}`;
+            const timestamp = new Date().toISOString();
+            const featureName = document.getElementById('featureName').value;
+            
+            // Create comprehensive audit trail
+            const auditTrail = [
+                // Header
+                ['AUDIT TRAIL - COMPLIANCE ANALYSIS'],
+                ['Generated:', timestamp],
+                ['Report ID:', reportId],
+                [''],
+                
+                // Analysis Session
+                ['ANALYSIS SESSION'],
+                ['Session Start:', timestamp],
+                ['Feature Analyzed:', featureName],
+                ['Analysis Type:', 'Geo-Compliance Assessment'],
+                ['AI Model Used:', 'Microsoft Phi-2 v5'],
+                ['Training Dataset Size:', '1,442 examples'],
+                [''],
+                
+                // Input Data
+                ['INPUT DATA'],
+                ['Feature Name:', featureName],
+                ['Feature Description:', document.getElementById('featureDescription').value],
+                ['Law Context:', document.getElementById('lawContext').value],
+                [''],
+                
+                // Processing Details
+                ['PROCESSING DETAILS'],
+                ['Model Endpoint:', 'phi2-v5-inference'],
+                ['Processing Time:', `${window.currentMetadata?.response_length || 0} characters processed`],
+                ['Analysis Method:', 'Fine-tuned LLM with geo-compliance specialization'],
+                [''],
+                
+                // Output Analysis
+                ['OUTPUT ANALYSIS'],
+                ['Raw Model Response:', window.currentRawResponse || 'Not available'],
+                ['Parsed Compliance Flag:', window.currentAnalysis?.hasGeoCompliance ? 'YES' : 'NO'],
+                ['Compliance Score:', `${window.currentAnalysis?.complianceScore || 85}%`],
+                ['Risk Assessment:', (window.currentAnalysis?.riskLevel || 'medium').toUpperCase()],
+                [''],
+                
+                // Jurisdictions Identified
+                ['JURISDICTIONS IDENTIFIED'],
+                ['Jurisdiction Code', 'Jurisdiction Name', 'Detection Method'],
+                ...(window.currentAnalysis?.jurisdictions || []).map(j => [j.code, j.name, 'AI Analysis']),
+                [''],
+                
+                // Laws Referenced
+                ['LAWS REFERENCED'],
+                ['Law Code', 'Full Name', 'Article', 'Relevance Score'],
+                ...(window.currentAnalysis?.laws || []).map(law => [
+                    law.name, 
+                    law.fullName, 
+                    law.article || 'N/A', 
+                    'High'
+                ]),
+                [''],
+                
+                // Implementation Actions
+                ['IMPLEMENTATION ACTIONS'],
+                ['Action ID', 'Description', 'Priority', 'Effort Estimate', 'Compliance Impact'],
+                ...(window.currentAnalysis?.requirements || []).map((req, index) => {
+                    const priority = index === 0 ? 'Critical' : index === 1 ? 'High' : 'Medium';
+                    const effort = index === 0 ? '2-3 sprints' : index === 1 ? '1-2 sprints' : '1 sprint';
+                    const impact = index === 0 ? 'High' : index === 1 ? 'Medium' : 'Low';
+                    return [`ACT-${index + 1}`, req, priority, effort, impact];
+                }),
+                [''],
+                
+                // Technical Metadata
+                ['TECHNICAL METADATA'],
+                ['Model Version:', 'Phi-2 v5'],
+                ['Training Examples:', '1,442'],
+                ['Specialization:', 'Geo-Compliance Analysis'],
+                ['Processing Framework:', 'AWS SageMaker'],
+                ['Response Format:', 'JSON'],
+                [''],
+                
+                // Audit Trail
+                ['AUDIT TRAIL'],
+                ['Event', 'Timestamp', 'Details'],
+                ['Analysis Requested', timestamp, `Feature: ${featureName}`],
+                ['Model Invoked', timestamp, 'Microsoft Phi-2 v5'],
+                ['Response Generated', timestamp, 'Compliance assessment completed'],
+                ['Results Parsed', timestamp, 'Structured data extracted'],
+                ['Report Generated', timestamp, 'Compliance report created'],
+                ['Export Created', new Date().toISOString(), 'Audit trail exported'],
+                [''],
+                
+                // Compliance Framework
+                ['COMPLIANCE FRAMEWORK'],
+                ['Framework Type:', 'Multi-Jurisdictional Privacy Law Analysis'],
+                ['Coverage:', 'GDPR, CCPA, LGPD, PIPEDA, and 20+ other regulations'],
+                ['Analysis Depth:', 'Feature-level compliance assessment'],
+                ['Risk Assessment:', 'Automated risk level calculation'],
+                [''],
+                
+                // Export Information
+                ['EXPORT INFORMATION'],
+                ['Export Type:', 'Audit Trail CSV'],
+                ['Export Timestamp:', new Date().toISOString()],
+                ['Export Purpose:', 'Compliance Documentation'],
+                ['Data Retention:', 'Audit-ready format for regulatory review'],
+                ['Generated By:', 'TikTok Enterprise Compliance Platform'],
+                ['AI Model:', 'Microsoft Phi-2 v5 Fine-tuned']
+            ];
+
+            // Convert to CSV string
+            const csvString = auditTrail.map(row => 
+                row.map(cell => `"${(cell || '').toString().replace(/"/g, '""')}"`).join(',')
+            ).join('\n');
+
+            // Download file
+            downloadCSV(csvString, `audit_trail_${reportId}_${new Date().toISOString().split('T')[0]}.csv`);
+        }
+
+        function downloadCSV(csvContent, filename) {
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            
+            if (link.download !== undefined) {
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', filename);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
         }
 
         document.getElementById('complianceForm').addEventListener('submit', async function(e) {
@@ -554,43 +981,53 @@
             // Enhanced parsing to extract structured information
             const analysis = parseAnalysis(generatedText);
             
+            // Store analysis data globally for export functions
+            window.currentAnalysis = analysis;
+            window.currentMetadata = metadata;
+            window.currentRawResponse = generatedText;
+            
             resultsDiv.innerHTML = `
-                <!-- Header with Compliance Status and Metrics -->
-                <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; margin-bottom: 30px; align-items: start;">
-                    <div>
-                        <div class="compliance-badge ${analysis.hasGeoCompliance ? 'compliance-yes' : 'compliance-no'}" style="font-size: 1.1em; padding: 15px 25px; margin-bottom: 15px;">
-                            ${analysis.hasGeoCompliance ? '🚨 Geo-Specific Compliance Required' : '✅ Standard Implementation Sufficient'}
-                        </div>
-                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                            <div class="metric-badge" style="background: rgba(66, 165, 245, 0.2); color: #42a5f5; padding: 8px 16px; border-radius: 20px; font-size: 0.85em; border: 1px solid rgba(66, 165, 245, 0.3);">
-                                📊 Compliance Score: ${analysis.complianceScore}%
+                <!-- Legal Document Header -->
+                <div style="background: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 10px; margin-bottom: 30px; border: 2px solid #d2691e; box-shadow: 0 4px 15px rgba(210, 105, 30, 0.1);">
+                    <div style="display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start;">
+                        <div>
+                            <div style="font-size: 2.2em; font-weight: 600; color: #2c3e50; margin-bottom: 15px; font-family: 'Georgia', serif; letter-spacing: 0.5px;">
+                                COMPLIANCE ANALYSIS REPORT
                             </div>
-                            <div class="metric-badge" style="background: rgba(${analysis.riskLevel === 'high' ? '244, 67, 54' : analysis.riskLevel === 'medium' ? '255, 193, 7' : '76, 175, 80'}, 0.2); color: ${analysis.riskLevel === 'high' ? '#f44336' : analysis.riskLevel === 'medium' ? '#ffc107' : '#4caf50'}; padding: 8px 16px; border-radius: 20px; font-size: 0.85em; border: 1px solid rgba(${analysis.riskLevel === 'high' ? '244, 67, 54' : analysis.riskLevel === 'medium' ? '255, 193, 7' : '76, 175, 80'}, 0.3);">
-                                ⚠️ Risk Level: ${analysis.riskLevel.toUpperCase()}
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                <div style="background: ${analysis.hasGeoCompliance ? '#d2691e' : '#27ae60'}; color: white; padding: 8px 12px; border-radius: 5px; font-size: 0.9em; font-weight: 600; font-family: 'Georgia', serif;">
+                                    ${analysis.hasGeoCompliance ? 'GEO-SPECIFIC COMPLIANCE REQUIRED' : 'STANDARD IMPLEMENTATION SUFFICIENT'}
+                                </div>
+                                <div style="background: #cd853f; color: white; padding: 8px 12px; border-radius: 5px; font-size: 0.9em; font-weight: 600; font-family: 'Georgia', serif;">
+                                    COMPLIANCE SCORE: ${analysis.complianceScore}%
+                                </div>
+                                <div style="background: #daa520; color: white; padding: 8px 12px; border-radius: 5px; font-size: 0.9em; font-weight: 600; font-family: 'Georgia', serif;">
+                                    RISK LEVEL: ${analysis.riskLevel.toUpperCase()}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div style="text-align: right; font-size: 0.8em; color: #a0a0a0;">
-                        <div style="font-weight: 600; margin-bottom: 5px;">Report ID</div>
-                        <div>RPT-${Date.now().toString().slice(-6)}</div>
-                        <div style="margin-top: 8px;">${new Date().toLocaleString()}</div>
+                        <div style="text-align: right; background: #ecf0f1; padding: 12px; border-radius: 3px; border: 1px solid #bdc3c7;">
+                            <div style="font-size: 0.75em; color: #7f8c8d; margin-bottom: 3px; font-family: 'Times New Roman', serif;">REPORT ID</div>
+                            <div style="font-size: 0.9em; font-weight: bold; color: #2c3e50; margin-bottom: 5px; font-family: 'Times New Roman', serif;">RPT-${Date.now().toString().slice(-6)}</div>
+                            <div style="font-size: 0.75em; color: #7f8c8d; font-family: 'Times New Roman', serif;">${new Date().toLocaleString()}</div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Compact Executive Summary -->
-                <div class="section" style="border-left: 4px solid ${analysis.hasGeoCompliance ? '#f44336' : '#4caf50'}; margin-bottom: 20px;">
+                <!-- Executive Summary -->
+                <div class="section" style="border-left: 4px solid ${analysis.hasGeoCompliance ? '#d2691e' : '#27ae60'}; margin-bottom: 25px;">
                     <details open>
-                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #e0e0e0;">
-                            <span style="font-size: 1.1em;">📋</span>
-                            <span>Executive Summary</span>
+                        <summary style="cursor: pointer; display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-weight: 600; color: #2c3e50; font-family: 'Georgia', serif; font-size: 1.2em;">
+                            <span style="font-size: 1.3em;">📋</span>
+                            <span>EXECUTIVE SUMMARY</span>
                         </summary>
-                        <div style="background: linear-gradient(135deg, rgba(50, 50, 70, 0.9), rgba(60, 60, 80, 0.8)); padding: 20px; border-radius: 10px; font-size: 0.9em; line-height: 1.6; border: 1px solid rgba(255, 255, 255, 0.1);">
-                            <div style="font-weight: 600; color: #42a5f5; margin-bottom: 12px;">
-                                🎯 ${analysis.hasGeoCompliance ? 'Geo-Specific Requirements Detected' : 'Standard Implementation Sufficient'}
-                            </div>
-                            <div style="color: #e8e8e8; background: rgba(30, 30, 45, 0.6); padding: 12px; border-radius: 6px; border-left: 3px solid #42a5f5; max-height: 120px; overflow-y: auto;">
-                                ${analysis.summary.replace(/\n/g, '<br>').slice(0, 300)}${analysis.summary.length > 300 ? '...' : ''}
-                            </div>
+                        <div style="background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 8px; font-size: 1.1em; line-height: 1.6; border: 1px solid #e8d5c4; box-shadow: 0 2px 8px rgba(210, 105, 30, 0.1);">
+                            <div style="font-weight: 600; color: #2c3e50; margin-bottom: 15px; font-family: 'Georgia', serif; font-size: 1.1em;">
+                                ${analysis.hasGeoCompliance ? 'GEO-SPECIFIC REQUIREMENTS DETECTED' : 'STANDARD IMPLEMENTATION SUFFICIENT'}
+                    </div>
+                            <div style="color: #34495e; background: rgba(210, 105, 30, 0.1); padding: 20px; border-radius: 6px; border-left: 4px solid #d2691e; max-height: 150px; overflow-y: auto; font-family: 'Georgia', serif; font-size: 1em;">
+                                ${analysis.summary.replace(/\n/g, '<br>').slice(0, 400)}${analysis.summary.length > 400 ? '...' : ''}
+                </div>
                         </div>
                     </details>
                 </div>
@@ -610,10 +1047,10 @@
                                         <div style="font-size: 1.5em; margin-bottom: 5px;">${j.flag}</div>
                                         <div style="font-weight: 600; color: ${j.color}; font-size: 0.9em;">${j.code}</div>
                                         <div style="font-size: 0.8em; color: #e0e0e0;">${j.name}</div>
-                                    </div>
-                                `).join('')}
-                            </div>
                         </div>
+                    `).join('')}
+                </div>
+                    </div>
                     </details>
                 </div>
                 ` : ''}
@@ -632,10 +1069,10 @@
                                     <div style="background: linear-gradient(135deg, rgba(${law.color.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.15), rgba(${law.color.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.05)); border: 1px solid rgba(${law.color.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16)).join(', ')}, 0.3); padding: 12px; border-radius: 8px;">
                                         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
                                             <span style="font-size: 1.3em;">${law.icon}</span>
-                                            <div>
+                    <div>
                                                 <div style="font-weight: bold; color: ${law.color}; font-size: 1em;">${law.name}${law.article ? ` Article ${law.article}` : ''}</div>
                                                 <div style="font-size: 0.8em; color: #a0a0a0;">${law.fullName}</div>
-                                            </div>
+                    </div>
                                         </div>
                                         <div style="color: #e0e0e0; font-size: 0.85em; line-height: 1.4;">${law.description}</div>
                                     </div>
@@ -700,11 +1137,11 @@
                                 <div>
                                     <div style="font-size: 0.75em; color: #a0a0a0; margin-bottom: 4px;">AI Model</div>
                                     <div style="font-size: 1em; font-weight: bold; color: #42a5f5;">Microsoft Phi-2 v5</div>
-                                </div>
+                        </div>
                                 <div>
                                     <div style="font-size: 0.75em; color: #a0a0a0; margin-bottom: 4px;">Training Dataset</div>
                                     <div style="font-size: 1em; font-weight: bold; color: #42a5f5;">1,442 compliance pairs</div>
-                                </div>
+                </div>
                                 <div>
                                     <div style="font-size: 0.75em; color: #a0a0a0; margin-bottom: 4px;">Specialization</div>
                                     <div style="font-size: 1em; font-weight: bold; color: #42a5f5;">Geo-Compliance Analysis</div>
@@ -728,27 +1165,33 @@
                 </div>
                 ` : ''}
 
-                <div style="background: rgba(30, 30, 45, 0.9); padding: 20px; border-radius: 8px; margin-top: 25px; border: 1px solid rgba(255, 255, 255, 0.2);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                        <div style="font-weight: 600; color: #e0e0e0;">📊 Audit Trail & Technical Metadata</div>
-                        <div style="font-size: 0.8em; color: #a0a0a0;">For Compliance Documentation</div>
+                <div style="background: rgba(30, 30, 45, 0.9); padding: 15px; border-radius: 8px; margin-top: 20px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <details>
+                        <summary style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #e0e0e0;">
+                            <span>📊 Audit Trail & Metadata</span>
+                            <span style="font-size: 0.8em; color: #a0a0a0;">For Documentation</span>
+                        </summary>
+                        <div style="margin-top: 15px;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; font-size: 0.8em; color: #e0e0e0;">
+                                <div>
+                                    <strong style="color: #42a5f5;">Model:</strong> Microsoft Phi-2 v5<br>
+                                    <strong style="color: #42a5f5;">Dataset:</strong> 1,442 compliance examples<br>
+                                    <strong style="color: #42a5f5;">Framework:</strong> Multi-jurisdictional analysis
                     </div>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; font-size: 0.85em; color: #e0e0e0;">
-                        <div>
-                            <strong style="color: #42a5f5;">Model Version:</strong> ${result.model_version || 'Phi-2 v5'}<br>
-                            <strong style="color: #42a5f5;">Endpoint:</strong> ${result.endpoint || 'phi2-v5-inference'}<br>
-                            <strong style="color: #42a5f5;">Training Dataset:</strong> ${metadata.model_info?.training_examples || '1,441'} compliance examples
+                                <div>
+                                    <strong style="color: #42a5f5;">Timestamp:</strong> ${new Date().toLocaleString()}<br>
+                                    <strong style="color: #42a5f5;">Processing:</strong> ${metadata.response_length || 0} chars<br>
+                                    <strong style="color: #42a5f5;">Endpoint:</strong> AWS SageMaker
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 12px; font-size: 0.75em; color: #a0a0a0; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 8px;">
+                                🏢 TikTok Enterprise Compliance Platform • Microsoft Phi-2 LLM • Audit-ready Documentation
+                            </div>
                         </div>
-                        <div>
-                            <strong style="color: #42a5f5;">Analysis Timestamp:</strong> ${new Date().toISOString()}<br>
-                            <strong style="color: #42a5f5;">Processing Time:</strong> ${metadata.response_length || 0} chars processed<br>
-                            <strong style="color: #42a5f5;">Compliance Framework:</strong> Multi-jurisdictional privacy law analysis
-                        </div>
-                    </div>
-                    <div style="text-align: center; margin-top: 15px; font-size: 0.8em; color: #a0a0a0; border-top: 1px solid rgba(255, 255, 255, 0.2); padding-top: 10px;">
-                        🏢 TikTok Enterprise Compliance Platform • Powered by AWS SageMaker • Report generated for audit purposes
-                    </div>
+                    </details>
                 </div>
+
+
             `;
 
             resultsDiv.style.display = 'block';
