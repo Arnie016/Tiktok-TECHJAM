@@ -1,0 +1,2037 @@
+[
+  {
+    "id": 1,
+    "title": "Geofenced A/B test for market growth",
+    "description": "Enable GIFs with filtering for minors; Softblock on violations; universal logic.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 2,
+    "title": "EU-only visibility lock for flagged content",
+    "description": "Extend Jellybean parental control: notify verified parents for restricted attempts in Florida; IMT+BB monitor; CDS logs.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)",
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Minor-safe chat expansion platform-wide",
+    "description": "Enable GIFs with filtering for minors; Softblock on violations; universal logic.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 4,
+    "title": "EU-first roll-out with transparency copy",
+    "description": "Watermark shown in KR; whether regulation-driven or branding is not specified.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 5,
+    "title": "Curfew login blocker for Utah minors",
+    "description": "Disable PF by default for under-18 in California; parental opt-in required; GH handles CA scoping; FR monitors rollout.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "California SB-976 (Kids Social Media)",
+      "Utah Social Media Regulation Act"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "EEA-only video replies rollout with takedown hooks",
+    "description": "Enable autoplay only in US; GH routes; Spanner evaluates metrics; legal requirement documented for US-only exposure.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "EU-only visibility lock for flagged content",
+    "description": "Apply provincial proof-of-age gate before access; GH maps provinces; CDS logs decisions.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Universal upload limits for new users",
+    "description": "Layout experimentation in CA, US, BR, ID to collect metrics; business-driven geofence, not legal.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 9,
+    "title": "Geo-based autoplay limits in US only",
+    "description": "Scan uploads for suspected CSAM; tag T5; auto-report via CDS to NCMEC; human-in-the-loop validation; real-time routing.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Geofenced A/B test for market growth",
+    "description": "Snowcap enforces stricter moderation underage authors worldwide; platform-wide policy.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 11,
+    "title": "GIF support with minor filtering",
+    "description": "Layout experimentation in CA, US, BR, ID to collect metrics; business-driven geofence, not legal.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 12,
+    "title": "Parental notifications aligned with Florida statute",
+    "description": "Apply softblock/visibility lock in EU only for NSP-tagged content; GH restricts to EU; Redline on escalation; EchoTrace for traceability.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)",
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "City-specific age gate pilot",
+    "description": "Transparency strings mentioned for EU users, but legal mapping not explicit; could be product copy test.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 14,
+    "title": "PF default-off for CA teens",
+    "description": "Implement age verification and restricted features per local child rules; region toggles via GH; CDS audit trail.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "California SB-976 (Kids Social Media)"
+    ]
+  },
+  {
+    "id": 15,
+    "title": "User behavior scoring gate",
+    "description": "Analytics-based weekly ranking; IMT & FR log; no legal mapping or regional variance.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 16,
+    "title": "GIF support with minor filtering",
+    "description": "CDS watches payout anomalies globally; DRT for log trimming; no region flag.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 17,
+    "title": "T5 tagging for sensitive reports (global)",
+    "description": "Layout experimentation in CA, US, BR, ID to collect metrics; business-driven geofence, not legal.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 18,
+    "title": "CSAM detection pipeline with NCMEC routing",
+    "description": "Ensure logs stored within Brazil regions; DRT aligned with local timelines; CDS audits storage path.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 19,
+    "title": "T5 tagging for sensitive reports (global)",
+    "description": "Detect and tag NSP; Softblock and Redline on attempted sharing; no geographic scoping.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 20,
+    "title": "EU-only visibility lock for flagged content",
+    "description": "Apply provincial proof-of-age gate before access; GH maps provinces; CDS logs decisions.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 21,
+    "title": "DE-specific data retention cap in logs",
+    "description": "Apply softblock/visibility lock in EU only for NSP-tagged content; GH restricts to EU; Redline on escalation; EchoTrace for traceability.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 22,
+    "title": "Global PF tuning by emoji mood",
+    "description": "Detect and tag NSP; Softblock and Redline on attempted sharing; no geographic scoping.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 23,
+    "title": "PF default-off for CA teens",
+    "description": "Block download for users in France when feature touches copyrighted media; GH gates; EchoTrace records.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "California SB-976 (Kids Social Media)"
+    ]
+  },
+  {
+    "id": 24,
+    "title": "DE-specific data retention cap in logs",
+    "description": "Ensure logs stored within Brazil regions; DRT aligned with local timelines; CDS audits storage path.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 25,
+    "title": "DE-specific data retention cap in logs",
+    "description": "Scan uploads for suspected CSAM; tag T5; auto-report via CDS to NCMEC; human-in-the-loop validation; real-time routing.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 26,
+    "title": "Minor-safe chat expansion platform-wide",
+    "description": "Jellybean limits certain chat features for minors globally; ASL segments; no geo toggles.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 27,
+    "title": "DE-specific data retention cap in logs",
+    "description": "Extend Jellybean parental control: notify verified parents for restricted attempts in Florida; IMT+BB monitor; CDS logs.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 28,
+    "title": "Guest mode disables PF everywhere",
+    "description": "Improve detection quality; reporting path to NCMEC applies everywhere; not region-specific routing.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 29,
+    "title": "CSAM detection pipeline with NCMEC routing",
+    "description": "Add consent and transparency notices per DSA; only for EU users; GH scoping; EchoTrace keeps user notices.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)",
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 30,
+    "title": "Universal upload limits for new users",
+    "description": "Guest mode disables PF worldwide by default; safety rationale; not tied to any jurisdiction.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 31,
+    "title": "NSP auto-flagging (global)",
+    "description": "Snowcap enforces stricter moderation underage authors worldwide; platform-wide policy.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 32,
+    "title": "Guest mode disables PF everywhere",
+    "description": "Detect and tag NSP; Softblock and Redline on attempted sharing; no geographic scoping.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 33,
+    "title": "Age gates per Indonesia-like child law (regional)",
+    "description": "Block download for users in France when feature touches copyrighted media; GH gates; EchoTrace records.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "California SB-976 (Kids Social Media)"
+    ]
+  },
+  {
+    "id": 34,
+    "title": "KR watermark trial",
+    "description": "Age gate toggled in one city; described as pilot; lacking explicit law reference.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 35,
+    "title": "KR-specific watermark per local disclosure rules",
+    "description": "Block download for users in France when feature touches copyrighted media; GH gates; EchoTrace records.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": []
+  },
+  {
+    "id": 36,
+    "title": "Universal CSAM pipeline improvements",
+    "description": "Analytics-based weekly ranking; IMT & FR log; no legal mapping or regional variance.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 37,
+    "title": "Province-specific age verification (Canada)",
+    "description": "Gate new replies feature to EEA; takedown transparency per DSA; FR tracks exposure; GH routes regionally.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 38,
+    "title": "GIF support with minor filtering",
+    "description": "Spanner score gates access; thresholds learned from BB; no regional policies referenced.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 39,
+    "title": "Geo-based autoplay limits in US only",
+    "description": "Block download for users in France when feature touches copyrighted media; GH gates; EchoTrace records.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "California SB-976 (Kids Social Media)"
+    ]
+  },
+  {
+    "id": 40,
+    "title": "Global PF tuning by emoji mood",
+    "description": "Snowcap enforces stricter moderation underage authors worldwide; platform-wide policy.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 41,
+    "title": "PF default-off for CA teens",
+    "description": "Extend Jellybean parental control: notify verified parents for restricted attempts in Florida; IMT+BB monitor; CDS logs.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "California SB-976 (Kids Social Media)",
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 42,
+    "title": "Longform posts with stricter moderation for minors",
+    "description": "Jellybean limits certain chat features for minors globally; ASL segments; no geo toggles.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 43,
+    "title": "PF default-off for CA teens",
+    "description": "Block download for users in France when feature touches copyrighted media; GH gates; EchoTrace records.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "California SB-976 (Kids Social Media)"
+    ]
+  },
+  {
+    "id": 44,
+    "title": "KR-specific watermark per local disclosure rules",
+    "description": "Gate new replies feature to EEA; takedown transparency per DSA; FR tracks exposure; GH routes regionally.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 45,
+    "title": "EEA-only video replies rollout with takedown hooks",
+    "description": "Ensure logs stored within Brazil regions; DRT aligned with local timelines; CDS audits storage path.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 46,
+    "title": "EU-first roll-out with transparency copy",
+    "description": "Blocking downloads only in France during test; may be business/legal—needs review.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 47,
+    "title": "Longform posts with stricter moderation for minors",
+    "description": "Jellybean limits certain chat features for minors globally; ASL segments; no geo toggles.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 48,
+    "title": "CSAM detection pipeline with NCMEC routing",
+    "description": "Block download for users in France when feature touches copyrighted media; GH gates; EchoTrace records.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 49,
+    "title": "Curfew login blocker for Utah minors",
+    "description": "Apply provincial proof-of-age gate before access; GH maps provinces; CDS logs decisions.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Utah Social Media Regulation Act"
+    ]
+  },
+  {
+    "id": 50,
+    "title": "EEA video replies pilot",
+    "description": "Blocking downloads only in France during test; may be business/legal—needs review.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 51,
+    "title": "Universal upload limits for new users",
+    "description": "T5 escalations via CDS; applies regardless of region; no GH routes.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 52,
+    "title": "DE-specific data retention cap in logs",
+    "description": "Scan uploads for suspected CSAM; tag T5; auto-report via CDS to NCMEC; human-in-the-loop validation; real-time routing.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 53,
+    "title": "Universal upload limits for new users",
+    "description": "Spanner score gates access; thresholds learned from BB; no regional policies referenced.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 54,
+    "title": "Age gates per Indonesia-like child law (regional)",
+    "description": "Night curfew login block limited to target city; ASL+GH enforce; EchoTrace keeps city-scope logs.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 55,
+    "title": "KR watermark trial",
+    "description": "Age gate toggled in one city; described as pilot; lacking explicit law reference.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 56,
+    "title": "PF default-off for CA teens",
+    "description": "Add consent and transparency notices per DSA; only for EU users; GH scoping; EchoTrace keeps user notices.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)",
+      "California SB-976 (Kids Social Media)"
+    ]
+  },
+  {
+    "id": 57,
+    "title": "Brazil data localization for logs",
+    "description": "Night curfew login block limited to target city; ASL+GH enforce; EchoTrace keeps city-scope logs.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 58,
+    "title": "Geo-based autoplay limits in US only",
+    "description": "Disable PF by default for under-18 in California; parental opt-in required; GH handles CA scoping; FR monitors rollout.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "California SB-976 (Kids Social Media)"
+    ]
+  },
+  {
+    "id": 59,
+    "title": "KR-specific watermark per local disclosure rules",
+    "description": "Ensure logs stored within Brazil regions; DRT aligned with local timelines; CDS audits storage path.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 60,
+    "title": "Universal CSAM pipeline improvements",
+    "description": "Jellybean limits certain chat features for minors globally; ASL segments; no geo toggles.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 61,
+    "title": "EEA-only video replies rollout with takedown hooks",
+    "description": "Extend Jellybean parental control: notify verified parents for restricted attempts in Florida; IMT+BB monitor; CDS logs.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)",
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 62,
+    "title": "Brazil data localization for logs",
+    "description": "Enable autoplay only in US; GH routes; Spanner evaluates metrics; legal requirement documented for US-only exposure.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "California SB-976 (Kids Social Media)"
+    ]
+  },
+  {
+    "id": 63,
+    "title": "CA-first PF variant test",
+    "description": "Replies enabled only in EEA; mentions DSA tangentially; purpose could be product exploration.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 64,
+    "title": "DE-specific data retention cap in logs",
+    "description": "Apply stricter DRT for German users per local policy; CDS ensures retention caps; GH scoping enforced.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 65,
+    "title": "EU-only visibility lock for flagged content",
+    "description": "Apply softblock/visibility lock in EU only for NSP-tagged content; GH restricts to EU; Redline on escalation; EchoTrace for traceability.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 66,
+    "title": "Curfew login blocker for Utah minors",
+    "description": "Enable autoplay only in US; GH routes; Spanner evaluates metrics; legal requirement documented for US-only exposure.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Utah Social Media Regulation Act"
+    ]
+  },
+  {
+    "id": 67,
+    "title": "User behavior scoring gate",
+    "description": "Guest mode disables PF worldwide by default; safety rationale; not tied to any jurisdiction.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 68,
+    "title": "Province-specific age verification (Canada)",
+    "description": "Apply stricter DRT for German users per local policy; CDS ensures retention caps; GH scoping enforced.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 69,
+    "title": "City-specific age gate pilot",
+    "description": "Transparency strings mentioned for EU users, but legal mapping not explicit; could be product copy test.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 70,
+    "title": "Leaderboard for weekly creators",
+    "description": "Jellybean limits certain chat features for minors globally; ASL segments; no geo toggles.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 71,
+    "title": "EEA-only video replies rollout with takedown hooks",
+    "description": "Extend Jellybean parental control: notify verified parents for restricted attempts in Florida; IMT+BB monitor; CDS logs.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)",
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 72,
+    "title": "T5 tagging for sensitive reports (global)",
+    "description": "Spanner score gates access; thresholds learned from BB; no regional policies referenced.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 73,
+    "title": "Guest mode disables PF everywhere",
+    "description": "Snowcap enforces stricter moderation underage authors worldwide; platform-wide policy.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 74,
+    "title": "France download filter per copyright carve-out",
+    "description": "Apply softblock/visibility lock in EU only for NSP-tagged content; GH restricts to EU; Redline on escalation; EchoTrace for traceability.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 75,
+    "title": "DE-specific data retention cap in logs",
+    "description": "Block download for users in France when feature touches copyrighted media; GH gates; EchoTrace records.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Utah Social Media Regulation Act"
+    ]
+  },
+  {
+    "id": 76,
+    "title": "Province-specific age verification (Canada)",
+    "description": "Enforce region-limited logic with GH; ASL detects minors; EchoTrace logs for audit; rollout via ShadowMode in target region (Utah).",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Utah Social Media Regulation Act"
+    ]
+  },
+  {
+    "id": 77,
+    "title": "Minor-safe chat expansion platform-wide",
+    "description": "PF uses mood signals; BB soft-tunes recommendations; no regional law basis; global logic.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 78,
+    "title": "Province-specific age verification (Canada)",
+    "description": "Implement age verification and restricted features per local child rules; region toggles via GH; CDS audit trail.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": []
+  },
+  {
+    "id": 79,
+    "title": "EU-only visibility lock for flagged content",
+    "description": "Apply softblock/visibility lock in EU only for NSP-tagged content; GH restricts to EU; Redline on escalation; EchoTrace for traceability.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 80,
+    "title": "Universal CSAM pipeline improvements",
+    "description": "Layout experimentation in CA, US, BR, ID to collect metrics; business-driven geofence, not legal.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 81,
+    "title": "KR-specific watermark per local disclosure rules",
+    "description": "Apply softblock/visibility lock in EU only for NSP-tagged content; GH restricts to EU; Redline on escalation; EchoTrace for traceability.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 82,
+    "title": "EU-first roll-out with transparency copy",
+    "description": "Visibility change for flagged content only in EU; rationale not stated; legal basis unspecified.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 83,
+    "title": "NSP auto-flagging (global)",
+    "description": "New accounts have upload rate limits set by BB/IMT; universal safety measure.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 84,
+    "title": "DE-specific data retention cap in logs",
+    "description": "Gate new replies feature to EEA; takedown transparency per DSA; FR tracks exposure; GH routes regionally.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 85,
+    "title": "Global PF tuning by emoji mood",
+    "description": "T5 escalations via CDS; applies regardless of region; no GH routes.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 86,
+    "title": "Guest mode disables PF everywhere",
+    "description": "Improve detection quality; reporting path to NCMEC applies everywhere; not region-specific routing.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 87,
+    "title": "KR-specific watermark per local disclosure rules",
+    "description": "Apply softblock/visibility lock in EU only for NSP-tagged content; GH restricts to EU; Redline on escalation; EchoTrace for traceability.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 88,
+    "title": "Feature limited to KR for launch",
+    "description": "Autoplay enabled in US; no stated legal basis; might be pure UX experiment.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 89,
+    "title": "France download filter per copyright carve-out",
+    "description": "Scan uploads for suspected CSAM; tag T5; auto-report via CDS to NCMEC; human-in-the-loop validation; real-time routing.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 90,
+    "title": "EU content visibility tweak",
+    "description": "Replies enabled only in EEA; mentions DSA tangentially; purpose could be product exploration.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 91,
+    "title": "Province-specific age verification (Canada)",
+    "description": "Night curfew login block limited to target city; ASL+GH enforce; EchoTrace keeps city-scope logs.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Utah Social Media Regulation Act"
+    ]
+  },
+  {
+    "id": 92,
+    "title": "CSAM detection pipeline with NCMEC routing",
+    "description": "Apply softblock/visibility lock in EU only for NSP-tagged content; GH restricts to EU; Redline on escalation; EchoTrace for traceability.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)",
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 93,
+    "title": "KR watermark trial",
+    "description": "Blocking downloads only in France during test; may be business/legal—needs review.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 94,
+    "title": "Age gates per Indonesia-like child law (regional)",
+    "description": "Enforce region-limited logic with GH; ASL detects minors; EchoTrace logs for audit; rollout via ShadowMode in target region (Utah).",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Utah Social Media Regulation Act"
+    ]
+  },
+  {
+    "id": 95,
+    "title": "KR-specific watermark per local disclosure rules",
+    "description": "Gate new replies feature to EEA; takedown transparency per DSA; FR tracks exposure; GH routes regionally.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 96,
+    "title": "Download block in FR market test",
+    "description": "Autoplay enabled in US; no stated legal basis; might be pure UX experiment.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 97,
+    "title": "EEA-only video replies rollout with takedown hooks",
+    "description": "Disable PF by default for under-18 in California; parental opt-in required; GH handles CA scoping; FR monitors rollout.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)",
+      "California SB-976 (Kids Social Media)"
+    ]
+  },
+  {
+    "id": 98,
+    "title": "EU-first roll-out with transparency copy",
+    "description": "Watermark shown in KR; whether regulation-driven or branding is not specified.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 99,
+    "title": "Brazil data localization for logs",
+    "description": "Apply softblock/visibility lock in EU only for NSP-tagged content; GH restricts to EU; Redline on escalation; EchoTrace for traceability.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 100,
+    "title": "EU consent messaging per DSA transparency",
+    "description": "Enable autoplay only in US; GH routes; Spanner evaluates metrics; legal requirement documented for US-only exposure.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 101,
+    "title": "Geo-based autoplay limits in US only",
+    "description": "Enforce region-limited logic with GH; ASL detects minors; EchoTrace logs for audit; rollout via ShadowMode in target region (Utah).",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Utah Social Media Regulation Act"
+    ]
+  },
+  {
+    "id": 102,
+    "title": "Chat UI overhaul across regions (business test)",
+    "description": "Jellybean limits certain chat features for minors globally; ASL segments; no geo toggles.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 103,
+    "title": "Universal upload limits for new users",
+    "description": "Reshare with auto-expiry after 48h; EchoTrace logs; no regional legal dependency.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 104,
+    "title": "CA-first PF variant test",
+    "description": "Age gate toggled in one city; described as pilot; lacking explicit law reference.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 105,
+    "title": "France download filter per copyright carve-out",
+    "description": "Extend Jellybean parental control: notify verified parents for restricted attempts in Florida; IMT+BB monitor; CDS logs.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 106,
+    "title": "Leaderboard for weekly creators",
+    "description": "CDS watches payout anomalies globally; DRT for log trimming; no region flag.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 107,
+    "title": "City-level curfew for pilot compliance (Salt Lake City)",
+    "description": "Add consent and transparency notices per DSA; only for EU users; GH scoping; EchoTrace keeps user notices.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 108,
+    "title": "KR-specific watermark per local disclosure rules",
+    "description": "Enable autoplay only in US; GH routes; Spanner evaluates metrics; legal requirement documented for US-only exposure.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": []
+  },
+  {
+    "id": 109,
+    "title": "EU-first roll-out with transparency copy",
+    "description": "Blocking downloads only in France during test; may be business/legal—needs review.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 110,
+    "title": "CSAM detection pipeline with NCMEC routing",
+    "description": "Extend Jellybean parental control: notify verified parents for restricted attempts in Florida; IMT+BB monitor; CDS logs.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Florida Online Protections for Minors",
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 111,
+    "title": "EU-first roll-out with transparency copy",
+    "description": "PF variant launched in Canada; stated as early experimentation; unclear legal requirement.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 112,
+    "title": "Parental notifications aligned with Florida statute",
+    "description": "Enable watermark for KR per disclosure; GH limits to KR; CDS verifies compliance.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 113,
+    "title": "GIF support with minor filtering",
+    "description": "Analytics-based weekly ranking; IMT & FR log; no legal mapping or regional variance.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 114,
+    "title": "Longform posts with stricter moderation for minors",
+    "description": "Jellybean limits certain chat features for minors globally; ASL segments; no geo toggles.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 115,
+    "title": "Minor-safe chat expansion platform-wide",
+    "description": "Detect and tag NSP; Softblock and Redline on attempted sharing; no geographic scoping.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 116,
+    "title": "T5 tagging for sensitive reports (global)",
+    "description": "Jellybean limits certain chat features for minors globally; ASL segments; no geo toggles.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 117,
+    "title": "EU consent messaging per DSA transparency",
+    "description": "Extend Jellybean parental control: notify verified parents for restricted attempts in Florida; IMT+BB monitor; CDS logs.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)",
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 118,
+    "title": "EU consent messaging per DSA transparency",
+    "description": "Disable PF by default for under-18 in California; parental opt-in required; GH handles CA scoping; FR monitors rollout.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)",
+      "California SB-976 (Kids Social Media)"
+    ]
+  },
+  {
+    "id": 119,
+    "title": "Universal CSAM pipeline improvements",
+    "description": "Analytics-based weekly ranking; IMT & FR log; no legal mapping or regional variance.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 120,
+    "title": "EU-only visibility lock for flagged content",
+    "description": "Apply provincial proof-of-age gate before access; GH maps provinces; CDS logs decisions.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 121,
+    "title": "DE-specific data retention cap in logs",
+    "description": "Apply stricter DRT for German users per local policy; CDS ensures retention caps; GH scoping enforced.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": []
+  },
+  {
+    "id": 122,
+    "title": "Leaderboard for weekly creators",
+    "description": "T5 escalations via CDS; applies regardless of region; no GH routes.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 123,
+    "title": "Feature limited to KR for launch",
+    "description": "Transparency strings mentioned for EU users, but legal mapping not explicit; could be product copy test.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 124,
+    "title": "NSP auto-flagging (global)",
+    "description": "Analytics-based weekly ranking; IMT & FR log; no legal mapping or regional variance.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 125,
+    "title": "Age gates per Indonesia-like child law (regional)",
+    "description": "Night curfew login block limited to target city; ASL+GH enforce; EchoTrace keeps city-scope logs.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 126,
+    "title": "KR-specific watermark per local disclosure rules",
+    "description": "Gate new replies feature to EEA; takedown transparency per DSA; FR tracks exposure; GH routes regionally.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 127,
+    "title": "Universal upload limits for new users",
+    "description": "GH limits by country purely for product testing; no legal obligation; FR tracks exposure; metrics-only change.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 128,
+    "title": "EU consent messaging per DSA transparency",
+    "description": "Apply provincial proof-of-age gate before access; GH maps provinces; CDS logs decisions.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 129,
+    "title": "Download block in FR market test",
+    "description": "Available only in South Korea initially; intention unclear if legal or business; GH enforces region.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 130,
+    "title": "User behavior scoring gate",
+    "description": "New accounts have upload rate limits set by BB/IMT; universal safety measure.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 131,
+    "title": "Parental notifications aligned with Florida statute",
+    "description": "Enforce region-limited logic with GH; ASL detects minors; EchoTrace logs for audit; rollout via ShadowMode in target region (Utah).",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Florida Online Protections for Minors",
+      "Utah Social Media Regulation Act"
+    ]
+  },
+  {
+    "id": 132,
+    "title": "EU consent messaging per DSA transparency",
+    "description": "Add consent and transparency notices per DSA; only for EU users; GH scoping; EchoTrace keeps user notices.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 133,
+    "title": "NSP auto-flagging (global)",
+    "description": "GH limits by country purely for product testing; no legal obligation; FR tracks exposure; metrics-only change.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 134,
+    "title": "CA-first PF variant test",
+    "description": "PF variant launched in Canada; stated as early experimentation; unclear legal requirement.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 135,
+    "title": "Story resharing with 48h expiry",
+    "description": "Snowcap enforces stricter moderation underage authors worldwide; platform-wide policy.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 136,
+    "title": "NSP auto-flagging (global)",
+    "description": "Layout experimentation in CA, US, BR, ID to collect metrics; business-driven geofence, not legal.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 137,
+    "title": "US-only autoplay experiment",
+    "description": "PF variant launched in Canada; stated as early experimentation; unclear legal requirement.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 138,
+    "title": "US-only autoplay experiment",
+    "description": "Chat restrictions limited by province; might be ops constraint vs policy; unclear.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 139,
+    "title": "Province-specific age verification (Canada)",
+    "description": "Add consent and transparency notices per DSA; only for EU users; GH scoping; EchoTrace keeps user notices.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 140,
+    "title": "EU consent messaging per DSA transparency",
+    "description": "Block download for users in France when feature touches copyrighted media; GH gates; EchoTrace records.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 141,
+    "title": "NSP auto-flagging (global)",
+    "description": "Enable GIFs with filtering for minors; Softblock on violations; universal logic.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 142,
+    "title": "Leaderboard for weekly creators",
+    "description": "Improve detection quality; reporting path to NCMEC applies everywhere; not region-specific routing.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 143,
+    "title": "Global PF tuning by emoji mood",
+    "description": "Layout experimentation in CA, US, BR, ID to collect metrics; business-driven geofence, not legal.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 144,
+    "title": "EU content visibility tweak",
+    "description": "PF variant launched in Canada; stated as early experimentation; unclear legal requirement.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 145,
+    "title": "EU consent messaging per DSA transparency",
+    "description": "Enable watermark for KR per disclosure; GH limits to KR; CDS verifies compliance.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 146,
+    "title": "Brazil data localization for logs",
+    "description": "Night curfew login block limited to target city; ASL+GH enforce; EchoTrace keeps city-scope logs.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": []
+  },
+  {
+    "id": 147,
+    "title": "DE-specific data retention cap in logs",
+    "description": "Apply softblock/visibility lock in EU only for NSP-tagged content; GH restricts to EU; Redline on escalation; EchoTrace for traceability.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 148,
+    "title": "CSAM detection pipeline with NCMEC routing",
+    "description": "Ensure logs stored within Brazil regions; DRT aligned with local timelines; CDS audits storage path.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 149,
+    "title": "City-level curfew for pilot compliance (Salt Lake City)",
+    "description": "Scan uploads for suspected CSAM; tag T5; auto-report via CDS to NCMEC; human-in-the-loop validation; real-time routing.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 150,
+    "title": "EEA-only video replies rollout with takedown hooks",
+    "description": "Block download for users in France when feature touches copyrighted media; GH gates; EchoTrace records.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 151,
+    "title": "NSP auto-flagging (global)",
+    "description": "New accounts have upload rate limits set by BB/IMT; universal safety measure.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 152,
+    "title": "Curfew login blocker for Utah minors",
+    "description": "Disable PF by default for under-18 in California; parental opt-in required; GH handles CA scoping; FR monitors rollout.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "California SB-976 (Kids Social Media)",
+      "Utah Social Media Regulation Act"
+    ]
+  },
+  {
+    "id": 153,
+    "title": "EEA video replies pilot",
+    "description": "Autoplay enabled in US; no stated legal basis; might be pure UX experiment.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 154,
+    "title": "Leaderboard for weekly creators",
+    "description": "GH limits by country purely for product testing; no legal obligation; FR tracks exposure; metrics-only change.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 155,
+    "title": "France download filter per copyright carve-out",
+    "description": "Implement age verification and restricted features per local child rules; region toggles via GH; CDS audit trail.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": []
+  },
+  {
+    "id": 156,
+    "title": "Geo-based autoplay limits in US only",
+    "description": "Gate new replies feature to EEA; takedown transparency per DSA; FR tracks exposure; GH routes regionally.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 157,
+    "title": "EU consent messaging per DSA transparency",
+    "description": "Enable autoplay only in US; GH routes; Spanner evaluates metrics; legal requirement documented for US-only exposure.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 158,
+    "title": "Curfew login blocker for Utah minors",
+    "description": "Apply provincial proof-of-age gate before access; GH maps provinces; CDS logs decisions.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Utah Social Media Regulation Act"
+    ]
+  },
+  {
+    "id": 159,
+    "title": "EEA-only video replies rollout with takedown hooks",
+    "description": "Add consent and transparency notices per DSA; only for EU users; GH scoping; EchoTrace keeps user notices.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 160,
+    "title": "Minor-safe chat expansion platform-wide",
+    "description": "Enable GIFs with filtering for minors; Softblock on violations; universal logic.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 161,
+    "title": "CA-first PF variant test",
+    "description": "Age gate toggled in one city; described as pilot; lacking explicit law reference.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 162,
+    "title": "DE-specific data retention cap in logs",
+    "description": "Add consent and transparency notices per DSA; only for EU users; GH scoping; EchoTrace keeps user notices.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 163,
+    "title": "Age gates per Indonesia-like child law (regional)",
+    "description": "Apply stricter DRT for German users per local policy; CDS ensures retention caps; GH scoping enforced.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": []
+  },
+  {
+    "id": 164,
+    "title": "Leaderboard for weekly creators",
+    "description": "New accounts have upload rate limits set by BB/IMT; universal safety measure.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 165,
+    "title": "France download filter per copyright carve-out",
+    "description": "Implement age verification and restricted features per local child rules; region toggles via GH; CDS audit trail.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 166,
+    "title": "Guest mode disables PF everywhere",
+    "description": "Layout experimentation in CA, US, BR, ID to collect metrics; business-driven geofence, not legal.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 167,
+    "title": "Chat UI overhaul across regions (business test)",
+    "description": "Jellybean limits certain chat features for minors globally; ASL segments; no geo toggles.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 168,
+    "title": "Universal CSAM pipeline improvements",
+    "description": "Spanner score gates access; thresholds learned from BB; no regional policies referenced.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 169,
+    "title": "Chat UI overhaul across regions (business test)",
+    "description": "New accounts have upload rate limits set by BB/IMT; universal safety measure.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 170,
+    "title": "Leaderboard for weekly creators",
+    "description": "Analytics-based weekly ranking; IMT & FR log; no legal mapping or regional variance.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 171,
+    "title": "City-level curfew for pilot compliance (Salt Lake City)",
+    "description": "Enable autoplay only in US; GH routes; Spanner evaluates metrics; legal requirement documented for US-only exposure.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": []
+  },
+  {
+    "id": 172,
+    "title": "KR-specific watermark per local disclosure rules",
+    "description": "Enable watermark for KR per disclosure; GH limits to KR; CDS verifies compliance.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": []
+  },
+  {
+    "id": 173,
+    "title": "Longform posts with stricter moderation for minors",
+    "description": "T5 escalations via CDS; applies regardless of region; no GH routes.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 174,
+    "title": "US-only autoplay experiment",
+    "description": "Transparency strings mentioned for EU users, but legal mapping not explicit; could be product copy test.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 175,
+    "title": "DE-specific data retention cap in logs",
+    "description": "Apply stricter DRT for German users per local policy; CDS ensures retention caps; GH scoping enforced.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": []
+  },
+  {
+    "id": 176,
+    "title": "City-level curfew for pilot compliance (Salt Lake City)",
+    "description": "Apply softblock/visibility lock in EU only for NSP-tagged content; GH restricts to EU; Redline on escalation; EchoTrace for traceability.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 177,
+    "title": "Guest mode disables PF everywhere",
+    "description": "Snowcap enforces stricter moderation underage authors worldwide; platform-wide policy.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 178,
+    "title": "Curfew login blocker for Utah minors",
+    "description": "Enforce region-limited logic with GH; ASL detects minors; EchoTrace logs for audit; rollout via ShadowMode in target region (Utah).",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Utah Social Media Regulation Act"
+    ]
+  },
+  {
+    "id": 179,
+    "title": "KR-specific watermark per local disclosure rules",
+    "description": "Enable autoplay only in US; GH routes; Spanner evaluates metrics; legal requirement documented for US-only exposure.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": []
+  },
+  {
+    "id": 180,
+    "title": "France download filter per copyright carve-out",
+    "description": "Add consent and transparency notices per DSA; only for EU users; GH scoping; EchoTrace keeps user notices.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 181,
+    "title": "Guest mode disables PF everywhere",
+    "description": "Enable GIFs with filtering for minors; Softblock on violations; universal logic.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 182,
+    "title": "Creator fund payout anomaly detection",
+    "description": "Layout experimentation in CA, US, BR, ID to collect metrics; business-driven geofence, not legal.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 183,
+    "title": "DE-specific data retention cap in logs",
+    "description": "Apply provincial proof-of-age gate before access; GH maps provinces; CDS logs decisions.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 184,
+    "title": "Guest mode disables PF everywhere",
+    "description": "Improve detection quality; reporting path to NCMEC applies everywhere; not region-specific routing.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 185,
+    "title": "GIF support with minor filtering",
+    "description": "New accounts have upload rate limits set by BB/IMT; universal safety measure.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 186,
+    "title": "EEA-only video replies rollout with takedown hooks",
+    "description": "Apply softblock/visibility lock in EU only for NSP-tagged content; GH restricts to EU; Redline on escalation; EchoTrace for traceability.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 187,
+    "title": "EU-first roll-out with transparency copy",
+    "description": "Visibility change for flagged content only in EU; rationale not stated; legal basis unspecified.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 188,
+    "title": "KR-specific watermark per local disclosure rules",
+    "description": "Apply stricter DRT for German users per local policy; CDS ensures retention caps; GH scoping enforced.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 189,
+    "title": "Longform posts with stricter moderation for minors",
+    "description": "T5 escalations via CDS; applies regardless of region; no GH routes.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 190,
+    "title": "Brazil data localization for logs",
+    "description": "Apply provincial proof-of-age gate before access; GH maps provinces; CDS logs decisions.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": []
+  },
+  {
+    "id": 191,
+    "title": "EU consent messaging per DSA transparency",
+    "description": "Gate new replies feature to EEA; takedown transparency per DSA; FR tracks exposure; GH routes regionally.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 192,
+    "title": "Parental notifications aligned with Florida statute",
+    "description": "Apply provincial proof-of-age gate before access; GH maps provinces; CDS logs decisions.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 193,
+    "title": "EU content visibility tweak",
+    "description": "Replies enabled only in EEA; mentions DSA tangentially; purpose could be product exploration.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 194,
+    "title": "NSP auto-flagging (global)",
+    "description": "Jellybean limits certain chat features for minors globally; ASL segments; no geo toggles.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 195,
+    "title": "City-level curfew for pilot compliance (Salt Lake City)",
+    "description": "Gate new replies feature to EEA; takedown transparency per DSA; FR tracks exposure; GH routes regionally.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 196,
+    "title": "EU-only visibility lock for flagged content",
+    "description": "Scan uploads for suspected CSAM; tag T5; auto-report via CDS to NCMEC; human-in-the-loop validation; real-time routing.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)",
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 197,
+    "title": "Province-specific age verification (Canada)",
+    "description": "Scan uploads for suspected CSAM; tag T5; auto-report via CDS to NCMEC; human-in-the-loop validation; real-time routing.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 198,
+    "title": "Age gates per Indonesia-like child law (regional)",
+    "description": "Implement age verification and restricted features per local child rules; region toggles via GH; CDS audit trail.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": []
+  },
+  {
+    "id": 199,
+    "title": "Parental notifications aligned with Florida statute",
+    "description": "Apply softblock/visibility lock in EU only for NSP-tagged content; GH restricts to EU; Redline on escalation; EchoTrace for traceability.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)",
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 200,
+    "title": "Parental notifications aligned with Florida statute",
+    "description": "Apply provincial proof-of-age gate before access; GH maps provinces; CDS logs decisions.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 201,
+    "title": "France download filter per copyright carve-out",
+    "description": "Block download for users in France when feature touches copyrighted media; GH gates; EchoTrace records.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Utah Social Media Regulation Act"
+    ]
+  },
+  {
+    "id": 202,
+    "title": "EU-only visibility lock for flagged content",
+    "description": "Ensure logs stored within Brazil regions; DRT aligned with local timelines; CDS audits storage path.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 203,
+    "title": "EU consent messaging per DSA transparency",
+    "description": "Night curfew login block limited to target city; ASL+GH enforce; EchoTrace keeps city-scope logs.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 204,
+    "title": "GIF support with minor filtering",
+    "description": "GH limits by country purely for product testing; no legal obligation; FR tracks exposure; metrics-only change.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 205,
+    "title": "KR watermark trial",
+    "description": "Chat restrictions limited by province; might be ops constraint vs policy; unclear.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 206,
+    "title": "Age gates per Indonesia-like child law (regional)",
+    "description": "Scan uploads for suspected CSAM; tag T5; auto-report via CDS to NCMEC; human-in-the-loop validation; real-time routing.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 207,
+    "title": "NSP auto-flagging (global)",
+    "description": "T5 escalations via CDS; applies regardless of region; no GH routes.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 208,
+    "title": "Province-gated chat limit test",
+    "description": "Blocking downloads only in France during test; may be business/legal—needs review.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 209,
+    "title": "Universal upload limits for new users",
+    "description": "Snowcap enforces stricter moderation underage authors worldwide; platform-wide policy.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 210,
+    "title": "Guest mode disables PF everywhere",
+    "description": "CDS watches payout anomalies globally; DRT for log trimming; no region flag.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 211,
+    "title": "France download filter per copyright carve-out",
+    "description": "Enable watermark for KR per disclosure; GH limits to KR; CDS verifies compliance.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 212,
+    "title": "Longform posts with stricter moderation for minors",
+    "description": "Layout experimentation in CA, US, BR, ID to collect metrics; business-driven geofence, not legal.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 213,
+    "title": "NSP auto-flagging (global)",
+    "description": "CDS watches payout anomalies globally; DRT for log trimming; no region flag.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence or safety measure is business/product-wide; no cited regional law; no geo compliance needed.",
+    "regulations": []
+  },
+  {
+    "id": 214,
+    "title": "KR watermark trial",
+    "description": "Blocking downloads only in France during test; may be business/legal—needs review.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 215,
+    "title": "France download filter per copyright carve-out",
+    "description": "Enable autoplay only in US; GH routes; Spanner evaluates metrics; legal requirement documented for US-only exposure.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 216,
+    "title": "France download filter per copyright carve-out",
+    "description": "Extend Jellybean parental control: notify verified parents for restricted attempts in Florida; IMT+BB monitor; CDS logs.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "Florida Online Protections for Minors"
+    ]
+  },
+  {
+    "id": 217,
+    "title": "US-only autoplay experiment",
+    "description": "Available only in South Korea initially; intention unclear if legal or business; GH enforces region.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional scoping mentioned but legal intent not explicit; requires human review.",
+    "regulations": []
+  },
+  {
+    "id": 218,
+    "title": "Age gates per Indonesia-like child law (regional)",
+    "description": "Apply softblock/visibility lock in EU only for NSP-tagged content; GH restricts to EU; Redline on escalation; EchoTrace for traceability.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 219,
+    "title": "Age gates per Indonesia-like child law (regional)",
+    "description": "Night curfew login block limited to target city; ASL+GH enforce; EchoTrace keeps city-scope logs.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": []
+  },
+  {
+    "id": 220,
+    "title": "Brazil data localization for logs",
+    "description": "Block download for users in France when feature touches copyrighted media; GH gates; EchoTrace records.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Region-specific legal obligation stated or implied; enforcement scoped via GH; requires geo logic.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 10001,
+    "title": "Curfew login blocker with ASL and GH for Utah minors",
+    "description": "Complies with Utah Social Media Regulation Act; ASL detects minors; GH limits to Utah; EchoTrace logs; ShadowMode rollout.",
+    "needs_geo_logic": "yes",
+    "reasoning": "Explicit legal requirement tied to Utah; geo-scoped enforcement via GH.",
+    "regulations": [
+      "Utah Social Media Regulation Act"
+    ]
+  },
+  {
+    "id": 10002,
+    "title": "PF default toggle with NR enforcement for California teens",
+    "description": "Complies with California SB-976; PF off by default for under-18 in CA; parental opt-in; GH routes; FR monitors.",
+    "needs_geo_logic": "yes",
+    "reasoning": "State-specific rule in California; feature must apply only to that region.",
+    "regulations": [
+      "California SB-976 (Kids Social Media)"
+    ]
+  },
+  {
+    "id": 10003,
+    "title": "Content visibility lock with NSP for EU DSA",
+    "description": "Softblock NSP-labeled content; enforcement restricted to EU; GH gating; EchoTrace; Redline as needed.",
+    "needs_geo_logic": "yes",
+    "reasoning": "DSA compliance is EU-scoped; requires regional enforcement and audit trail.",
+    "regulations": [
+      "EU Digital Services Act (DSA)"
+    ]
+  },
+  {
+    "id": 10004,
+    "title": "Child abuse content scanner using T5 and CDS triggers",
+    "description": "US federal reporting to NCMEC for suspected CSAM; T5 tagging; CDS auto-reports; human validation.",
+    "needs_geo_logic": "no",
+    "reasoning": "CSAM reporting path applies platform-wide; not limited by geography for enforcement logic.",
+    "regulations": [
+      "US CSAM reporting (NCMEC)"
+    ]
+  },
+  {
+    "id": 10005,
+    "title": "Geofences feature rollout in US for market testing",
+    "description": "Feature rollout only in US for testing cohorts; no mention of legal mapping; business-driven.",
+    "needs_geo_logic": "no",
+    "reasoning": "Geofence is product/market driven, not a legal requirement.",
+    "regulations": []
+  },
+  {
+    "id": 10006,
+    "title": "A video filter feature is available globally except KR",
+    "description": "Excludes KR without justification; unclear if policy or ops limitation; needs human review.",
+    "needs_geo_logic": "ambiguous",
+    "reasoning": "Regional exclusion with no legal reasoning provided.",
+    "regulations": []
+  }
+]
