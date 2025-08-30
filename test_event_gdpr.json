@@ -1,8 +1,0 @@
-{
-  "httpMethod": "POST",
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "body": "{\"instruction\": \"Analyse the feature artifact and decide if geo-specific compliance logic is needed. Explain why and cite the relevant regulation if any.\", \"input\": \"Feature Name: EU Cookie Consent Banner\\nFeature Description: Display cookie consent banner for EU users accessing the website with options to accept or reject non-essential cookies for analytics and marketing purposes.\\n\\nLaw Context (structured JSON):\\n[{\\\"law\\\": \\\"GDPR Article 7\\\", \\\"jurisdiction\\\": \\\"EU\\\", \\\"requirement\\\": \\\"Valid consent for data processing\\\"}, {\\\"law\\\": \\\"GDPR Article 6\\\", \\\"jurisdiction\\\": \\\"EU\\\", \\\"requirement\\\": \\\"Lawful basis for processing personal data\\\"}]\"}"
-}
-
