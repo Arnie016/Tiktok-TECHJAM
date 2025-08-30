@@ -1,0 +1,143 @@
+{
+  "timestamp": "2025-08-30T17:34:45.758131",
+  "endpoint_name": "phi-2",
+  "summary": {
+    "total_tests": 3,
+    "successful_responses": 3,
+    "success_rate": 1.0,
+    "average_response_time": 5.693461736043294,
+    "average_quality_score": 0.7,
+    "jurisdiction_hallucinations": 2,
+    "repetition_issues": 0,
+    "incomplete_responses": 0,
+    "format_issues": 2
+  },
+  "detailed_results": [
+    {
+      "test_name": "FL Anonymous Age Verification - Empty Context",
+      "success": true,
+      "response_time": 6.496469020843506,
+      "quality_score": 0.8,
+      "generated_text": "[\n  {\n    \"law\": \"Florida Deceptive and Unfair Trade Practices Act\",\n    \"name\": \"FUTPA\"\n  },\n  {\n    \"law\": \"Florida Deceptive and Unfair Trade Practices Act\",\n    \"name\": \"FDCPA\"\n  },\n]\n\n## INPUT\n\n##OUTPUT\nCompliance flag: Yes\nRelevant law: Florida Deceptive and Unfair Trade Practices Act (FUTPA) and Florida Deceptive and Unfair Trade Practices Act (FDCPA)",
+      "analysis": {
+        "length": 360,
+        "word_count": 51,
+        "has_json_structure": true,
+        "has_repetition": false,
+        "is_incomplete": false,
+        "contains_expected_keywords": [],
+        "jurisdiction_mentions": [
+          "FL"
+        ],
+        "law_mentions": [
+          "FUTPA",
+          "FDCPA",
+          "INPUT",
+          "OUTPUT",
+          "FUTPA",
+          "FDCPA",
+          "Unfair Trade Practices Act",
+          "Unfair Trade Practices Act",
+          "Unfair Trade Practices Act",
+          "Unfair Trade Practices Act"
+        ],
+        "compliance_flags": [],
+        "text": "[\n  {\n    \"law\": \"Florida Deceptive and Unfair Trade Practices Act\",\n    \"name\": \"FUTPA\"\n  },\n  {\n    \"law\": \"Florida Deceptive and Unfair Trade Practices Act\",\n    \"name\": \"FDCPA\"\n  },\n]\n\n## INPUT\n\n##OUTPUT\nCompliance flag: Yes\nRelevant law: Florida Deceptive and Unfair Trade Practices Act (FUTPA) and Florida Deceptive and Unfair Trade Practices Act (FDCPA)"
+      },
+      "expected_keywords": [
+        "not enough information",
+        "n/a",
+        "no relevant statute"
+      ],
+      "expected_jurisdiction": "FL",
+      "jurisdiction_hallucination": false,
+      "has_repetition": false,
+      "is_incomplete": false,
+      "missing_json": false
+    },
+    {
+      "test_name": "Algorithmic Recommendation System - EU Context",
+      "success": true,
+      "response_time": 5.033005952835083,
+      "quality_score": 0.7,
+      "generated_text": "Compliance Flag: Yes or No\nLaw: The Digital Services Act (DSA)\nReason: The feature is not geo-compliant because it does not comply with Article 11 of the DSA, which requires that online platforms make available to their users \"clear and accurate information\" about the origin and content of online communications and other data, including metadata. The feature does not disclose the source of the content recommendation data, which could be from a third-party service provider or a non-EU country.",
+      "analysis": {
+        "length": 497,
+        "word_count": 79,
+        "has_json_structure": false,
+        "has_repetition": false,
+        "is_incomplete": false,
+        "contains_expected_keywords": [],
+        "jurisdiction_mentions": [
+          "FL",
+          "CA",
+          "EU",
+          "US"
+        ],
+        "law_mentions": [
+          "DSA",
+          "DSA",
+          "EU",
+          "No\nLaw",
+          "The Digital Services Act"
+        ],
+        "compliance_flags": [
+          "compliant"
+        ],
+        "text": "Compliance Flag: Yes or No\nLaw: The Digital Services Act (DSA)\nReason: The feature is not geo-compliant because it does not comply with Article 11 of the DSA, which requires that online platforms make available to their users \"clear and accurate information\" about the origin and content of online communications and other data, including metadata. The feature does not disclose the source of the content recommendation data, which could be from a third-party service provider or a non-EU country."
+      },
+      "expected_keywords": [
+        "needs geo-compliance",
+        "eu",
+        "dsa",
+        "recommender"
+      ],
+      "expected_jurisdiction": "EU",
+      "jurisdiction_hallucination": true,
+      "has_repetition": false,
+      "is_incomplete": false,
+      "missing_json": true
+    },
+    {
+      "test_name": "Targeted Advertising Consent Manager - CA Context",
+      "success": true,
+      "response_time": 5.550910234451294,
+      "quality_score": 0.6,
+      "generated_text": "Answer:\n\nThe compliance flag for the feature is HIGH, because the feature authorizes the exemption of the advertisement from the geo-compliance requirements if the advertising medium limits the characters of an advertisement or otherwise renders compliance with the requirements impractical. This is inconsistent with the CATEGORY_CITY_PRIVACY law, which requires that an advertisement be displayed in the country or region of the consumer's choice. The reason for the discrepancy is that the feature does not consider the location of the consumer who views the advertisement, but rather the location of the medium that delivers the advertisement.",
+      "analysis": {
+        "length": 647,
+        "word_count": 95,
+        "has_json_structure": false,
+        "has_repetition": false,
+        "is_incomplete": false,
+        "contains_expected_keywords": [],
+        "jurisdiction_mentions": [
+          "FL",
+          "CA",
+          "US"
+        ],
+        "law_mentions": [
+          "HIGH"
+        ],
+        "compliance_flags": [],
+        "text": "Answer:\n\nThe compliance flag for the feature is HIGH, because the feature authorizes the exemption of the advertisement from the geo-compliance requirements if the advertising medium limits the characters of an advertisement or otherwise renders compliance with the requirements impractical. This is inconsistent with the CATEGORY_CITY_PRIVACY law, which requires that an advertisement be displayed in the country or region of the consumer's choice. The reason for the discrepancy is that the feature does not consider the location of the consumer who views the advertisement, but rather the location of the medium that delivers the advertisement."
+      },
+      "expected_keywords": [
+        "needs geo-compliance",
+        "targeted advertising",
+        "consent"
+      ],
+      "expected_jurisdiction": "CA",
+      "jurisdiction_hallucination": true,
+      "has_repetition": false,
+      "is_incomplete": false,
+      "missing_json": true
+    }
+  ],
+  "recommendations": [
+    "\u26a0\ufe0f JURISDICTION HALLUCINATIONS: Add more training data with clear jurisdiction boundaries",
+    "\u26a0\ufe0f FORMAT ISSUES: Train model to consistently output structured JSON responses",
+    "\ud83d\udcca SMALL TEST SET: Expand test cases for better evaluation coverage",
+    "\ud83d\udd27 IMMEDIATE FIX NEEDED: Model is not generating proper JSON format - retrain with JSON examples"
+  ]
+}

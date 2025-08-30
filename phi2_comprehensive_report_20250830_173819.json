@@ -1,0 +1,131 @@
+{
+  "timestamp": "2025-08-30T17:38:19.414603",
+  "endpoint_name": "phi-2",
+  "summary": {
+    "total_tests": 3,
+    "successful_responses": 3,
+    "success_rate": 1.0,
+    "average_response_time": 4.478576421737671,
+    "average_quality_score": 0.48333333333333334,
+    "jurisdiction_hallucinations": 3,
+    "repetition_issues": 0,
+    "incomplete_responses": 1,
+    "format_issues": 2
+  },
+  "detailed_results": [
+    {
+      "test_name": "FL Anonymous Age Verification - Empty Context",
+      "success": true,
+      "response_time": 6.7144341468811035,
+      "quality_score": 0.6,
+      "generated_text": "Feature: FL Anonymous Age Verification\n\nGeo-compliance requirements analysis:\n\nFeature: FL Anonymous Age Verification\n\nGeo-compliance flag: Yes\n\nGeo-compliance reason: The feature is geo-restricted to Florida users only, which means it cannot be accessed or used by non-Florida residents or users in other states. This is a geo-compliance requirement that aims to prevent the underage access or use of the app's content, such as games that may contain adult or 'harmful to minors' content, and to comply with the state law of Florida, which prohibits the use of certain",
+      "analysis": {
+        "length": 569,
+        "word_count": 87,
+        "has_json_structure": false,
+        "has_repetition": false,
+        "is_incomplete": false,
+        "contains_expected_keywords": [],
+        "jurisdiction_mentions": [
+          "FL",
+          "CA",
+          "US",
+          "NY"
+        ],
+        "law_mentions": [
+          "FL",
+          "FL"
+        ],
+        "compliance_flags": [],
+        "text": "Feature: FL Anonymous Age Verification\n\nGeo-compliance requirements analysis:\n\nFeature: FL Anonymous Age Verification\n\nGeo-compliance flag: Yes\n\nGeo-compliance reason: The feature is geo-restricted to Florida users only, which means it cannot be accessed or used by non-Florida residents or users in other states. This is a geo-compliance requirement that aims to prevent the underage access or use of the app's content, such as games that may contain adult or 'harmful to minors' content, and to comply with the state law of Florida, which prohibits the use of certain"
+      },
+      "expected_keywords": [
+        "not enough information",
+        "n/a",
+        "no relevant statute"
+      ],
+      "expected_jurisdiction": "FL",
+      "jurisdiction_hallucination": true,
+      "has_repetition": false,
+      "is_incomplete": false,
+      "missing_json": false
+    },
+    {
+      "test_name": "Algorithmic Recommendation System - EU Context",
+      "success": true,
+      "response_time": 0.5900430679321289,
+      "quality_score": 0.2,
+      "generated_text": "Compliance Flag:",
+      "analysis": {
+        "length": 16,
+        "word_count": 2,
+        "has_json_structure": false,
+        "has_repetition": false,
+        "is_incomplete": true,
+        "contains_expected_keywords": [],
+        "jurisdiction_mentions": [
+          "FL"
+        ],
+        "law_mentions": [],
+        "compliance_flags": [],
+        "text": "Compliance Flag:"
+      },
+      "expected_keywords": [
+        "needs geo-compliance",
+        "eu",
+        "dsa",
+        "recommender"
+      ],
+      "expected_jurisdiction": "EU",
+      "jurisdiction_hallucination": true,
+      "has_repetition": false,
+      "is_incomplete": true,
+      "missing_json": true
+    },
+    {
+      "test_name": "Targeted Advertising Consent Manager - CA Context",
+      "success": true,
+      "response_time": 6.13125205039978,
+      "quality_score": 0.65,
+      "generated_text": "## Solution\n\n```python\n# The compliance flag is HIGH, as the feature allows the advertisement to be exempt from some requirements if they are impractical to implement.\n# The relevant law is part of the EU GDPR, which sets rules for the protection of personal data and privacy. The feature allows the use of profiling, which is a form of processing that involves making inferences about a person based on their personal data, without their explicit consent or knowledge.\n# The reason is that the feature may pose a risk to the rights and freedoms of the data subjects, especially minors, who may be exposed to unwanted or",
+      "analysis": {
+        "length": 620,
+        "word_count": 108,
+        "has_json_structure": false,
+        "has_repetition": false,
+        "is_incomplete": false,
+        "contains_expected_keywords": [],
+        "jurisdiction_mentions": [
+          "FL",
+          "CA",
+          "EU",
+          "US"
+        ],
+        "law_mentions": [
+          "HIGH",
+          "EU GDPR"
+        ],
+        "compliance_flags": [],
+        "text": "## Solution\n\n```python\n# The compliance flag is HIGH, as the feature allows the advertisement to be exempt from some requirements if they are impractical to implement.\n# The relevant law is part of the EU GDPR, which sets rules for the protection of personal data and privacy. The feature allows the use of profiling, which is a form of processing that involves making inferences about a person based on their personal data, without their explicit consent or knowledge.\n# The reason is that the feature may pose a risk to the rights and freedoms of the data subjects, especially minors, who may be exposed to unwanted or"
+      },
+      "expected_keywords": [
+        "needs geo-compliance",
+        "targeted advertising",
+        "consent"
+      ],
+      "expected_jurisdiction": "CA",
+      "jurisdiction_hallucination": true,
+      "has_repetition": false,
+      "is_incomplete": false,
+      "missing_json": true
+    }
+  ],
+  "recommendations": [
+    "\ud83d\udcc9 LOW QUALITY SCORE: Consider retraining with better examples and prompt engineering",
+    "\u26a0\ufe0f JURISDICTION HALLUCINATIONS: Add more training data with clear jurisdiction boundaries",
+    "\u26a0\ufe0f INCOMPLETE RESPONSES: Adjust generation parameters or improve training",
+    "\u26a0\ufe0f FORMAT ISSUES: Train model to consistently output structured JSON responses",
+    "\ud83d\udcca SMALL TEST SET: Expand test cases for better evaluation coverage",
+    "\ud83d\udd27 IMMEDIATE FIX NEEDED: Model is not generating proper JSON format - retrain with JSON examples"
+  ]
+}
