@@ -1176,6 +1176,11 @@
             // Convert structured compliance data to the format expected by the UI
             const analysis = convertComplianceToAnalysis(compliance, rawResponse);
             
+            // Debug: Check if we're getting the right compliance status
+            console.log('Final analysis.hasGeoCompliance:', analysis.hasGeoCompliance);
+            console.log('compliance.need_geo_logic:', compliance.need_geo_logic);
+            console.log('compliance.jurisdictions:', compliance.jurisdictions);
+            
             // Debug logging
             console.log('Analysis summary:', analysis.summary);
             
@@ -1818,6 +1823,12 @@ Be professional, helpful, and provide specific, actionable advice. If the user a
             if (rawResponse && rawResponse.trim()) {
                 console.log('Using raw response:', rawResponse);
                 return rawResponse;
+            }
+            
+            // If no raw response, use the description field from compliance
+            if (compliance.description && compliance.description.trim()) {
+                console.log('Using compliance description:', compliance.description);
+                return compliance.description;
             }
             
             const jurisdictions = compliance.jurisdictions || [];
