@@ -121,7 +121,7 @@ Visit [https://pacmanlaw.info](https://pacmanlaw.info) and try the web interface
 
 ### 3. Test the API Directly
 ```bash
-curl -X POST https://bvemy4jegpeyk3tf2asnihjn3a0kvwyq.lambda-url.us-west-2.on.aws/ \
+curl -X POST https://vcf7glhsl7w4yccfzny6tigqmm0znsxx.lambda-url.us-west-2.on.aws/ \
   -H "Content-Type: application/json" \
   -d '{
     "instruction": "Analyse the feature artifact and decide if geo-specific compliance logic is needed.",
@@ -343,7 +343,7 @@ Built by **@hema** using:
 
 For questions or support:
 - **Live Demo**: [https://pacmanlaw.info](https://pacmanlaw.info)
-- **API Endpoint**: https://bvemy4jegpeyk3tf2asnihjn3a0kvwyq.lambda-url.us-west-2.on.aws/
+- **API Endpoint**: https://vcf7glhsl7w4yccfzny6tigqmm0znsxx.lambda-url.us-west-2.on.aws/
 - **Documentation**: Check the `src/docs/` directory
 
 ## 📋 Deliverables Checklist

@@ -103,7 +103,7 @@ class Phi2LambdaDeployer:
             
             with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
                 # Add Lambda function code
-                zipf.write('/Users/hema/Desktop/bedrock/phi2_lambda_function.py', 'lambda_function.py')
+                zipf.write('/Users/hema/Desktop/bedrock/Lamda functions/phi2_lambda_function.py', 'lambda_function.py')
             
             # Read zip file content
             with open(zip_path, 'rb') as f:

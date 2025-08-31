@@ -12,7 +12,7 @@ from datetime import datetime
 import pandas as pd
 
 # Test dataset and API endpoint
-FUNCTION_URL = "https://bvemy4jegpeyk3tf2asnihjn3a0kvwyq.lambda-url.us-west-2.on.aws/"
+FUNCTION_URL = "https://vcf7glhsl7w4yccfzny6tigqmm0znsxx.lambda-url.us-west-2.on.aws/"
 TEST_CASES = [
     {
         "name": "GDPR Cookie Consent",
