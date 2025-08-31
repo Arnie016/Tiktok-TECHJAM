@@ -753,7 +753,7 @@
             if (preset) {
                 const featureNameElement = document.getElementById('featureName');
                 const featureDescriptionElement = document.getElementById('featureDescription');
-                const lawContextElement = document.getElementById('lawContext');
+                const lawContextElement = document.getElementById('legalContext');
                 
                 if (featureNameElement) featureNameElement.value = preset.name;
                 if (featureDescriptionElement) featureDescriptionElement.value = preset.description;
@@ -1164,17 +1164,17 @@
                 return;
             }
 
-            // Extract the generated text from Phi-2 response
-            const generatedText = result.analysis?.generated_text || '';
+            // Use structured compliance data from Lambda response
+            const compliance = result.compliance || {};
             const metadata = result.metadata || {};
             
-            // Enhanced parsing to extract structured information
-            const analysis = parseAnalysis(generatedText);
+            // Convert structured compliance data to the format expected by the UI
+            const analysis = convertComplianceToAnalysis(compliance);
             
             // Store analysis data globally for export functions
             window.currentAnalysis = analysis;
             window.currentMetadata = metadata;
-            window.currentRawResponse = generatedText;
+            window.currentRawResponse = JSON.stringify(compliance, null, 2);
             
             // Update chat context with new analysis
             if (typeof updateChatContext === 'function') {
@@ -1783,6 +1783,147 @@ Be professional, helpful, and provide specific, actionable advice. If the user a
                 });
             }
         });
+
+        function convertComplianceToAnalysis(compliance) {
+            const analysis = {
+                hasGeoCompliance: compliance.need_geo_logic || false,
+                summary: generateSummaryFromCompliance(compliance),
+                jurisdictions: convertJurisdictions(compliance.jurisdictions || []),
+                laws: convertLegalCitations(compliance.legal_citations || []),
+                requirements: generateRequirements(compliance),
+                riskLevel: calculateRiskLevel(compliance),
+                complianceScore: Math.round((compliance.confidence || 0.5) * 100)
+            };
+            
+            return analysis;
+        }
+
+        function generateSummaryFromCompliance(compliance) {
+            const jurisdictions = compliance.jurisdictions || [];
+            const dataCategories = compliance.data_categories || [];
+            const lawfulBasis = compliance.lawful_basis || [];
+            const consentRequired = compliance.consent_required || false;
+            
+            let summary = '';
+            
+            if (compliance.need_geo_logic) {
+                summary += 'GEO-SPECIFIC COMPLIANCE REQUIRED\n\n';
+                
+                if (jurisdictions.length > 0) {
+                    summary += `This feature requires geo-specific compliance logic for the following jurisdictions: ${jurisdictions.join(', ')}.\n\n`;
+                }
+                
+                if (dataCategories.length > 0) {
+                    summary += `Data Categories: ${dataCategories.join(', ')}\n`;
+                }
+                
+                if (lawfulBasis.length > 0) {
+                    summary += `Lawful Basis: ${lawfulBasis.join(', ')}\n`;
+                }
+                
+                if (consentRequired) {
+                    summary += 'User consent is required for data processing.\n';
+                }
+                
+                summary += '\nImplementation should include jurisdiction-specific logic to ensure compliance with applicable regulations.';
+            } else {
+                summary += 'STANDARD IMPLEMENTATION SUFFICIENT\n\n';
+                summary += 'This feature does not require geo-specific compliance logic. Standard implementation practices are sufficient.';
+            }
+            
+            return summary;
+        }
+
+        function convertJurisdictions(jurisdictions) {
+            const jurisdictionMap = {
+                'EU': { code: 'EU', name: 'European Union', flag: '🇪🇺', color: '#d2691e' },
+                'US-CA': { code: 'US-CA', name: 'California', flag: '🇺🇸', color: '#cd853f' },
+                'US': { code: 'US', name: 'United States', flag: '🇺🇸', color: '#cd853f' },
+                'UK': { code: 'UK', name: 'United Kingdom', flag: '🇬🇧', color: '#d2691e' },
+                'Canada': { code: 'CA', name: 'Canada', flag: '🇨🇦', color: '#daa520' },
+                'Brazil': { code: 'BR', name: 'Brazil', flag: '🇧🇷', color: '#daa520' }
+            };
+            
+            return jurisdictions.map(jurisdiction => jurisdictionMap[jurisdiction] || {
+                code: jurisdiction,
+                name: jurisdiction,
+                flag: '🌍',
+                color: '#7f8c8d'
+            });
+        }
+
+        function convertLegalCitations(legalCitations) {
+            return legalCitations.map(citation => {
+                const lawName = citation.law || citation;
+                const jurisdiction = citation.jurisdiction || 'Unknown';
+                
+                return {
+                    name: lawName.split(' ')[0],
+                    fullName: getLawFullName(lawName.split(' ')[0]),
+                    article: lawName.includes('Article') ? lawName.match(/Article\s+(\d+)/)?.[1] : '',
+                    description: generateLawDescription(lawName.split(' ')[0], lawName.match(/Article\s+(\d+)/)?.[1] || ''),
+                    color: getLawColor(lawName.split(' ')[0]),
+                    icon: getLawIcon(lawName.split(' ')[0]),
+                    jurisdiction: jurisdiction
+                };
+            });
+        }
+
+        function generateRequirements(compliance) {
+            const requirements = [];
+            
+            if (compliance.need_geo_logic) {
+                requirements.push({
+                    title: 'Implement Geo-Detection Logic',
+                    description: 'Add jurisdiction detection based on user location or IP address',
+                    priority: 'Critical',
+                    effort: '2-3 sprints'
+                });
+                
+                if (compliance.consent_required) {
+                    requirements.push({
+                        title: 'Implement Consent Management',
+                        description: 'Add consent collection and management system',
+                        priority: 'High',
+                        effort: '1-2 sprints'
+                    });
+                }
+                
+                if (compliance.jurisdictions && compliance.jurisdictions.length > 0) {
+                    requirements.push({
+                        title: 'Jurisdiction-Specific Features',
+                        description: `Implement features specific to: ${compliance.jurisdictions.join(', ')}`,
+                        priority: 'High',
+                        effort: '1-2 sprints'
+                    });
+                }
+                
+                if (compliance.data_categories && compliance.data_categories.length > 0) {
+                    requirements.push({
+                        title: 'Data Category Handling',
+                        description: `Implement proper handling for: ${compliance.data_categories.join(', ')}`,
+                        priority: 'Medium',
+                        effort: '1 sprint'
+                    });
+                }
+            }
+            
+            return requirements;
+        }
+
+        function calculateRiskLevel(compliance) {
+            if (!compliance.need_geo_logic) return 'low';
+            
+            let riskScore = 0;
+            if (compliance.jurisdictions && compliance.jurisdictions.length > 0) riskScore += 2;
+            if (compliance.consent_required) riskScore += 2;
+            if (compliance.data_categories && compliance.data_categories.length > 0) riskScore += 1;
+            if (compliance.legal_citations && compliance.legal_citations.length > 0) riskScore += 1;
+            
+            if (riskScore >= 5) return 'high';
+            if (riskScore >= 3) return 'medium';
+            return 'low';
+        }
     </script>
 </body>
 </html>
