@@ -1,0 +1,9 @@
+test_case_id,test_case_name,input_feature_name,input_description,success,response_time_seconds,need_geo_logic,jurisdictions,legal_citations,data_categories,lawful_basis,consent_required,confidence,timestamp
+1,GDPR Cookie Consent,EU Cookie Consent Banner,Display cookie consent banner for EU users accessing the website.,False,0.901,ERROR,ERROR,ERROR,ERROR,ERROR,ERROR,ERROR,2025-08-31T08:17:10.620514
+2,US CCPA Privacy Rights,California Do Not Sell Button,Button for California residents to opt-out of data sales.,False,0.636,ERROR,ERROR,ERROR,ERROR,ERROR,ERROR,ERROR,2025-08-31T08:17:12.262670
+3,Simple UI Feature - No Compliance,Dark Mode Toggle,UI toggle for switching between light and dark themes.,False,0.645,ERROR,ERROR,ERROR,ERROR,ERROR,ERROR,ERROR,2025-08-31T08:17:13.914998
+4,Financial SOX Compliance,Financial Audit Logger,Logs financial transactions for compliance auditing.,False,0.656,ERROR,ERROR,ERROR,ERROR,ERROR,ERROR,ERROR,2025-08-31T08:17:15.576553
+5,COPPA Children's Privacy,Age Verification System,System to verify user age and implement parental controls for users under 13.,False,0.657,ERROR,ERROR,ERROR,ERROR,ERROR,ERROR,ERROR,2025-08-31T08:17:17.241163
+6,LGPD Brazil Data Processing,Brazil Data Processing Consent,Consent mechanism for data processing activities in Brazil.,False,0.667,ERROR,ERROR,ERROR,ERROR,ERROR,ERROR,ERROR,2025-08-31T08:17:18.915083
+7,UK GDPR Age Appropriate Design,UK Age Verification,Age verification system for UK users with age-appropriate design principles.,False,0.66,ERROR,ERROR,ERROR,ERROR,ERROR,ERROR,ERROR,2025-08-31T08:17:20.584086
+8,PIPEDA Canada Consent,Canada Privacy Consent,Privacy consent mechanism for Canadian users.,False,0.655,ERROR,ERROR,ERROR,ERROR,ERROR,ERROR,ERROR,2025-08-31T08:17:22.246968

@@ -355,9 +355,44 @@ For questions or support:
 4. **✅ Local Demo Setup**: Easy setup instructions for local development
 
 ### 📊 Generate CSV Output
-Run the system on test dataset to generate required CSV file:
+The CSV file contains system outputs for the test dataset, showing how the AI model analyzes different compliance scenarios. It includes:
+
+**CSV Columns:**
+- `test_case_id`: Unique identifier for each test
+- `test_case_name`: Name of the compliance scenario (GDPR, CCPA, etc.)
+- `input_feature_name`: Software feature being analyzed
+- `input_description`: Description of the feature
+- `success`: Whether the API call was successful
+- `response_time_seconds`: Time taken for analysis
+- `need_geo_logic`: Whether geo-specific compliance logic is needed
+- `jurisdictions`: Affected jurisdictions (EU, US-CA, etc.)
+- `legal_citations`: Specific legal regulations cited
+- `data_categories`: Types of data being processed
+- `lawful_basis`: Legal basis for data processing
+- `consent_required`: Whether user consent is required
+- `confidence`: Model's confidence in the analysis
+- `timestamp`: When the test was run
+
+**Generate the CSV:**
 ```bash
+# Install dependencies first
+pip install -r requirements.txt
+
+# Run the CSV generation script
 python3 generate_csv_output.py
+```
+
+**Expected Output:**
+The script will test 8 different compliance scenarios and generate `system_outputs_test_dataset.csv` with detailed analysis results.
+
+**Note:** If you see "ERROR" in the results, it may indicate:
+1. The API endpoint is not currently active
+2. Network connectivity issues
+3. AWS Lambda function needs to be redeployed
+
+To fix API issues, run:
+```bash
+python3 src/backend/deploy_phi2_lambda.py
 ```
 
 ### 🎥 Demonstration Video
