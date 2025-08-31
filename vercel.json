@@ -9,7 +9,7 @@
   "rewrites": [
     {
       "source": "/app",
-      "destination": "/src/ui/geo_compliance_ui.html"
+      "destination": "/geo_compliance_ui.html"
     }
   ],
   "headers": [
