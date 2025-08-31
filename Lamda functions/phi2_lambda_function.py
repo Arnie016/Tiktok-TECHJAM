@@ -28,13 +28,14 @@ def parse_compliance_response(text: str) -> Dict[str, Any]:
         'data_categories': [],
         'lawful_basis': [],
         'consent_required': False,
-        'confidence': 0.5
+        'confidence': 0.5,
+        'description': text  # Store the full description
     }
     
     text_lower = text.lower()
     
     # Check if geo-specific logic is needed
-    if any(phrase in text_lower for phrase in ['need', 'required', 'must', 'should', 'compliance', 'regulation']):
+    if any(phrase in text_lower for phrase in ['need', 'required', 'must', 'should', 'compliance', 'regulation', 'gdpr', 'ccpa', 'coppa', 'sox', 'lgpd', 'pipeda']):
         compliance_data['need_geo_logic'] = True
     
     # Extract jurisdictions
@@ -52,23 +53,43 @@ def parse_compliance_response(text: str) -> Dict[str, Any]:
             if jurisdiction not in compliance_data['jurisdictions']:
                 compliance_data['jurisdictions'].append(jurisdiction)
     
-    # Extract legal citations
+    # Enhanced legal citations extraction
     legal_patterns = [
-        r'gdpr\s+article\s+\d+',
-        r'ccpa\s+section\s+\d+',
-        r'coppa',
-        r'sox\s+section\s+\d+',
-        r'lgpd\s+article\s+\d+',
-        r'pipeda\s+principle\s+\d+'
+        (r'gdpr\s+article\s+(\d+)', 'GDPR Article {}', 'EU'),
+        (r'ccpa\s+section\s+(\d+)', 'CCPA Section {}', 'US-CA'),
+        (r'coppa', 'COPPA', 'US'),
+        (r'sox\s+section\s+(\d+)', 'SOX Section {}', 'US'),
+        (r'lgpd\s+article\s+(\d+)', 'LGPD Article {}', 'Brazil'),
+        (r'pipeda\s+principle\s+(\d+)', 'PIPEDA Principle {}', 'Canada')
     ]
     
-    for pattern in legal_patterns:
+    for pattern, format_str, jurisdiction in legal_patterns:
         matches = re.findall(pattern, text, re.IGNORECASE)
         for match in matches:
+            if isinstance(match, tuple):
+                article_num = match[0]
+                law_name = format_str.format(article_num)
+            else:
+                law_name = format_str
             compliance_data['legal_citations'].append({
-                'law': match.upper(),
-                'jurisdiction': 'EU' if 'gdpr' in match.lower() else 'US-CA' if 'ccpa' in match.lower() else 'US'
+                'law': law_name.upper(),
+                'jurisdiction': jurisdiction,
+                'description': f'Applies to {jurisdiction} jurisdiction'
             })
+    
+    # Also extract laws mentioned in the original context
+    if 'gdpr article 7' in text_lower:
+        compliance_data['legal_citations'].append({
+            'law': 'GDPR ARTICLE 7',
+            'jurisdiction': 'EU',
+            'description': 'Valid consent for data processing'
+        })
+    if 'gdpr article 6' in text_lower:
+        compliance_data['legal_citations'].append({
+            'law': 'GDPR ARTICLE 6',
+            'jurisdiction': 'EU',
+            'description': 'Lawful basis for processing personal data'
+        })
     
     # Extract data categories
     data_patterns = {
@@ -213,6 +234,7 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         structured_response = {
             'success': True,
             'compliance': compliance_data,
+            'raw_response': generated_text,  # Add the raw model response
             'metadata': {
                 'model_version': 'phi2-v5',
                 'endpoint': ENDPOINT_NAME,
