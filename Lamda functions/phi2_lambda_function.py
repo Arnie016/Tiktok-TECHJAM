@@ -34,9 +34,38 @@ def parse_compliance_response(text: str) -> Dict[str, Any]:
     
     text_lower = text.lower()
     
-    # Check if geo-specific logic is needed
-    if any(phrase in text_lower for phrase in ['need', 'required', 'must', 'should', 'compliance', 'regulation', 'gdpr', 'ccpa', 'coppa', 'sox', 'lgpd', 'pipeda']):
+    # Check if geo-specific logic is needed - be more specific
+    # Look for positive indicators of geo-compliance requirements
+    positive_indicators = [
+        'requires geo', 'needs geo', 'geo-specific', 'geo-based',
+        'gdpr compliance', 'ccpa compliance', 'eu compliance',
+        'california compliance', 'jurisdiction-specific',
+        'location-based', 'region-specific'
+    ]
+    
+    # Look for negative indicators that explicitly say no geo-compliance is needed
+    negative_indicators = [
+        'does not require geo', 'does not need geo', 'no geo-specific',
+        'no geo-based', 'standard implementation', 'no jurisdiction-specific',
+        'not location-based', 'not region-specific', 'no specific regulations',
+        'no specific laws', 'no regulations', 'no laws'
+    ]
+    
+    # Check for negative indicators first
+    has_negative = any(phrase in text_lower for phrase in negative_indicators)
+    
+    # Check for positive indicators
+    has_positive = any(phrase in text_lower for phrase in positive_indicators)
+    
+    # Set geo-compliance requirement based on indicators
+    if has_positive and not has_negative:
         compliance_data['need_geo_logic'] = True
+    elif has_negative:
+        compliance_data['need_geo_logic'] = False
+    else:
+        # Fallback: check for specific jurisdiction mentions
+        jurisdiction_mentions = text_lower.count('eu') + text_lower.count('gdpr') + text_lower.count('ccpa') + text_lower.count('california')
+        compliance_data['need_geo_logic'] = jurisdiction_mentions > 0
     
     # Extract jurisdictions
     jurisdiction_patterns = {

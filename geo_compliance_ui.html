@@ -1793,6 +1793,9 @@ Be professional, helpful, and provide specific, actionable advice. If the user a
         });
 
         function convertComplianceToAnalysis(compliance, rawResponse) {
+            console.log('convertComplianceToAnalysis called with:', { compliance, rawResponse });
+            console.log('compliance.need_geo_logic:', compliance.need_geo_logic);
+            
             const analysis = {
                 hasGeoCompliance: compliance.need_geo_logic || false,
                 summary: generateSummaryFromCompliance(compliance, rawResponse),
@@ -1803,6 +1806,7 @@ Be professional, helpful, and provide specific, actionable advice. If the user a
                 complianceScore: Math.round((compliance.confidence || 0.5) * 100)
             };
             
+            console.log('Final analysis:', analysis);
             return analysis;
         }
 
