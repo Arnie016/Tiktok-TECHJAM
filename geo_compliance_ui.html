@@ -1169,8 +1169,15 @@
             const metadata = result.metadata || {};
             const rawResponse = result.raw_response || '';
             
+            // Debug logging
+            console.log('Raw response:', rawResponse);
+            console.log('Compliance:', compliance);
+            
             // Convert structured compliance data to the format expected by the UI
             const analysis = convertComplianceToAnalysis(compliance, rawResponse);
+            
+            // Debug logging
+            console.log('Analysis summary:', analysis.summary);
             
             // Store analysis data globally for export functions
             window.currentAnalysis = analysis;
@@ -1800,8 +1807,12 @@ Be professional, helpful, and provide specific, actionable advice. If the user a
         }
 
         function generateSummaryFromCompliance(compliance, rawResponse) {
+            // Debug logging
+            console.log('generateSummaryFromCompliance called with:', { compliance, rawResponse });
+            
             // Use the raw response if available, otherwise fall back to structured data
             if (rawResponse && rawResponse.trim()) {
+                console.log('Using raw response:', rawResponse);
                 return rawResponse;
             }
             
