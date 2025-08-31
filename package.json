@@ -1,12 +1,15 @@
 {
-  "name": "tiktok-geo-compliance-ui",
+  "name": "geo-compliance-analyzer",
   "version": "1.0.0",
-  "description": "TikTok Geo-Regulation Governance - From Guesswork to Governance: Automated Compliance Analysis",
+  "description": "AI-Powered Legal Compliance Analysis for Global Software Features",
   "main": "geo_compliance_ui.html",
   "scripts": {
     "dev": "python3 -m http.server 8000",
     "build": "echo 'Static site - no build required'",
-    "start": "echo 'Static site deployed'"
+    "start": "echo 'Static site deployed'",
+    "test": "python3 tests/test_phi2_lambda.py",
+    "deploy": "python3 src/backend/deploy_phi2_lambda.py",
+    "setup": "pip install -r requirements.txt"
   },
   "keywords": [
     "compliance",
@@ -14,16 +17,29 @@
     "privacy",
     "gdpr",
     "ccpa",
-    "tiktok",
     "legal-tech",
     "llm",
-    "phi-2"
+    "phi-2",
+    "aws-lambda",
+    "sagemaker",
+    "ai",
+    "legal-compliance"
   ],
-  "author": "TikTok Enterprise Compliance Team",
+  "author": "Hema",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tiktok/geo-compliance-analyzer"
+    "url": "https://github.com/Arnie016/Tiktok-TECHJAM"
   },
-  "homepage": "https://geo-compliance.vercel.app"
+  "homepage": "https://pacmanlaw.info",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }

@@ -103,10 +103,23 @@ Modern software companies face complex compliance requirements across multiple j
 
 ## 🛠️ Quick Start
 
-### 1. Test the Live Demo
-Visit [https://geo-compliance.vercel.app](https://geo-compliance.vercel.app) and try the web interface.
+### 1. Setup and Installation
+```bash
+# Clone the repository
+git clone https://github.com/Arnie016/Tiktok-TECHJAM.git
+cd Tiktok-TECHJAM
 
-### 2. Test the API Directly
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Or use npm scripts
+npm run setup
+```
+
+### 2. Test the Live Demo
+Visit [https://pacmanlaw.info](https://pacmanlaw.info) and try the web interface.
+
+### 3. Test the API Directly
 ```bash
 curl -X POST https://bvemy4jegpeyk3tf2asnihjn3a0kvwyq.lambda-url.us-west-2.on.aws/ \
   -H "Content-Type: application/json" \
@@ -116,10 +129,23 @@ curl -X POST https://bvemy4jegpeyk3tf2asnihjn3a0kvwyq.lambda-url.us-west-2.on.aw
   }'
 ```
 
-### 3. Run Local Tests
+### 4. Run Local Tests
 ```bash
-python3 test_phi2_endpoint.py
-python3 test_phi2_lambda.py
+# Using npm scripts
+npm test
+
+# Or directly with Python
+python3 tests/test_phi2_endpoint.py
+python3 tests/test_phi2_lambda.py
+```
+
+### 5. Deploy to AWS
+```bash
+# Using npm scripts
+npm run deploy
+
+# Or directly with Python
+python3 src/backend/deploy_phi2_lambda.py
 ```
 
 ## 📈 Performance Metrics

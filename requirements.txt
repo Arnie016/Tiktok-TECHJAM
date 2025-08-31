@@ -1,0 +1,29 @@
+# Geo-Compliance Analyzer - Python Dependencies
+# Core AWS SDK for Python
+boto3>=1.26.0
+botocore>=1.29.0
+
+# HTTP requests for API testing
+requests>=2.28.0
+
+# JSON and data processing
+json5>=0.9.0
+
+# Date and time utilities
+python-dateutil>=2.8.0
+
+# Logging and debugging
+colorlog>=6.7.0
+
+# AWS Lambda runtime dependencies
+# Note: These are included in AWS Lambda runtime but listed for local development
+# boto3 and botocore are the main requirements
+
+# Optional: For local development and testing
+# pytest>=7.0.0
+# pytest-cov>=4.0.0
+# black>=22.0.0
+# flake8>=5.0.0
+
+# Development and deployment tools
+# vercel>=0.0.0  # For Vercel deployment (if using Python backend)
