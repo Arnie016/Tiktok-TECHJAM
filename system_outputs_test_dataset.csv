@@ -1,9 +1,9 @@
 test_case_id,test_case_name,input_feature_name,input_description,success,response_time_seconds,need_geo_logic,jurisdictions,legal_citations,data_categories,lawful_basis,consent_required,confidence,timestamp
-1,GDPR Cookie Consent,EU Cookie Consent Banner,Display cookie consent banner for EU users accessing the website.,True,2.477,True,US-CA,,,consent,True,0.8,2025-08-31T08:34:10.503657
-2,US CCPA Privacy Rights,California Do Not Sell Button,Button for California residents to opt-out of data sales.,True,1.798,True,US-CA,,,,False,0.8,2025-08-31T08:34:13.309864
-3,Simple UI Feature - No Compliance,Dark Mode Toggle,UI toggle for switching between light and dark themes.,True,2.719,True,US-CA,,,,False,0.8,2025-08-31T08:34:17.036748
-4,Financial SOX Compliance,Financial Audit Logger,Logs financial transactions for compliance auditing.,True,2.413,True,,,financial data,,False,0.8,2025-08-31T08:34:20.464293
-5,COPPA Children's Privacy,Age Verification System,System to verify user age and implement parental controls for users under 13.,True,2.476,True,US-CA,,age data,consent,True,0.95,2025-08-31T08:34:23.945231
-6,LGPD Brazil Data Processing,Brazil Data Processing Consent,Consent mechanism for data processing activities in Brazil.,True,4.495,True,"US-CA, Brazil",,,,False,0.8,2025-08-31T08:34:29.446918
-7,UK GDPR Age Appropriate Design,UK Age Verification,Age verification system for UK users with age-appropriate design principles.,True,3.12,True,"US-CA, UK",,age data,,False,0.95,2025-08-31T08:34:33.571145
-8,PIPEDA Canada Consent,Canada Privacy Consent,Privacy consent mechanism for Canadian users.,True,4.352,True,"US-CA, Canada",,age data,consent,True,0.95,2025-08-31T08:34:38.931513
+1,GDPR Cookie Consent,EU Cookie Consent Banner,Display cookie consent banner for EU users accessing the website.,True,2.613,True,EU,,cookies,consent,True,0.95,2025-08-31T08:35:13.263471
+2,US CCPA Privacy Rights,California Do Not Sell Button,Button for California residents to opt-out of data sales.,True,1.714,False,US-CA,,,,False,0.65,2025-08-31T08:35:15.986297
+3,Simple UI Feature - No Compliance,Dark Mode Toggle,UI toggle for switching between light and dark themes.,True,2.156,True,US-CA,,,,False,0.8,2025-08-31T08:35:19.148263
+4,Financial SOX Compliance,Financial Audit Logger,Logs financial transactions for compliance auditing.,True,3.672,True,US-CA,,,,False,0.8,2025-08-31T08:35:23.825712
+5,COPPA Children's Privacy,Age Verification System,System to verify user age and implement parental controls for users under 13.,True,2.596,True,US-CA,,age data,consent,True,0.95,2025-08-31T08:35:27.432113
+6,LGPD Brazil Data Processing,Brazil Data Processing Consent,Consent mechanism for data processing activities in Brazil.,True,2.954,False,Brazil,,,consent,True,0.65,2025-08-31T08:35:31.394621
+7,UK GDPR Age Appropriate Design,UK Age Verification,Age verification system for UK users with age-appropriate design principles.,True,4.533,True,US-CA,,age data,,False,0.95,2025-08-31T08:35:36.934780
+8,PIPEDA Canada Consent,Canada Privacy Consent,Privacy consent mechanism for Canadian users.,True,4.562,True,"US-CA, Canada",,,consent,True,0.8,2025-08-31T08:35:42.503144

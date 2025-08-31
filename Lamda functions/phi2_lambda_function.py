@@ -131,10 +131,7 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     
     # Set CORS headers for web access
     headers = {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
-        'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS'
+        'Content-Type': 'application/json'
     }
     
     try:
