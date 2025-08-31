@@ -1,6 +1,7 @@
 import json
 import boto3
 import logging
+import re
 from typing import Dict, Any
 
 # Configure logging
@@ -14,6 +15,106 @@ sagemaker_runtime = boto3.client('sagemaker-runtime', region_name='us-west-2')
 ENDPOINT_NAME = 'phi2-v5-inference'
 MAX_TOKENS = 256
 TIMEOUT = 30  # seconds
+
+def parse_compliance_response(text: str) -> Dict[str, Any]:
+    """
+    Parse the model's text response to extract structured compliance data
+    """
+    # Default response structure
+    compliance_data = {
+        'need_geo_logic': False,
+        'jurisdictions': [],
+        'legal_citations': [],
+        'data_categories': [],
+        'lawful_basis': [],
+        'consent_required': False,
+        'confidence': 0.5
+    }
+    
+    text_lower = text.lower()
+    
+    # Check if geo-specific logic is needed
+    if any(phrase in text_lower for phrase in ['need', 'required', 'must', 'should', 'compliance', 'regulation']):
+        compliance_data['need_geo_logic'] = True
+    
+    # Extract jurisdictions
+    jurisdiction_patterns = {
+        'EU': ['eu', 'europe', 'gdpr', 'european'],
+        'US-CA': ['california', 'ccpa', 'ca'],
+        'US': ['united states', 'us federal', 'coppa', 'sox'],
+        'UK': ['uk', 'united kingdom', 'british'],
+        'Canada': ['canada', 'canadian', 'pipeda'],
+        'Brazil': ['brazil', 'brazilian', 'lgpd']
+    }
+    
+    for jurisdiction, patterns in jurisdiction_patterns.items():
+        if any(pattern in text_lower for pattern in patterns):
+            if jurisdiction not in compliance_data['jurisdictions']:
+                compliance_data['jurisdictions'].append(jurisdiction)
+    
+    # Extract legal citations
+    legal_patterns = [
+        r'gdpr\s+article\s+\d+',
+        r'ccpa\s+section\s+\d+',
+        r'coppa',
+        r'sox\s+section\s+\d+',
+        r'lgpd\s+article\s+\d+',
+        r'pipeda\s+principle\s+\d+'
+    ]
+    
+    for pattern in legal_patterns:
+        matches = re.findall(pattern, text, re.IGNORECASE)
+        for match in matches:
+            compliance_data['legal_citations'].append({
+                'law': match.upper(),
+                'jurisdiction': 'EU' if 'gdpr' in match.lower() else 'US-CA' if 'ccpa' in match.lower() else 'US'
+            })
+    
+    # Extract data categories
+    data_patterns = {
+        'personal data': ['personal data', 'personal information'],
+        'cookies': ['cookies', 'cookie'],
+        'analytics': ['analytics', 'tracking'],
+        'financial data': ['financial', 'transaction'],
+        'age data': ['age', 'birth date', 'date of birth']
+    }
+    
+    for category, patterns in data_patterns.items():
+        if any(pattern in text_lower for pattern in patterns):
+            if category not in compliance_data['data_categories']:
+                compliance_data['data_categories'].append(category)
+    
+    # Extract lawful basis
+    basis_patterns = {
+        'consent': ['consent', 'permission'],
+        'legitimate interest': ['legitimate interest', 'business purpose'],
+        'legal obligation': ['legal obligation', 'required by law'],
+        'contract': ['contract', 'agreement']
+    }
+    
+    for basis, patterns in basis_patterns.items():
+        if any(pattern in text_lower for pattern in patterns):
+            if basis not in compliance_data['lawful_basis']:
+                compliance_data['lawful_basis'].append(basis)
+    
+    # Check if consent is required
+    if any(phrase in text_lower for phrase in ['consent', 'permission', 'opt-in', 'agree']):
+        compliance_data['consent_required'] = True
+    
+    # Calculate confidence based on response quality
+    confidence_factors = 0
+    if compliance_data['need_geo_logic']:
+        confidence_factors += 1
+    if compliance_data['jurisdictions']:
+        confidence_factors += 1
+    if compliance_data['legal_citations']:
+        confidence_factors += 1
+    if compliance_data['data_categories']:
+        confidence_factors += 1
+    
+    compliance_data['confidence'] = min(0.95, 0.5 + (confidence_factors * 0.15))
+    
+    return compliance_data
 
 def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     """
@@ -108,16 +209,16 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         # Log response info
         logger.info(f"SageMaker response received - Generated text length: {len(generated_text)}")
         
+        # Parse compliance data from the response
+        compliance_data = parse_compliance_response(generated_text)
+        
         # Structure the response
         structured_response = {
             'success': True,
-            'model_version': 'phi2-v5',
-            'endpoint': ENDPOINT_NAME,
-            'analysis': {
-                'generated_text': generated_text,
-                'raw_response': result
-            },
+            'compliance': compliance_data,
             'metadata': {
+                'model_version': 'phi2-v5',
+                'endpoint': ENDPOINT_NAME,
                 'instruction_length': len(instruction),
                 'input_length': len(feature_input),
                 'response_length': len(generated_text),

@@ -111,11 +111,21 @@ def extract_compliance_data(result):
             "confidence": "ERROR"
         }
     
-    compliance = result.get("compliance", {})
+    # The Lambda response is nested: result -> result -> compliance
+    lambda_result = result.get("result", {})
+    compliance = lambda_result.get("compliance", {})
+    
+    # Handle legal_citations which might be dictionaries
+    legal_citations = compliance.get("legal_citations", [])
+    if legal_citations and isinstance(legal_citations[0], dict):
+        legal_citations_str = ", ".join([f"{cite.get('law', '')} ({cite.get('jurisdiction', '')})" for cite in legal_citations])
+    else:
+        legal_citations_str = ", ".join(legal_citations)
+    
     return {
         "need_geo_logic": compliance.get("need_geo_logic", "N/A"),
         "jurisdictions": ", ".join(compliance.get("jurisdictions", [])),
-        "legal_citations": str(compliance.get("legal_citations", [])),
+        "legal_citations": legal_citations_str,
         "data_categories": ", ".join(compliance.get("data_categories", [])),
         "lawful_basis": ", ".join(compliance.get("lawful_basis", [])),
         "consent_required": compliance.get("consent_required", "N/A"),
